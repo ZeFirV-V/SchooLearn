@@ -1,0 +1,23 @@
+<div class="header">
+  <header class="header__box container">
+    <a class="header__logo" [routerLink]="['']">
+      <img src="assets/logo.svg" alt = "logo">
+    </a>
+    <nav class="header__list">
+      <navbar/>
+    </nav>
+    <a class="header__account" [routerLink]="['/lk']" *ngIf="nickname">
+      <span >
+        {{nickname}}
+      </span>
+    </a>
+    <button
+      custom-button
+            radius="medium"
+            color="white"
+            border="border"
+            padding="small" class="header__btn-text">
+      <span>Войти</span>
+    </button>
+  </header>
+</div>
