@@ -30,7 +30,7 @@
 
 
   <div>
-    <button type="submit" [disabled]="authorizationForm.invalid" (click)="onSubmit()">Войти</button>
+    <button type="submit" [disabled]="authorizationForm.invalid || authorizationForm.disable()" (click)="onSubmit()">Войти</button>
   </div>
 </form>
 

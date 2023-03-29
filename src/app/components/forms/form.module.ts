@@ -3,6 +3,8 @@ import {AuthorizationFormComponent} from "./authorizationForm/authorizationForm.
 import {RegistrationFormComponent} from "./registrationForm/registrationForm.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
+import {HttpClientModule} from "@angular/common/http";
+import {AuthService} from "./models/auth.service"; // Для авторизации
 
 @NgModule({
   declarations: [
@@ -10,6 +12,7 @@ import {NgForOf, NgIf} from "@angular/common";
     RegistrationFormComponent,
   ],
   imports: [
+    HttpClientModule, // Для авторизации
     FormsModule,
     ReactiveFormsModule,
     NgForOf,
@@ -18,6 +21,7 @@ import {NgForOf, NgIf} from "@angular/common";
   exports: [
     AuthorizationFormComponent,
     RegistrationFormComponent,
-  ]
+  ],
+  providers: [AuthService],
 })
 export class MyFormsModule {}

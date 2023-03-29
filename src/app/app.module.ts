@@ -5,18 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule} from "@angular/forms";
-import {SkeletonModule} from "./libraries/skeleton/skeleton.module";
+// import {SkeletonModule} from "./libraries/skeleton/skeleton.module";
 import {NavbarComponent} from "./components/navbar/navbar.component";
 import {HeaderComponent} from "./components/header/header.component";
 import {FooterComponent} from "./components/footer/footer.component";
 import {CustomButtonDirective} from "./libraries/custom-button/custom-button.directive";
-import {AboutPageWeb} from "./pages/about/about.page.web";
-import {FAQPageWeb} from "./pages/FAQ/FAQ.page.web";
-import {HomePageWeb} from "./pages/home/home.page.web";
-import {RatingPageWeb} from "./pages/rating/rating.page.web";
-import {TasksPageWeb} from "./pages/tasks/tasks.page.web";
-import {PrivateOfficePageWeb} from "./pages/private-office/private-office.page.web";
 import {MyFormsModule} from "./components/forms/form.module";
+import {PagesModuleWeb} from "./pages/pages.module.web";
+import {SiteLayoutComponent} from "./layouts/site-layout/site-layout.component";
 
 @NgModule({
   declarations: [
@@ -25,26 +21,19 @@ import {MyFormsModule} from "./components/forms/form.module";
     HeaderComponent,
     FooterComponent,
     CustomButtonDirective,
-
-    AboutPageWeb,
-    FAQPageWeb,
-    HomePageWeb,
-    RatingPageWeb,
-    TasksPageWeb,
-    PrivateOfficePageWeb,
+    SiteLayoutComponent
   ],
   imports: [
     BrowserModule,
+    PagesModuleWeb,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    SkeletonModule,
+    // SkeletonModule,
     MyFormsModule,
   ],
   providers: [],
-  exports: [
-    CustomButtonDirective,
-  ],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

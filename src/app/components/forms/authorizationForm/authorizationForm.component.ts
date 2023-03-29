@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import {IUser, User} from "../models/user";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../models/auth.service";
 
 @Component({
   selector: "app-authorizationForm",
@@ -8,8 +9,10 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ["authorizationForm.component.scss"]
 })
 export class AuthorizationFormComponent {
-  public users: User[] = [];
-  public authorizationForm: FormGroup = new FormGroup({
+  constructor(private auth: AuthService) {
+  }
+  public users: User[] = []; // для записи в список, для наглядности
+    public authorizationForm: FormGroup = new FormGroup({
     userName: new FormControl("Ученик", Validators.required),
     userEmail: new FormControl("Почта", [Validators.required, Validators.email]),
     userPassword: new FormControl("Пароль", Validators.required),
@@ -23,8 +26,16 @@ export class AuthorizationFormComponent {
       password: this.authorizationForm.controls["userPassword"].value,
       phone: this.authorizationForm.controls["userPhone"].value,
     }
-
-    this.users.push(data)
+    this.authorizationForm.disable();
+    this.auth.login(data).subscribe(
+      () => console.log("Успешная авторизация"),
+      (error) => {
+        console.error("Ошибка авторизации");
+        console.log(error);
+        this.authorizationForm.enable();
+      },
+    ); // можно использовать "this.authorizationForm.value", но смотри за названиями
+    // this.users.push(data) // для записи в список, для наглядности
   }
 }
 
