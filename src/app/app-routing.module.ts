@@ -10,6 +10,7 @@ import {RegistrationPageWeb} from "./pages/registration/registration.page.web";
 import {LoginPageWeb} from "./pages/login/login.page.web";
 import {PageNotFoundPageWeb} from "./pages/404/404.page.web";
 import {SiteLayoutComponent} from "./layouts/site-layout/site-layout.component";
+import {AuthGuard} from "./guards/auth.guard";
 
 const routes: Routes = [
   {
@@ -19,7 +20,7 @@ const routes: Routes = [
       {path: 'tasks', component: TasksPageWeb},
       {path: 'rating', component: RatingPageWeb},
       {path: 'FAQ', component: FAQPageWeb},
-      {path: 'lk', component: PrivateOfficePageWeb},
+      {path: 'lk', canActivate: [AuthGuard], component: PrivateOfficePageWeb}, // использует guard
       {path: 'registration', component: RegistrationPageWeb},
       {path: 'authorization', component: LoginPageWeb},
       {path: '**', component: PageNotFoundPageWeb}

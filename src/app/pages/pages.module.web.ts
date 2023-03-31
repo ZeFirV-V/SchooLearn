@@ -8,6 +8,8 @@ import {PrivateOfficePageWeb} from "./private-office/private-office.page.web";
 import {RegistrationPageWeb} from "./registration/registration.page.web";
 import {LoginPageWeb} from "./login/login.page.web";
 import {PageNotFoundPageWeb } from "./404/404.page.web";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {BrowserModule} from "@angular/platform-browser";
 
 
 @NgModule({
@@ -22,7 +24,11 @@ import {PageNotFoundPageWeb } from "./404/404.page.web";
     LoginPageWeb,
     PageNotFoundPageWeb
   ],
-  imports: [],
+  imports: [
+    ReactiveFormsModule, // TODO: потом удалить, после СОЗДАНИЯ МОДУЛЯ ДЛЯ ЛОГИНА
+    BrowserModule,
+    FormsModule,
+  ],
   exports: [
     AboutPageWeb,
     FAQPageWeb,

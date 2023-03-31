@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import {IUser, User} from "../models/user";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../models/auth.service";
+import {AuthService} from "../../../services/auth/auth.service";
 
 @Component({
   selector: "app-authorizationForm",

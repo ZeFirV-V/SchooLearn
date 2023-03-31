@@ -4,7 +4,7 @@ import {RegistrationFormComponent} from "./registrationForm/registrationForm.com
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
-import {AuthService} from "./models/auth.service"; // Для авторизации
+import {AuthService} from "../../services/auth/auth.service"; // Для авторизации
 
 @NgModule({
   declarations: [
