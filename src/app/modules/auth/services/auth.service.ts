@@ -2,9 +2,9 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import { Observable } from "rxjs";
 import {tap} from "rxjs/operators"
-import {environment} from "../../../environments/environment";
-import {AuthResponseInterface, IAuthUser} from "./auth-response.interface";
-import {IUser} from "../../components/forms/models/user";
+import {environment} from "../../../../environments/environment";
+import {AuthResponseInterface, IAuthUser} from "../interfaces/auth-response.interface";
+import {IUser} from "../../../components/forms/models/user";
 
 @Injectable()
 export class AuthService {
@@ -16,7 +16,7 @@ export class AuthService {
     return this._http.post<IAuthUser>('/regist', user) //TODO: ПОМЕНЯТЬ ПУТЬ
   }
 
-  login(user: IAuthUser | IUser): Observable<AuthResponseInterface> {
+  login(user: IAuthUser): Observable<AuthResponseInterface> {
     //TODO: добавить прохи --proxy-config proxy.conf.json
     return this._http.post<AuthResponseInterface>(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, user)
       .pipe(
@@ -29,9 +29,9 @@ export class AuthService {
   setToken(response: AuthResponseInterface | null): void { //Сделал приватным, надеюсь ничего не упало )) упало))
     if (response) {
       const expDate: Date = new Date(new Date().getTime() + parseInt(response.expiresIn) * 1000);
+      localStorage.setItem('token-exp', expDate.toString());
       this._token = response.idToken;
       localStorage.setItem('token', response.idToken);
-      localStorage.setItem('token-exp', expDate.toString());
     } else {
       localStorage.clear();
       this._token = null;
@@ -51,7 +51,8 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean { //TODO: сделать проверку валидности токена
-    return !!this._token;
+    // return !!this._token;
+    return this.token !== null;
   }
 
   logout() {

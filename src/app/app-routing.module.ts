@@ -10,7 +10,7 @@ import {RegistrationPageWeb} from "./pages/registration/registration.page.web";
 import {LoginPageWeb} from "./pages/login/login.page.web";
 import {PageNotFoundPageWeb} from "./pages/404/404.page.web";
 import {SiteLayoutComponent} from "./layouts/site-layout/site-layout.component";
-import {AuthGuard} from "./guards/auth.guard";
+import {AuthGuard} from "./modules/auth/guards/auth.guard";
 
 const routes: Routes = [
   {

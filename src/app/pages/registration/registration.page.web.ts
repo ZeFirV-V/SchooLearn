@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
-import {AuthService} from "../../services/auth/auth.service";
+import {AuthService} from "../../modules/auth/services/auth.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
-import {IAuthUser} from "../../services/auth/auth-response.interface";
+import {AuthUser, IAuthUser} from "../../modules/auth/interfaces/auth-response.interface";
 
 @Component({
   selector: "registration-page",
@@ -35,13 +35,13 @@ export class RegistrationPageWeb implements OnDestroy, OnInit {
   private _authServiceSubscribe: Subscription = new Subscription(); //TODO: переделать без объявления
 
   public onSubmitRegistration() {
-    const data: IAuthUser = {
-      name: this.registrationForm.controls["userName"].value,
-      email: this.registrationForm.controls["userEmail"].value,
-      password: this.registrationForm.controls["userPassword"].value,
-      phone: this.registrationForm.controls["userPhone"].value,
-      returnSecureToken: true,
-    }
+    const data: AuthUser = new AuthUser(
+      this.registrationForm.controls["userName"].value,
+      this.registrationForm.controls["userEmail"].value,
+      this.registrationForm.controls["userPassword"].value,
+      this.registrationForm.controls["userPhone"].value,
+      true
+    );
     this.registrationForm.disable();
     this._authServiceSubscribe = this._authService.register(data).subscribe(
       (value) => {

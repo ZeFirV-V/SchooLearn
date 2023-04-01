@@ -1,7 +1,8 @@
 import { Component } from "@angular/core";
 import {IUser, User} from "../models/user";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../../services/auth/auth.service";
+import {AuthService} from "../../../modules/auth/services/auth.service";
+import {AuthUser, IAuthUser} from "../../../modules/auth/interfaces/auth-response.interface";
 
 @Component({
   selector: "app-authorizationForm",
@@ -20,12 +21,13 @@ export class AuthorizationFormComponent {
   });
 
   public onSubmit() {
-    const data: IUser = {
-      name: this.authorizationForm.controls["userName"].value,
-      email: this.authorizationForm.controls["userEmail"].value,
-      password: this.authorizationForm.controls["userPassword"].value,
-      phone: this.authorizationForm.controls["userPhone"].value,
-    }
+    const data: IAuthUser = new AuthUser(
+      this.authorizationForm.controls["userName"].value,
+      this.authorizationForm.controls["userEmail"].value,
+      this.authorizationForm.controls["userPassword"].value,
+      this.authorizationForm.controls["userPhone"].value,
+      false
+    )
     this.authorizationForm.disable();
     this.auth.login(data).subscribe(
       () => console.log("Успешная авторизация"),

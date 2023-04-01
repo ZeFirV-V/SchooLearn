@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
-import {AuthService} from "../../services/auth/auth.service";
+import {AuthService} from "../../modules/auth/services/auth.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {IAuthUser} from "../../services/auth/auth-response.interface";
+import {AuthUser, IAuthUser} from "../../modules/auth/interfaces/auth-response.interface";
 
 @Component({
   selector: "login-office",
@@ -35,13 +35,13 @@ export class LoginPageWeb implements OnDestroy, OnInit {
   private _asyncSubscribe: Subscription = new Subscription(); //TODO: переделать без объявления
 
   public onSubmitLogin() {
-    const data: IAuthUser = {
-      name: this.authorizationForm.controls["userName"].value,
-      email: this.authorizationForm.controls["userEmail"].value,
-      password: this.authorizationForm.controls["userPassword"].value,
-      phone: this.authorizationForm.controls["userPhone"].value,
-      returnSecureToken: true,
-    }
+    const data: AuthUser = new AuthUser(
+      this.authorizationForm.controls["userName"].value,
+      this.authorizationForm.controls["userEmail"].value,
+      this.authorizationForm.controls["userPassword"].value,
+      this.authorizationForm.controls["userPhone"].value,
+      true
+    );
     this.authorizationForm.disable();
     this._asyncSubscribe = this._authService.login(data).subscribe({
       next: (value) => {

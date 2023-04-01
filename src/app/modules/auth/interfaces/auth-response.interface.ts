@@ -15,20 +15,26 @@ export interface IAuthUser {
   password: string;
   phone: number;
   returnSecureToken: boolean,
+  checkReturnSecureToken(): boolean,
 }
 
-export class AuthUser {
+export class AuthUser implements IAuthUser{
   public name: string;
   public email: string;
   public password: string;
   public phone: number;
   public returnSecureToken: boolean;
 
-  constructor(data: IAuthUser) {
-    this.name = data.name;
-    this.email = data.email;
-    this.password = data.password;
-    this.phone = data.phone;
-    this.returnSecureToken = true;
+  constructor(name: string, email: string, password: string, phone: number, returnSecureToken: boolean) {
+    this.name = name;
+    this.email = email;
+    this.password = password;
+    this.phone = phone;
+    this.returnSecureToken = returnSecureToken;
   }
+
+  checkReturnSecureToken(): boolean {
+    return this.returnSecureToken;
+  }
+
 }

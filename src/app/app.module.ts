@@ -14,7 +14,7 @@ import {MyFormsModule} from "./components/forms/form.module";
 import {PagesModuleWeb} from "./pages/pages.module.web";
 import {SiteLayoutComponent} from "./layouts/site-layout/site-layout.component";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
-import {TokenInterceptor} from "./shared/classes/token.interceptor";
+import {TokenInterceptor} from "./modules/auth/helpers/token.interceptor";
 
 @NgModule({
   declarations: [
