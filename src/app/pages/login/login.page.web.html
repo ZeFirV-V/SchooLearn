@@ -3,6 +3,10 @@
   [formGroup]="authorizationForm"
   (ngSubmit)="onSubmitLogin()"
 >
+  <div class="alert alert-danger" *ngIf="_authService.error$ | async as error">
+    {{error}}
+  </div>
+
   <div class="authorizationForm__group">
     <label for="name">Имя</label>
     <input
@@ -68,7 +72,7 @@
   <div>
     <button
       type="submit"
-      [disabled]="authorizationForm.invalid || authorizationForm.disabled"
+      [disabled]="authorizationForm.invalid || submitted || authorizationForm.disabled"
     >
 <!--      (click)="onSubmit()"-->
 <!--    >-->

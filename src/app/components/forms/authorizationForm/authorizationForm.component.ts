@@ -1,5 +1,4 @@
 import { Component } from "@angular/core";
-import {IUser, User} from "../models/user";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../modules/auth/services/auth.service";
 import {AuthUser, IAuthUser} from "../../../modules/auth/interfaces/auth-response.interface";
@@ -12,7 +11,7 @@ import {AuthUser, IAuthUser} from "../../../modules/auth/interfaces/auth-respons
 export class AuthorizationFormComponent {
   constructor(private auth: AuthService) {
   }
-  public users: User[] = []; // для записи в список, для наглядности
+  // public users: User[] = []; // для записи в список, для наглядности
     public authorizationForm: FormGroup = new FormGroup({
     userName: new FormControl("Ученик", Validators.required),
     userEmail: new FormControl("Почта", [Validators.required, Validators.email]),

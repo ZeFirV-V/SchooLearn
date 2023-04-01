@@ -6,24 +6,24 @@
 
 export interface AuthResponseInterface {
   idToken: string,
-  expiresIn: string,
+  expiresIn?: string,
 }
 
 export interface IAuthUser {
-  name: string;
+  readonly name: string;
   email: string;
   password: string;
   phone: number;
-  returnSecureToken: boolean,
+  returnSecureToken?: boolean,
   checkReturnSecureToken(): boolean,
 }
 
 export class AuthUser implements IAuthUser{
-  public name: string;
+  readonly name: string;
   public email: string;
   public password: string;
   public phone: number;
-  public returnSecureToken: boolean;
+  public returnSecureToken?: boolean;
 
   constructor(name: string, email: string, password: string, phone: number, returnSecureToken: boolean) {
     this.name = name;
@@ -34,7 +34,7 @@ export class AuthUser implements IAuthUser{
   }
 
   checkReturnSecureToken(): boolean {
-    return this.returnSecureToken;
+    return !!this.returnSecureToken;
   }
 
 }

@@ -11,9 +11,11 @@ import {AuthUser, IAuthUser} from "../../modules/auth/interfaces/auth-response.i
   styleUrls: ["login.page.web.scss"]
 })
 export class LoginPageWeb implements OnDestroy, OnInit {
-  constructor(private _authService: AuthService,
+  constructor(public _authService: AuthService,
               private _router: Router,
               private _route: ActivatedRoute) { }
+
+
 
   ngOnInit() {
     this._route.queryParams.subscribe((params: Params) => {
@@ -34,7 +36,10 @@ export class LoginPageWeb implements OnDestroy, OnInit {
 
   private _asyncSubscribe: Subscription = new Subscription(); //TODO: переделать без объявления
 
+  submitted: boolean = false;
+
   public onSubmitLogin() {
+    this.submitted = true;
     const data: AuthUser = new AuthUser(
       this.authorizationForm.controls["userName"].value,
       this.authorizationForm.controls["userEmail"].value,
@@ -45,14 +50,17 @@ export class LoginPageWeb implements OnDestroy, OnInit {
     this.authorizationForm.disable();
     this._asyncSubscribe = this._authService.login(data).subscribe({
       next: (value) => {
+        this.authorizationForm.reset();
         console.log("Успешная авторизация");
         this._router.navigate(['/lk']).then(); // переход на лк
+        this.submitted = false;
       },
 
       error: (error) => {
         console.error("Ошибка авторизации");
         console.log(error);
         this.authorizationForm.enable();
+        this.submitted = false;
       },
     }); // можно использовать "this.authorizationForm.value", но смотри за названиями
     // this.users.push(data) // для записи в список, для наглядности
