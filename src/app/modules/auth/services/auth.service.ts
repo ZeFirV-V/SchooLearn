@@ -24,6 +24,7 @@ export class AuthService {
   }
 
   login(user: IAuthUser): Observable<AuthResponseInterface> {
+    console.log(user);
     //TODO: добавить прохи --proxy-config proxy.conf.json
     return this._http.post<AuthResponseInterface>(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, user)
       .pipe(

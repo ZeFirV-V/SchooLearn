@@ -11,6 +11,8 @@ import {LoginPageWeb} from "./pages/login/login.page.web";
 import {PageNotFoundPageWeb} from "./pages/404/404.page.web";
 import {SiteLayoutComponent} from "./layouts/site-layout/site-layout.component";
 import {AuthGuard} from "./modules/auth/guards/auth.guard";
+import {AuthTeacherGuard} from "./modules/auth/guards/auth-teacher.guard";
+import {Role} from "./modules/auth/enums/role.enum";
 
 const routes: Routes = [
   {
@@ -20,7 +22,13 @@ const routes: Routes = [
       {path: 'tasks', component: TasksPageWeb},
       {path: 'rating', component: RatingPageWeb},
       {path: 'FAQ', component: FAQPageWeb},
-      {path: 'lk', canActivate: [AuthGuard], component: PrivateOfficePageWeb}, // использует guard
+      {path: 'lk-student', canActivate: [AuthGuard], component: PrivateOfficePageWeb}, // использует guard
+      {
+        path: 'lk-teacher',
+        canActivate: [AuthTeacherGuard],
+        component: PrivateOfficePageWeb,
+        data: { roles: [Role.Teacher] }
+      }, //Использует guard для лк учителя
       {path: 'registration', component: RegistrationPageWeb},
       {path: 'authorization', component: LoginPageWeb},
       {path: '**', component: PageNotFoundPageWeb}

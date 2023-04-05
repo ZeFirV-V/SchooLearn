@@ -18,7 +18,8 @@ export class TokenInterceptor implements HttpInterceptor{
         }
       });
     }
-    return next.handle(req).pipe(
+    return next.handle(req)
+      .pipe(
       tap({
         error:
           (err: any) => {

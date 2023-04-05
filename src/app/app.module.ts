@@ -39,7 +39,7 @@ import {TokenInterceptor} from "./modules/auth/helpers/token.interceptor";
       provide: HTTP_INTERCEPTORS,
       multi: true,
       useClass: TokenInterceptor,
-    }
+    } //TODO: сделать в дальнейшем отдельный Interceptor для обработки ошибок
   ],
   exports: [],
   bootstrap: [AppComponent]
