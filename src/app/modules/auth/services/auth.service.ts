@@ -6,6 +6,9 @@ import {environment} from "../../../../environments/environment";
 import {AuthResponseInterface, IAuthUser} from "../interfaces/auth-response.interface";
 import {Router} from "@angular/router";
 import {User} from "../interfaces/user.interface";
+import {IRegistrationUser} from "../interfaces/registration-user.interface";
+import { IAuthorizationUser} from "../interfaces/auth/athorization-user.interface";
+import {IAuthResponseUserInterface} from "../interfaces/auth/auth-responce-user.interface";
 
 @Injectable()
 export class AuthService {
@@ -17,6 +20,8 @@ export class AuthService {
   constructor(private _http: HttpClient) {
     this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
     this.user = this.userSubject.asObservable();
+
+    this.userSubject2 = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
   }
 
   register(user: IAuthUser): Observable<IAuthUser> {
@@ -36,7 +41,7 @@ export class AuthService {
       )
   }
 
-  setToken(response: AuthResponseInterface | null): void { //Сделал приватным, надеюсь ничего не упало )) упало))
+  private setToken(response: AuthResponseInterface | null): void { //Сделал приватным, надеюсь ничего не упало )) упало)) сейчас не падает
     if (response) {
       if(!!response.expiresIn) {
         const expDate: Date = new Date(new Date().getTime() + parseInt(response.expiresIn) * 1000);
@@ -89,6 +94,56 @@ export class AuthService {
 
   logout() {
     this.setToken(null); //TODO: сделать переадресацию на авторизацию
+  }
+
+  register2(user: IRegistrationUser): Observable<IAuthUser> {
+    return this._http.post<IAuthUser>('/regist', user) //Ведется работа над разделением на роли
+  }
+
+  login2(user: IAuthorizationUser): Observable<IAuthResponseUserInterface> {
+    console.log(user);
+    //TODO: добавить прохи --proxy-config proxy.conf.json
+    return this._http.post<IAuthResponseUserInterface>(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, user)
+      .pipe(
+        tap((value) => {
+          console.log(value)
+          this.setToken2(value);
+        }),
+        catchError(this.handleError.bind(this))
+      )
+  }
+
+  private userSubject2: BehaviorSubject<IAuthResponseUserInterface | null>;
+
+  private setToken2(response: IAuthResponseUserInterface | null): void { //Сделал приватным, надеюсь ничего не упало )) упало))
+    if (response) {
+      if(!!response.expiresIn) {
+        const expDate: Date = new Date(new Date().getTime() + parseInt(response.expiresIn) * 1000);
+        localStorage.setItem('token-exp', expDate.toString());
+      }
+      this._token = response.idToken;
+      this.userSubject2.next(response);
+      localStorage.setItem('token', response.idToken);
+    } else {
+      localStorage.clear();
+      this._token = null;
+      this.userSubject.next(null);
+    }
+  }
+
+  get userValue2() {
+    return this.userSubject2.value;
+  }
+
+  get token2() : string | null {
+    const strDateExp: string | null = localStorage.getItem('token-exp');
+    if (strDateExp !== null) {
+      if (new Date() > new Date(strDateExp)) {
+        this.logout();
+        return null;
+      }
+    }
+    return localStorage.getItem('token');
   }
 
   // isAuthenticated(): Observable<boolean> {

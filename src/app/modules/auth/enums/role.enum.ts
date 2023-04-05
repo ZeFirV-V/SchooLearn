@@ -1,4 +1,5 @@
 export enum Role {
   Student = 'Student',
-  Teacher = 'Teacher'
+  Teacher = 'Teacher',
+  AdministratorTeacher = 'Administrator Teacher',
 }

@@ -1,3 +1,3 @@
-import {RegistrationUser} from "./registration-user.interface";
+import {IRegistrationUser} from "./registration-user.interface";
 
-export interface RegistrationStudent extends RegistrationUser { }
+export interface RegistrationStudent extends IRegistrationUser { }

@@ -1,6 +1,6 @@
 import {Role} from "../enums/role.enum";
 
-export interface RegistrationUser {
+export interface IRegistrationUser {
   role: Role;
   nickname: string;
   organization: string;

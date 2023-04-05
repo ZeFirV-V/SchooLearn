@@ -45,7 +45,7 @@ export class RegistrationPageWeb implements OnDestroy, OnInit {
     this.registrationForm.disable();
     this._authServiceSubscribe = this._authService.register(data).subscribe(
       (value) => {
-        alert("Успешная авторизация");
+        alert("Успешная регистрация");
         this._router.navigate(['/authorization'], {
           queryParams: {
             registered: true,

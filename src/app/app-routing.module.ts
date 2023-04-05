@@ -22,7 +22,7 @@ const routes: Routes = [
       {path: 'tasks', component: TasksPageWeb},
       {path: 'rating', component: RatingPageWeb},
       {path: 'FAQ', component: FAQPageWeb},
-      {path: 'lk-student', canActivate: [AuthGuard], component: PrivateOfficePageWeb}, // использует guard
+      {path: 'lk', canActivate: [AuthGuard], component: PrivateOfficePageWeb}, // использует guard
       {
         path: 'lk-teacher',
         canActivate: [AuthTeacherGuard],
