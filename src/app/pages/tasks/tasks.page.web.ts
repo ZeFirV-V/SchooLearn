@@ -1,10 +1,11 @@
 import { Component } from "@angular/core";
+import {Router} from "@angular/router";
 
 @Component({
-  selector: "tasks-page",
+  selector: "tasks-home-page",
   templateUrl: "tasks.page.web.html",
   styleUrls: ["tasks.page.web.scss"]
 })
-export class TasksPageWeb {
+export class TasksPage {
 
 }

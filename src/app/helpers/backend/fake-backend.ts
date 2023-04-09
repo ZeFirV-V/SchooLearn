@@ -10,6 +10,21 @@ const users = [
   { id: 2, email: 'Student@bk.ru', nickname: 'Student', password: 'user', login: 'Normal', organization: 'school', role: Role.Student }
 ];
 
+const subjects = [
+  { id: 1, name: "math"},
+  { id: 2, name: "info"},
+]
+
+
+const task = [
+  {
+    id: 1,
+    subject: "math",
+    level: 1,
+    task: "123",
+    price: 1,
+  }
+]
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -23,6 +38,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           return authenticate();
         case url.endsWith('/users') && method === 'GET':
           return getUsers();
+        case url.endsWith('/subjects') && method === 'GET':
+          return getSubjects();
+        case url.endsWith('/subjects/math') && method === 'GET':
+          return getTask();
         case url.match(/\/users\/\d+$/) && method === 'GET':
           return getUserById();
         default:
@@ -45,6 +64,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         role: user.role,
         idToken: `fake-jwt-token.${user.id}`
       });
+    }
+
+    function getSubjects() {
+      return ok(subjects);
+    }
+
+    function getTask() {
+      return ok([task]);
     }
 
     function getUsers() {

@@ -4,6 +4,7 @@ import {Observable, of} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MessageService} from "../../message/services/message.service";
 import {ISubject} from "../interfaces/subject.interface";
+import {environment} from "../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class SubjectService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  private subjectUrl = '';  // URL to web api
+  private subjectUrl = `${environment.apiUrl}/subjects`;  // URL to web api
 
   /** GET Subjects from the server */
   getSubjects(): Observable<ISubject[]> {
@@ -27,7 +28,7 @@ export class SubjectService {
       );
   }
 
-  /** GET Subject by id. Will 404 if id not found */
+  /** GET Subject by id. Will not-found if id not found */
   getSubject(id: number): Observable<ISubject> {
     const url = `${this.subjectUrl}/${id}`;
     return this.http.get<ISubject>(url).pipe(

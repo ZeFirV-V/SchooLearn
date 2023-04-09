@@ -24,7 +24,7 @@ import {fakeBackendProvider} from "./helpers/backend/fake-backend";
     HeaderComponent,
     FooterComponent,
     CustomButtonDirective,
-    SiteLayoutComponent
+    SiteLayoutComponent,
   ],
   imports: [
     BrowserModule,

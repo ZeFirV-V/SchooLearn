@@ -4,6 +4,7 @@ import {Observable, of} from "rxjs";
 import {ITask} from "../interfaces/task.itnerface";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MessageService} from "../../message/services/message.service";
+import {environment} from "../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -16,23 +17,23 @@ export class TasksService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  private tasksUrl = '';  // URL to web api
+  private tasksUrl = `${environment.apiUrl}/subjects`;  // URL to web api
 
   /** GET Tasks from the server */
   getTasks(): Observable<ITask[]> {
     return this.http.get<ITask[]>(this.tasksUrl)
       .pipe(
-        tap(_ => this.log('fetched tasks')),
+        tap(_ => this.log('fetched tasks-home')),
         catchError(this.handleError<ITask[]>('getTasks', []))
       );
   }
 
-  /** GET Task by subject. Will 404 if id not found */
-  getTask(subject: string): Observable<ITask> {
+  /** GET Task by subject. Will not-found if id not found */
+  getTask(subject: string | null): Observable<ITask[]> {
     const url = `${this.tasksUrl}/${subject}`;
-    return this.http.get<ITask>(url).pipe(
+    return this.http.get<ITask[]>(`http://localhost:4200/tasks/subjects/math`).pipe(
       tap(_ => this.log(`fetched task id=${subject}`)),
-      catchError(this.handleError<ITask>(`getTask id=${subject}`))
+      catchError(this.handleError<ITask[]>(`getTask id=${subject}`))
     );
   }
 
