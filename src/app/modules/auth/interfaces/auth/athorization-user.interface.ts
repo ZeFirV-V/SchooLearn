@@ -1,7 +1,8 @@
-import {Role} from "../../enums/role.enum";
-
 export interface IAuthorizationUser {
-  login: string;
-  password: string;
-  role: Role;
+  readonly login: string;
+  readonly password: string;
+}
+
+export class AuthorizationUser implements IAuthorizationUser{
+  constructor(readonly login: string, readonly password: string, readonly returnSecureToken: boolean = false) { }
 }

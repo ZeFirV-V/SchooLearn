@@ -23,21 +23,21 @@
       Обязательно для заполнения
     </div>
   </div>
-  <div class="authorizationForm__group">
-    <label for="email">Имя</label>
-    <input
-      id="email"
-      type="email"
-      name="email"
-      [formControlName]="'userEmail'"
-    >
-    <div
-      class="authorizationForm__error"
-      *ngIf="authorizationForm.controls['userEmail'].invalid
-      && authorizationForm.controls['userEmail'].touched">
-      Обязательно для заполнения или неверный формат
-    </div>
-  </div>
+<!--  <div class="authorizationForm__group">-->
+<!--    <label for="email">Имя</label>-->
+<!--    <input-->
+<!--      id="email"-->
+<!--      type="email"-->
+<!--      name="email"-->
+<!--      [formControlName]="'userEmail'"-->
+<!--    >-->
+<!--    <div-->
+<!--      class="authorizationForm__error"-->
+<!--      *ngIf="authorizationForm.controls['userEmail'].invalid-->
+<!--      && authorizationForm.controls['userEmail'].touched">-->
+<!--      Обязательно для заполнения или неверный формат-->
+<!--    </div>-->
+<!--  </div>-->
   <div class="authorizationForm__group">
     <label for="password">Пароль</label>
     <input
@@ -52,21 +52,21 @@
       Обязательно для заполнения и должно быть больше 7 символов.
     </div>
   </div>
-  <div class="authorizationForm__group">
-    <label for="phone">Телефон</label>
-    <input
-      id="phone"
-      name="phone"
-      type="tel"
-      [formControlName]="'userPhone'"
-    >
-    <div
-      class="authorizationForm__error"
-      *ngIf="authorizationForm.controls['userPhone'].invalid
-      && authorizationForm.controls['userPhone'].touched">
-      Обязательно для заполнения и ожидает номер телефона
-    </div>
-  </div>
+<!--  <div class="authorizationForm__group">-->
+<!--    <label for="phone">Телефон</label>-->
+<!--    <input-->
+<!--      id="phone"-->
+<!--      name="phone"-->
+<!--      type="tel"-->
+<!--      [formControlName]="'userPhone'"-->
+<!--    >-->
+<!--    <div-->
+<!--      class="authorizationForm__error"-->
+<!--      *ngIf="authorizationForm.controls['userPhone'].invalid-->
+<!--      && authorizationForm.controls['userPhone'].touched">-->
+<!--      Обязательно для заполнения и ожидает номер телефона-->
+<!--    </div>-->
+<!--  </div>-->
 
 
   <div>

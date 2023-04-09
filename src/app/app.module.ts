@@ -15,6 +15,7 @@ import {PagesModuleWeb} from "./pages/pages.module.web";
 import {SiteLayoutComponent} from "./layouts/site-layout/site-layout.component";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {TokenInterceptor} from "./modules/auth/helpers/token.interceptor";
+import {fakeBackendProvider} from "./helpers/backend/fake-backend";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {TokenInterceptor} from "./modules/auth/helpers/token.interceptor";
       provide: HTTP_INTERCEPTORS,
       multi: true,
       useClass: TokenInterceptor,
-    } //TODO: сделать в дальнейшем отдельный Interceptor для обработки ошибок
+    }, //TODO: сделать в дальнейшем отдельный Interceptor для обработки ошибок
+    fakeBackendProvider,
   ],
   exports: [],
   bootstrap: [AppComponent]

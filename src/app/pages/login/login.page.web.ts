@@ -3,7 +3,7 @@ import {AuthService} from "../../modules/auth/services/auth.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {AuthUser, IAuthUser} from "../../modules/auth/interfaces/auth-response.interface";
+import {AuthorizationUser, IAuthorizationUser} from "../../modules/auth/interfaces/auth/athorization-user.interface";
 
 @Component({
   selector: "login-office",
@@ -28,10 +28,8 @@ export class LoginPageWeb implements OnDestroy, OnInit {
   }
 
   public authorizationForm: FormGroup = new FormGroup({
-    userName: new FormControl("Ученик", Validators.required),
-    userEmail: new FormControl("Почта", [Validators.required, Validators.email]),
-    userPassword: new FormControl("Пароль", [Validators.required, Validators.minLength(7)]),
-    userPhone: new FormControl("Телефон", [Validators.required, Validators.pattern("[0-9]{10}")]), //использует регулярные выражения
+    userName: new FormControl("", Validators.required),
+    userPassword: new FormControl("", [Validators.required, Validators.minLength(3)]),
   });
 
   private _asyncSubscribe: Subscription = new Subscription(); //TODO: переделать без объявления
@@ -40,19 +38,16 @@ export class LoginPageWeb implements OnDestroy, OnInit {
 
   public onSubmitLogin() {
     this.submitted = true;
-    const data: AuthUser = new AuthUser(
+    const data: IAuthorizationUser = new AuthorizationUser(
       this.authorizationForm.controls["userName"].value,
-      this.authorizationForm.controls["userEmail"].value,
       this.authorizationForm.controls["userPassword"].value,
-      this.authorizationForm.controls["userPhone"].value,
-      true
     );
     this.authorizationForm.disable();
-    this._asyncSubscribe = this._authService.login(data).subscribe({
+    this._asyncSubscribe = this._authService.login2(data).subscribe({
       next: (value) => {
+        this._authService.navigateLk(value.role)
         this.authorizationForm.reset();
-        console.log("Успешная авторизация");
-        this._router.navigate(['/lk']).then(); // переход на лк
+        // this._router.navigate(['/lk']).then(); // переход на лк
         this.submitted = false;
       },
 

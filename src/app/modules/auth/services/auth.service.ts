@@ -1,14 +1,15 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {BehaviorSubject, catchError, map, Observable, Subject, throwError} from "rxjs";
+import {BehaviorSubject, catchError, Observable, Subject, throwError} from "rxjs";
 import {tap} from "rxjs/operators"
 import {environment} from "../../../../environments/environment";
 import {AuthResponseInterface, IAuthUser} from "../interfaces/auth-response.interface";
 import {Router} from "@angular/router";
 import {User} from "../interfaces/user.interface";
-import {IRegistrationUser} from "../interfaces/registration-user.interface";
+import {IRegistrationUser} from "../interfaces/registration/registration-user.interface";
 import { IAuthorizationUser} from "../interfaces/auth/athorization-user.interface";
 import {IAuthResponseUserInterface} from "../interfaces/auth/auth-responce-user.interface";
+import {Role} from "../enums/role.enum";
 
 @Injectable()
 export class AuthService {
@@ -17,7 +18,7 @@ export class AuthService {
   private userSubject: BehaviorSubject<User | null>;
   public user: Observable<User | null>;
 
-  constructor(private _http: HttpClient) {
+  constructor(private _http: HttpClient, private _router: Router) {
     this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
     this.user = this.userSubject.asObservable();
 
@@ -103,7 +104,7 @@ export class AuthService {
   login2(user: IAuthorizationUser): Observable<IAuthResponseUserInterface> {
     console.log(user);
     //TODO: добавить прохи --proxy-config proxy.conf.json
-    return this._http.post<IAuthResponseUserInterface>(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, user)
+    return this._http.post<IAuthResponseUserInterface>(`${environment.apiUrl}/users/authenticate`, user)
       .pipe(
         tap((value) => {
           console.log(value)
@@ -111,6 +112,19 @@ export class AuthService {
         }),
         catchError(this.handleError.bind(this))
       )
+  }
+
+  navigateLk(role: Role): void {
+    console.log("true")
+    switch (role) {
+      case Role.Teacher:
+        console.log('Teacher');
+        this._router.navigate(['/lk-teacher']).then(); // переход на лк
+        break;
+      case Role.Student:
+        this._router.navigate(['/lk-student']).then(); // переход на лк
+        break;
+    }
   }
 
   private userSubject2: BehaviorSubject<IAuthResponseUserInterface | null>;
