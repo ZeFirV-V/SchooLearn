@@ -11,7 +11,7 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./task.page.web.scss']
 })
 export class TaskPageWeb implements OnInit {
-  task$!: Observable<ITask[]>;
+  task$!: Observable<ITask>;
   private subject!: string | null;
 
   constructor(private _taskService: TasksService,
@@ -25,4 +25,9 @@ export class TaskPageWeb implements OnInit {
       })
     );
   }
+
+  // getTask(): void {
+  //   this._taskService.getTask()
+  //     .subscribe(subjects => this.subjects = subjects);
+  // }
 }

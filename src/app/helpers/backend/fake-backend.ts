@@ -16,7 +16,7 @@ const subjects = [
 ]
 
 
-const task = [
+const task =
   {
     id: 1,
     subject: "math",
@@ -24,7 +24,7 @@ const task = [
     task: "123",
     price: 1,
   }
-]
+
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -71,7 +71,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     }
 
     function getTask() {
-      return ok([task]);
+      return ok(task);
     }
 
     function getUsers() {

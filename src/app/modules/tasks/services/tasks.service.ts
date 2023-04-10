@@ -29,11 +29,12 @@ export class TasksService {
   }
 
   /** GET Task by subject. Will not-found if id not found */
-  getTask(subject: string | null): Observable<ITask[]> {
+  getTask(subject: string | null): Observable<ITask> {
     const url = `${this.tasksUrl}/${subject}`;
-    return this.http.get<ITask[]>(`http://localhost:4200/tasks/subjects/math`).pipe(
+    return this.http.get<ITask>(`http://localhost:4200/tasks/subjects/math`).pipe(
+      tap(value=> console.log(value)),
       tap(_ => this.log(`fetched task id=${subject}`)),
-      catchError(this.handleError<ITask[]>(`getTask id=${subject}`))
+      catchError(this.handleError<ITask>(`getTask id=${subject}`))
     );
   }
 
