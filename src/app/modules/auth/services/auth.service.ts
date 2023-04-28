@@ -10,6 +10,8 @@ import {IRegistrationUser} from "../interfaces/registration/registration-user.in
 import { IAuthorizationUser} from "../interfaces/auth/athorization-user.interface";
 import {IAuthResponseUserInterface} from "../interfaces/auth/auth-responce-user.interface";
 import {Role} from "../enums/role.enum";
+import {IRegistrationOrganization} from "../interfaces/registration/registration-organization.interface";
+import {observableToBeFn} from "rxjs/internal/testing/TestScheduler";
 
 @Injectable()
 export class AuthService {
@@ -97,8 +99,12 @@ export class AuthService {
     this.setToken(null); //TODO: сделать переадресацию на авторизацию
   }
 
-  register2(user: IRegistrationUser): Observable<IAuthUser> {
-    return this._http.post<IAuthUser>('/regist', user) //Ведется работа над разделением на роли
+  register2(user: IRegistrationUser): Observable<boolean> {
+    return this._http.post<boolean>('/regist', user) //Ведется работа над разделением на роли
+  }
+
+  registerCompany(company: IRegistrationOrganization): Observable<boolean> {
+    return this._http.post<boolean>('/registCompany', company)
   }
 
   login2(user: IAuthorizationUser): Observable<IAuthResponseUserInterface> {
@@ -115,7 +121,6 @@ export class AuthService {
   }
 
   navigateLk(role: Role): void {
-    console.log("true")
     switch (role) {
       case Role.Teacher:
         console.log('Teacher');

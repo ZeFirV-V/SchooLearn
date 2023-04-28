@@ -14,6 +14,21 @@ import {RouterOutlet} from "@angular/router";
 import {TasksPageWeb} from "./tasks/childrens/tasks-home/tasks.component";
 import {TasksPage} from "./tasks/tasks.page.web";
 import {TaskPageWeb} from "./tasks/childrens/subjects/childrens/task/task.page.web";
+import {
+  Step1RegistrationCompanyFormComponent
+} from "./registration/children/registration-organization/children/step1-registration-company-form/step1-registration-company-form.component";
+import {
+  Step2RegistrationCompanyFormComponent
+} from "./registration/children/registration-organization/children/step2-registration-company-form/step2-registration-company-form.component";
+import {
+  RegistrationCompanyPageComponent
+} from "./registration/children/registration-organization/registration-company-page/registration-company-page.component";
+import {
+  RegistrationStudentComponent
+} from "./registration/children/registration-student/registration-student/registration-student.component";
+import {
+  RegistrationTeacherComponent
+} from "./registration/children/registration-teacher/teacher-organization/registration-teacher.component";
 
 
 @NgModule({
@@ -29,7 +44,12 @@ import {TaskPageWeb} from "./tasks/childrens/subjects/childrens/task/task.page.w
     PageNotFoundPageWeb,
     SubjectsPageWeb,
     TasksPage,
-    TaskPageWeb
+    TaskPageWeb,
+    Step1RegistrationCompanyFormComponent,
+    Step2RegistrationCompanyFormComponent,
+    RegistrationCompanyPageComponent,
+    RegistrationStudentComponent,
+    RegistrationTeacherComponent,
   ],
   imports: [
     ReactiveFormsModule, // TODO: потом удалить, после СОЗДАНИЯ МОДУЛЯ ДЛЯ ЛОГИНА

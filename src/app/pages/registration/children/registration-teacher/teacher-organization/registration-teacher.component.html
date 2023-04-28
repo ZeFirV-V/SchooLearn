@@ -1,0 +1,179 @@
+<!--<p>registration-student works!</p>-->
+<!--<div *ngIf="phase === 1">-->
+<!--  <label>Name:</label>-->
+<!--  <input type="text" formControlName="name">-->
+<!--  <label>Email:</label>-->
+<!--  <input type="email" formControlName="email">-->
+<!--  <button (click)="nextPhase()">Next</button>-->
+<!--</div>-->
+
+<!--<div *ngIf="phase === 2">-->
+<!--  <label>Age:</label>-->
+<!--  <input type="number" formControlName="age">-->
+<!--  <button (click)="prevPhase()">Previous</button>-->
+<!--  <button (click)="nextPhase()">Next</button>-->
+<!--</div>-->
+
+<!--<div *ngIf="phase === 3">-->
+<!--  <label>Street:</label>-->
+<!--  <input type="text" formControlName="address.street">-->
+<!--  <label>City:</label>-->
+<!--  <input type="text" formControlName="address.city">-->
+<!--  <label>State:</label>-->
+<!--  <input type="text" formControlName="address.state">-->
+<!--  <button (click)="prevPhase()">Previous</button>-->
+<!--  <button (click)="submit()">Submit</button>-->
+<!--</div>-->
+
+<form
+  class="registForm"
+  [formGroup]="registrationTeacherForm"
+  (ngSubmit)="onSubmitRegistration()"
+>
+  <div class="alert alert-danger" *ngIf="_authService.error$ | async as error">
+    {{error}}
+  </div>
+  <div *ngIf="phase === 1">
+    <div class="registForm__group">
+      <label for="companyName">Название компании</label>
+      <input
+        id="companyName"
+        type="text"
+        name="companyName"
+        [formControlName]="'companyName'"
+      >
+      <div
+        class="registForm__error"
+        *ngIf="registrationTeacherForm.controls['companyName'].invalid
+          && registrationTeacherForm.controls['companyName'].touched"
+      >
+        Обязательно для заполнения
+      </div>
+    </div>
+
+    <button
+      [disabled]="registrationTeacherForm.controls['companyName'].invalid"
+      (click)="nextPhase()"
+    >
+      Next
+    </button>
+
+  </div>
+
+  <div *ngIf="phase === 2">
+
+    <div class="registForm__group">
+      <label for="teacherKey">Код</label>
+      <input
+        id="teacherKey"
+        type="text"
+        name="teacherKey"
+        [formControlName]="'teacherKey'"
+      >
+      <div
+        class="registForm__error"
+        *ngIf="registrationTeacherForm.controls['teacherKey'].invalid
+          && registrationTeacherForm.controls['teacherKey'].touched"
+      >
+        Обязательно для заполнения
+      </div>
+    </div>
+
+    <div class="registForm__group">
+      <label for="teacherName">Имя учителя</label>
+      <input
+        id="teacherName"
+        type="text"
+        name="teacherName"
+        [formControlName]="'teacherName'"
+      >
+      <div
+        class="registForm__error"
+        *ngIf="registrationTeacherForm.controls['teacherName'].invalid
+          && registrationTeacherForm.controls['teacherName'].touched"
+      >
+        Обязательно для заполнения
+      </div>
+    </div>
+
+    <div class="registForm__group">
+      <label for="teacherLogin">Логин</label>
+      <input
+        id="teacherLogin"
+        type="text"
+        name="teacherLogin"
+        [formControlName]="'teacherLogin'"
+      >
+      <div
+        class="registForm__error"
+        *ngIf="registrationTeacherForm.controls['teacherLogin'].invalid
+          && registrationTeacherForm.controls['teacherLogin'].touched"
+      >
+        Обязательно для заполнения
+      </div>
+    </div>
+
+    <div class="registForm__group">
+      <label for="teacherEmail">Email</label>
+      <input
+        id="teacherEmail"
+        type="email"
+        name="teacherEmail"
+        [formControlName]="'teacherEmail'"
+      >
+      <div
+        class="registForm__error"
+        *ngIf="registrationTeacherForm.controls['teacherEmail'].invalid
+          && registrationTeacherForm.controls['teacherEmail'].touched"
+      >
+        Обязательно для заполнения
+      </div>
+    </div>
+
+    <div class="registForm__group">
+      <label for="password">пароль</label>
+      <input
+        id="password"
+        type="password"
+        [formControlName]="'userPassword'"
+      >
+      <div
+        class="registForm__error"
+        *ngIf="registrationTeacherForm.controls['teacherPassword'].invalid
+          && registrationTeacherForm.controls['teacherPassword'].touched"
+      >
+        Обязательно для заполнения
+      </div>
+    </div>
+
+    <div class="registForm__group">
+      <label for="repeatPassword">повторный пароль</label>
+      <input
+        id="repeatPassword"
+        type="password"
+        [formControlName]="'repeatTeacherPassword'"
+      >
+      <div
+        class="registForm__error"
+        *ngIf="registrationTeacherForm.controls['repeatTeacherPassword'].invalid
+          && registrationTeacherForm.controls['repeatTeacherPassword'].touched"
+      >
+        Обязательно для заполнения
+      </div>
+    </div>
+
+    <button (click)="prevPhase()">Previous</button>
+<!--    <button (click)="submit()">Submit</button>-->
+    <div>
+      <button
+        type="submit"
+        [disabled]="registrationTeacherForm.invalid || submitted || registrationTeacherForm.disabled"
+      >
+        Войти
+      </button>
+      <div *ngIf="!registrationTeacherForm.invalid">
+        123
+      </div>
+    </div>
+  </div>
+</form>

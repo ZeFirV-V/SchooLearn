@@ -6,6 +6,7 @@ export interface IRegistrationUser {
   organization: string;
   login: string;
   password: string;
+  repeatPassword: string;
   returnSecureToken?: boolean;
   checkReturnSecureToken(): boolean;
 }

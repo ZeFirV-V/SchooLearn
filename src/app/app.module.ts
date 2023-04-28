@@ -17,6 +17,7 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {TokenInterceptor} from "./modules/auth/helpers/token.interceptor";
 import {fakeBackendProvider} from "./helpers/backend/fake-backend";
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,8 @@ import {fakeBackendProvider} from "./helpers/backend/fake-backend";
     FooterComponent,
     CustomButtonDirective,
     SiteLayoutComponent,
+
+
   ],
   imports: [
     BrowserModule,

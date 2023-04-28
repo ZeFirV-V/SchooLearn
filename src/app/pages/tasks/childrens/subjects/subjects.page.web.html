@@ -1,6 +1,6 @@
 <div id="search-component">
   <ul class="search-result">
-    <li *ngFor="let subject of subjects" >
+    <li *ngFor="let subject of subjects$ | async" >
       {{subject.name}}
     </li>
   </ul>

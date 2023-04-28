@@ -1,0 +1,139 @@
+<!--<p>registration-student works!</p>-->
+<!--<div *ngIf="phase === 1">-->
+<!--  <label>Name:</label>-->
+<!--  <input type="text" formControlName="name">-->
+<!--  <label>Email:</label>-->
+<!--  <input type="email" formControlName="email">-->
+<!--  <button (click)="nextPhase()">Next</button>-->
+<!--</div>-->
+
+<!--<div *ngIf="phase === 2">-->
+<!--  <label>Age:</label>-->
+<!--  <input type="number" formControlName="age">-->
+<!--  <button (click)="prevPhase()">Previous</button>-->
+<!--  <button (click)="nextPhase()">Next</button>-->
+<!--</div>-->
+
+<!--<div *ngIf="phase === 3">-->
+<!--  <label>Street:</label>-->
+<!--  <input type="text" formControlName="address.street">-->
+<!--  <label>City:</label>-->
+<!--  <input type="text" formControlName="address.city">-->
+<!--  <label>State:</label>-->
+<!--  <input type="text" formControlName="address.state">-->
+<!--  <button (click)="prevPhase()">Previous</button>-->
+<!--  <button (click)="submit()">Submit</button>-->
+<!--</div>-->
+
+<form
+  class="registForm"
+  [formGroup]="registrationStudentForm"
+  (ngSubmit)="onSubmitRegistration()"
+>
+  <div class="alert alert-danger" *ngIf="_authService.error$ | async as error">
+    {{error}}
+  </div>
+  <div *ngIf="phase === 1">
+    <div class="registForm__group">
+      <label for="companyName">Название компании</label>
+      <input
+        id="companyName"
+        type="text"
+        name="companyName"
+        [formControlName]="'companyName'"
+      >
+      <div
+        class="registForm__error"
+        *ngIf="registrationStudentForm.controls['companyName'].invalid
+          && registrationStudentForm.controls['companyName'].touched"
+      >
+        Обязательно для заполнения
+      </div>
+    </div>
+
+    <button
+      [disabled]="registrationStudentForm.controls['companyName'].invalid"
+      (click)="nextPhase()"
+    >
+      Next
+    </button>
+  </div>
+  <div *ngIf="phase === 2">
+    <div class="registForm__group">
+      <label for="studentName">Имя студента</label>
+      <input
+        id="studentName"
+        type="text"
+        name="studentName"
+        [formControlName]="'studentName'"
+      >
+      <div
+        class="registForm__error"
+        *ngIf="registrationStudentForm.controls['studentName'].invalid
+          && registrationStudentForm.controls['studentName'].touched"
+      >
+        Обязательно для заполнения
+      </div>
+    </div>
+
+    <div class="registForm__group">
+      <label for="studentLogin">Логин</label>
+      <input
+        id="studentLogin"
+        type="text"
+        name="studentLogin"
+        [formControlName]="'studentLogin'"
+      >
+      <div
+        class="registForm__error"
+        *ngIf="registrationStudentForm.controls['studentLogin'].invalid
+          && registrationStudentForm.controls['studentLogin'].touched"
+      >
+        Обязательно для заполнения
+      </div>
+    </div>
+
+    <div class="registForm__group">
+      <label for="userPassword">Логин</label>
+      <input
+        id="userPassword"
+        type="password"
+        [formControlName]="'userPassword'"
+      >
+      <div
+        class="registForm__error"
+        *ngIf="registrationStudentForm.controls['userPassword'].invalid
+          && registrationStudentForm.controls['userPassword'].touched"
+      >
+        Обязательно для заполнения
+      </div>
+    </div>
+
+    <div class="registForm__group">
+      <label for="repeatPassword">Логин</label>
+      <input
+        id="repeatPassword"
+        type="password"
+        [formControlName]="'repeatPassword'"
+      >
+      <div
+        class="registForm__error"
+        *ngIf="registrationStudentForm.controls['repeatPassword'].invalid
+          && registrationStudentForm.controls['repeatPassword'].touched"
+      >
+        Обязательно для заполнения
+      </div>
+    </div>
+
+    <button (click)="prevPhase()">Previous</button>
+<!--    <button (click)="submit()">Submit</button>-->
+    <div>
+      <button
+        type="submit"
+        [disabled]="registrationStudentForm.invalid || submitted || registrationStudentForm.disabled"
+      >
+        Войти
+      </button>
+    </div>
+  </div>
+</form>

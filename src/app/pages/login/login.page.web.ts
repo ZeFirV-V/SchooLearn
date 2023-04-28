@@ -15,8 +15,6 @@ export class LoginPageWeb implements OnDestroy, OnInit {
               private _router: Router,
               private _route: ActivatedRoute) { }
 
-
-
   ngOnInit() {
     this._route.queryParams.subscribe((params: Params) => {
       if(params['registered']) {
