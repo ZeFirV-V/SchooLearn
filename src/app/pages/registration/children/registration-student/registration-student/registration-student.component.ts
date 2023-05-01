@@ -10,6 +10,7 @@ import {
   AuthorizationUser,
   IAuthorizationUser
 } from "../../../../../modules/auth/interfaces/auth/athorization-user.interface";
+import {moveItemInArray} from "@angular/cdk/drag-drop";
 
 @Component({
   selector: 'app-registration-student',
@@ -20,7 +21,8 @@ export class RegistrationStudentComponent {
   constructor(public _authService: AuthService,
               private _router: Router,
               private _route: ActivatedRoute,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder) {
+  }
 
   public registrationStudentForm: FormGroup = new FormGroup({
     companyName: new FormControl("", Validators.required),
@@ -33,6 +35,7 @@ export class RegistrationStudentComponent {
   submitted: boolean = false;
   private _asyncSubscribeRegistration: Subscription = new Subscription(); //TODO: переделать без объявления
   private _asyncSubscribeAuthorization: Subscription = new Subscription();
+
   onSubmitRegistration() {
     this.submitted = true;
     const data: IRegistrationUser = new RegistrationStudent(
@@ -45,9 +48,9 @@ export class RegistrationStudentComponent {
     );
 
     const user: IAuthorizationUser = new AuthorizationUser(
-        this.registrationStudentForm.controls["studentLogin"].value,
-        this.registrationStudentForm.controls["password"].value
-      )
+      this.registrationStudentForm.controls["studentLogin"].value,
+      this.registrationStudentForm.controls["password"].value
+    )
 
     this.registrationStudentForm.disable();
 
@@ -102,8 +105,66 @@ export class RegistrationStudentComponent {
     this.phase--;
   }
 
+  back() {
+
+  }
+
   ngOnDestroy(): void {
     this._asyncSubscribeRegistration.unsubscribe();
     this._asyncSubscribeAuthorization.unsubscribe();
   }
+  states: string[] = [
+    'Alabama',
+    'Alaska',
+    'Arizona',
+    'Arkansas',
+    'California',
+    'Colorado',
+    'Connecticut',
+    'Delaware',
+    'Florida',
+    'Georgia',
+    'Hawaii',
+    'Idaho',
+    'Illinois',
+    'Indiana',
+    'Iowa',
+    'Kansas',
+    'Kentucky',
+    'Louisiana',
+    'Maine',
+    'Maryland',
+    'Massachusetts',
+    'Michigan',
+    'Minnesota',
+    'Mississippi',
+    'Missouri',
+    'Montana',
+    'Nebraska',
+    'Nevada',
+    'New Hampshire',
+    'New Jersey',
+    'New Mexico',
+    'New York',
+    'North Carolina',
+    'North Dakota',
+    'Ohio',
+    'Oklahoma',
+    'Oregon',
+    'Pennsylvania',
+    'Rhode Island',
+    'South Carolina',
+    'South Dakota',
+    'Tennessee',
+    'Texas',
+    'Utah',
+    'Vermont',
+    'Virginia',
+    'Washington',
+    'West Virginia',
+    'Wisconsin',
+    'Wyoming',
+  ];
+  panelColor = new FormControl('red');
 }
+

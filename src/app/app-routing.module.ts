@@ -104,7 +104,7 @@ const routes: Routes = [
         data: { roles: [Role.AdministratorTeacher] }
       }, // использует guard
       // {path: 'company', children: registrationCompanyFormRoutes},
-      {path: 'registration', children: registrationRoutes},
+      {path: 'registration', component: RegistrationPageWeb, children: registrationRoutes},
       {path: 'authorization', component: LoginPageWeb},
     ]
   },

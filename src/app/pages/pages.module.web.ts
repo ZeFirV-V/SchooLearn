@@ -30,6 +30,12 @@ import {
   RegistrationTeacherComponent
 } from "./registration/children/registration-teacher/teacher-organization/registration-teacher.component";
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import {PerfectScrollbarModule} from "ngx-perfect-scrollbar";
+import {SubtextComponent} from "./registration/children/components/subtext/subtext.component";
 
 @NgModule({
   declarations: [
@@ -50,12 +56,18 @@ import {
     RegistrationCompanyPageComponent,
     RegistrationStudentComponent,
     RegistrationTeacherComponent,
+    SubtextComponent,
   ],
   imports: [
     ReactiveFormsModule, // TODO: потом удалить, после СОЗДАНИЯ МОДУЛЯ ДЛЯ ЛОГИНА
     BrowserModule,
     FormsModule,
     RouterOutlet,
+    BrowserAnimationsModule,
+    MatSelectModule,
+    MatCardModule,
+    MatButtonModule,
+    PerfectScrollbarModule,
   ],
   exports: [
     AboutPageWeb,

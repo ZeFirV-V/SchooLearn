@@ -16,6 +16,7 @@ import {SiteLayoutComponent} from "./layouts/site-layout/site-layout.component";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {TokenInterceptor} from "./modules/auth/helpers/token.interceptor";
 import {fakeBackendProvider} from "./helpers/backend/fake-backend";
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -37,6 +38,8 @@ import {fakeBackendProvider} from "./helpers/backend/fake-backend";
     FormsModule,
     // SkeletonModule,
     MyFormsModule,
+    MatSlideToggleModule,
+
   ],
   providers: [
     {

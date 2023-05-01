@@ -13,11 +13,12 @@ import {AuthUser, IAuthUser} from "../../modules/auth/interfaces/auth-response.i
 export class RegistrationPageWeb implements OnDestroy, OnInit {
   constructor(private _authService: AuthService,
               private _router: Router,
-              private _route: ActivatedRoute) { }
+              private _route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this._route.queryParams.subscribe((params: Params) => {
-      if(params['registered']) {
+      if (params['registered']) {
         // Теперь вы можете войти в систему используя свои данные
       } else if (params['accessDenied']) {
         // Для начала авторизуйтесь в систему
@@ -63,7 +64,11 @@ export class RegistrationPageWeb implements OnDestroy, OnInit {
 
   ngOnDestroy(): void {
     console.log(this._authServiceSubscribe);
-    if(this._authServiceSubscribe)
+    if (this._authServiceSubscribe)
       this._authServiceSubscribe.unsubscribe();
+  }
+
+  back() {
+
   }
 }
