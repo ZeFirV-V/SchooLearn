@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import {Component, ElementRef, ViewChild} from "@angular/core";
 
 @Component({
   selector: "app-header",
@@ -7,6 +7,18 @@ import { Component } from "@angular/core";
 })
 export class HeaderComponent {
   nickname: string | undefined = undefined;
+
+  isFormVisible: boolean = false;
+  loginForm: boolean = false;
+
+  showForm() {
+    this.isFormVisible = !this.isFormVisible;
+    this.loginForm = this.isFormVisible ;
+  }
+
+  registrationForm() {
+    this.loginForm = false;
+  }
 }
 
 

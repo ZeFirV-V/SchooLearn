@@ -10,7 +10,7 @@ import {PageNotFoundPageWeb } from "./not-found/not-found-.page.web";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BrowserModule} from "@angular/platform-browser";
 import {SubjectsPageWeb} from "./tasks/childrens/subjects/subjects.page.web";
-import {RouterOutlet} from "@angular/router";
+import {RouterLink, RouterOutlet} from "@angular/router";
 import {TasksPageWeb} from "./tasks/childrens/tasks-home/tasks.component";
 import {TasksPage} from "./tasks/tasks.page.web";
 import {TaskPageWeb} from "./tasks/childrens/subjects/childrens/task/task.page.web";
@@ -58,17 +58,18 @@ import {SubtextComponent} from "./registration/children/components/subtext/subte
     RegistrationTeacherComponent,
     SubtextComponent,
   ],
-  imports: [
-    ReactiveFormsModule, // TODO: потом удалить, после СОЗДАНИЯ МОДУЛЯ ДЛЯ ЛОГИНА
-    BrowserModule,
-    FormsModule,
-    RouterOutlet,
-    BrowserAnimationsModule,
-    MatSelectModule,
-    MatCardModule,
-    MatButtonModule,
-    PerfectScrollbarModule,
-  ],
+    imports: [
+        ReactiveFormsModule, // TODO: потом удалить, после СОЗДАНИЯ МОДУЛЯ ДЛЯ ЛОГИНА
+        BrowserModule,
+        FormsModule,
+        RouterOutlet,
+        BrowserAnimationsModule,
+        MatSelectModule,
+        MatCardModule,
+        MatButtonModule,
+        PerfectScrollbarModule,
+        RouterLink,
+    ],
   exports: [
     AboutPageWeb,
     FAQPageWeb,

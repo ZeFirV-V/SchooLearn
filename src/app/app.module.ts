@@ -17,6 +17,9 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {TokenInterceptor} from "./modules/auth/helpers/token.interceptor";
 import {fakeBackendProvider} from "./helpers/backend/fake-backend";
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {LoginFormComponent} from "./components/forms/login-form/login.form.component";
+import {MAT_RADIO_DEFAULT_OPTIONS} from "@angular/material/radio";
+import {ClickOutsideDirective} from "./directives/click-outside.directive";
 
 
 @NgModule({
@@ -27,7 +30,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     FooterComponent,
     CustomButtonDirective,
     SiteLayoutComponent,
-
+    ClickOutsideDirective
 
   ],
   imports: [
@@ -38,7 +41,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     FormsModule,
     // SkeletonModule,
     MyFormsModule,
-    MatSlideToggleModule,
+
 
   ],
   providers: [
@@ -48,6 +51,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
       useClass: TokenInterceptor,
     }, //TODO: сделать в дальнейшем отдельный Interceptor для обработки ошибок
     fakeBackendProvider,
+    {
+      provide: MAT_RADIO_DEFAULT_OPTIONS,
+      useValue: { color: '#D3AAF8' },
+    }
   ],
   exports: [],
   bootstrap: [AppComponent]

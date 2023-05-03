@@ -43,14 +43,14 @@ export class RegistrationTeacherComponent {
       this.registrationTeacherForm.controls["teacherName"].value,
       this.registrationTeacherForm.controls["teacherLogin"].value,
       this.registrationTeacherForm.controls["teacherEmail"].value,
-      this.registrationTeacherForm.controls["password"].value,
-      this.registrationTeacherForm.controls["repeatPassword"].value,
+      this.registrationTeacherForm.controls["teacherPassword"].value,
+      this.registrationTeacherForm.controls["repeatTeacherPassword"].value,
       Role.Teacher,
     );
 
     const user: IAuthorizationUser = new AuthorizationUser(
         this.registrationTeacherForm.controls["teacherLogin"].value,
-        this.registrationTeacherForm.controls["password"].value
+        this.registrationTeacherForm.controls["teacherPassword"].value
       )
 
     this.registrationTeacherForm.disable();
@@ -109,5 +109,17 @@ export class RegistrationTeacherComponent {
   ngOnDestroy(): void {
     this._asyncSubscribeRegistration.unsubscribe();
     this._asyncSubscribeAuthorization.unsubscribe();
+  }
+
+  states: string[] = [
+    'Alabama',
+    'Alaska',
+    'Arizona',
+    'Arkansas',
+    'California',
+  ];
+
+  back() {
+
   }
 }
