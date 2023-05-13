@@ -10,6 +10,8 @@ const users = [
   { id: 2, email: 'Student@bk.ru', nickname: 'Student', password: 'user', login: 'Normal', organization: 'school', role: Role.Student }
 ];
 
+const student = { id: 2, email: 'Student@bk.ru', nickname: 'Student', password: 'user', login: 'Normal', organization: 'school', role: Role.Student }
+
 const companies = ["1", "2", "3"];
 
 const subjects = [
@@ -46,6 +48,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           return getCompanies();
         case url.endsWith('/subjects/math') && method === 'GET':
           return getTask();
+        case url.endsWith('/users/1') && method === 'GET':
+          return getUser();
         case url.match(/\/users\/\d+$/) && method === 'GET':
           return getUserById();
         default:
@@ -68,6 +72,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         role: user.role,
         idToken: `fake-jwt-token.${user.id}`
       });
+    }
+
+    function getUser() {
+      return ok(student);
     }
 
     function getSubjects() {

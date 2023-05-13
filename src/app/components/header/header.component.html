@@ -4,7 +4,7 @@
       <img src="assets/logo.svg" alt = "logo">
     </a>
     <nav class="header__list">
-      <navbar/>
+      <app-navbar/>
     </nav>
     <a class="header__account" [routerLink]="['/lk']" *ngIf="nickname">
       <span >
@@ -17,7 +17,7 @@
             radius="medium"
             color="white"
             border="border"
-            padding="small" class="header__btn-text">
+            padding="small" class="header__btn-text btn-open">
       <span>Войти</span>
     </button>
     <ng-container

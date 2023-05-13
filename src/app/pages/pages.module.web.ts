@@ -36,6 +36,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import {PerfectScrollbarModule} from "ngx-perfect-scrollbar";
 import {SubtextComponent} from "./registration/children/components/subtext/subtext.component";
+import {AppModule} from "../app.module";
+import {
+  InformationRoleButtonsComponent
+} from "../components/information-role-buttons/information-role-buttons.component";
+import {HeadUniquePageComponent} from "../components/head-unique-page/head-unique-page.component";
 
 @NgModule({
   declarations: [
@@ -57,6 +62,8 @@ import {SubtextComponent} from "./registration/children/components/subtext/subte
     RegistrationStudentComponent,
     RegistrationTeacherComponent,
     SubtextComponent,
+    InformationRoleButtonsComponent,
+    HeadUniquePageComponent
   ],
     imports: [
         ReactiveFormsModule, // TODO: потом удалить, после СОЗДАНИЯ МОДУЛЯ ДЛЯ ЛОГИНА

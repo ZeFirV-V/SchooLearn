@@ -5,13 +5,15 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MessageService} from "../../message/services/message.service";
 import {ISubject} from "../interfaces/subject.interface";
 import {environment} from "../../../../environments/environment";
+import {AuthService} from "../../auth/services/auth.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SubjectService {
   constructor(private http: HttpClient,
-              private messageService: MessageService) { }
+              private messageService: MessageService,
+              private authService: AuthService) { }
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -87,5 +89,17 @@ export class SubjectService {
 
   private log(message: string) {
     this.messageService.add(`HeroService: ${message}`);
+  }
+
+  getSubject2(subject: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + token);
+
+    const body = {
+      subject: subject
+    };
+
+    return this.http.post(`${this.subjectUrl}/subject`, body, { headers });
   }
 }

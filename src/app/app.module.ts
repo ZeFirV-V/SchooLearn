@@ -20,7 +20,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {LoginFormComponent} from "./components/forms/login-form/login.form.component";
 import {MAT_RADIO_DEFAULT_OPTIONS} from "@angular/material/radio";
 import {ClickOutsideDirective} from "./directives/click-outside.directive";
-
+import { StudentRoomComponent } from './pages/student-room/student-room.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,9 @@ import {ClickOutsideDirective} from "./directives/click-outside.directive";
     FooterComponent,
     CustomButtonDirective,
     SiteLayoutComponent,
-    ClickOutsideDirective
+    ClickOutsideDirective,
+    StudentRoomComponent,
+
 
   ],
   imports: [
@@ -41,7 +43,6 @@ import {ClickOutsideDirective} from "./directives/click-outside.directive";
     FormsModule,
     // SkeletonModule,
     MyFormsModule,
-
 
   ],
   providers: [
@@ -56,7 +57,6 @@ import {ClickOutsideDirective} from "./directives/click-outside.directive";
       useValue: { color: '#D3AAF8' },
     }
   ],
-  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

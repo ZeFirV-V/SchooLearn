@@ -123,7 +123,6 @@ export class AuthService {
   navigateLk(role: Role): void {
     switch (role) {
       case Role.Teacher:
-        console.log('Teacher');
         this._router.navigate(['/lk-teacher']).then(); // переход на лк
         break;
       case Role.Student:
@@ -142,6 +141,7 @@ export class AuthService {
       }
       this._token = response.idToken;
       this.userSubject2.next(response);
+      localStorage.setItem('user', JSON.stringify(response));
       localStorage.setItem('token', response.idToken);
     } else {
       localStorage.clear();
@@ -151,7 +151,10 @@ export class AuthService {
   }
 
   get userValue2() {
-    return this.userSubject2.value;
+    let value = localStorage.getItem('user');
+    if (value)
+      return JSON.parse(value);
+    // return this.userSubject2.value;
   }
 
   get token2() : string | null {
