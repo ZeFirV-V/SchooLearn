@@ -11,19 +11,12 @@
         {{nickname}}
       </span>
     </a>
-    <button
-      (click)="showForm()"
-      custom-button
-            radius="medium"
-            color="white"
-            border="border"
-            padding="small" class="header__btn-text btn-open">
-      <span>Войти</span>
+    <button class="log-reg__button log-reg__text" #toggleButton (click)="toggleMenu()">
+      Войти
     </button>
-    <ng-container
-         *ngIf="isFormVisible">
-      <app-login-form (registrationForm)="registrationForm()" *ngIf="isFormVisible && loginForm"></app-login-form>
-      <app-registration-form (redirectRegistrationPage)="showForm()" *ngIf="isFormVisible && !loginForm"></app-registration-form>
-    </ng-container>
+
+    <div class="menu" *ngIf="isMenuOpen" #menu>
+      <app-login-registration-form (onOpenRegistrationChanged)="openRegistrationChanged()"/>
+    </div>
   </header>
 </div>

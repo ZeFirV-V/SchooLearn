@@ -6,7 +6,6 @@ import {TasksPage} from "./pages/tasks/tasks.page.web";
 import { RatingPageWeb } from "./pages/rating/rating.page.web";
 import { FAQPageWeb } from "./pages/FAQ/FAQ.page.web";
 import {PrivateOfficePageWeb} from "./pages/private-office/private-office.page.web";
-import {RegistrationPageWeb} from "./pages/registration/registration.page.web";
 import {LoginPageWeb} from "./pages/login/login.page.web";
 import {PageNotFoundPageWeb} from "./pages/not-found/not-found-.page.web";
 import {SiteLayoutComponent} from "./layouts/site-layout/site-layout.component";
@@ -30,6 +29,8 @@ import {
 import {
   RegistrationTeacherComponent
 } from "./pages/registration/children/registration-teacher/teacher-organization/registration-teacher.component";
+import {StudentComponent} from "./pages/private-office/student/student.component";
+import {SideBarComponent} from "./components/side-bar/side-bar.component";
 
 const tasksRoutes: Routes = [
   { path: '', component: TasksPageWeb},
@@ -88,7 +89,7 @@ const routes: Routes = [
       {
         path: 'lk-student',
         canActivate: [AuthGuard],
-        component: PrivateOfficePageWeb,
+        component: StudentComponent,
         data: { roles: [Role.Student] }
       }, // использует guard
       {
@@ -104,11 +105,13 @@ const routes: Routes = [
         data: { roles: [Role.AdministratorTeacher] }
       }, // использует guard
       // {path: 'company', children: registrationCompanyFormRoutes},
-      {path: 'registration', component: RegistrationPageWeb, children: registrationRoutes},
+      {path: 'registration', children: registrationRoutes},
       {path: 'authorization', component: LoginPageWeb},
+      {path: 'edit', component: StudentComponent},
+      {path: '**', redirectTo: '', pathMatch: "full"}
     ]
   },
-  {path: '**', component: PageNotFoundPageWeb}
+
 ];
 
 @NgModule({
@@ -117,4 +120,5 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

@@ -55,7 +55,7 @@ export class RegistrationTeacherComponent {
 
     this.registrationTeacherForm.disable();
 
-    this._asyncSubscribeRegistration = this._authService.register2(data).subscribe({
+    this._asyncSubscribeRegistration = this._authService.registerTeacher(data).subscribe({
       next: (value) => {
         this.registrationTeacherForm.reset();
         this.submitted = false;
@@ -69,7 +69,7 @@ export class RegistrationTeacherComponent {
       },
     });
 
-    this._asyncSubscribeAuthorization = this._authService.login2(user).subscribe({
+    this._asyncSubscribeAuthorization = this._authService.login(user).subscribe({
       next: (value) => {
         this._authService.navigateLk(value.role)
         this.submitted = false;

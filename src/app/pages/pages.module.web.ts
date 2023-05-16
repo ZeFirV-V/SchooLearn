@@ -4,7 +4,6 @@ import {FAQPageWeb} from "./FAQ/FAQ.page.web";
 import {HomePageWeb} from "./home/home.page.web";
 import {RatingPageWeb} from "./rating/rating.page.web";
 import {PrivateOfficePageWeb} from "./private-office/private-office.page.web";
-import {RegistrationPageWeb} from "./registration/registration.page.web";
 import {LoginPageWeb} from "./login/login.page.web";
 import {PageNotFoundPageWeb } from "./not-found/not-found-.page.web";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -50,7 +49,6 @@ import {HeadUniquePageComponent} from "../components/head-unique-page/head-uniqu
     RatingPageWeb,
     TasksPageWeb,
     PrivateOfficePageWeb,
-    RegistrationPageWeb,
     LoginPageWeb,
     PageNotFoundPageWeb,
     SubjectsPageWeb,
@@ -84,7 +82,6 @@ import {HeadUniquePageComponent} from "../components/head-unique-page/head-uniqu
     RatingPageWeb,
     TasksPageWeb,
     PrivateOfficePageWeb,
-    RegistrationPageWeb,
     PageNotFoundPageWeb,
     SubjectsPageWeb,
     TaskPageWeb,
