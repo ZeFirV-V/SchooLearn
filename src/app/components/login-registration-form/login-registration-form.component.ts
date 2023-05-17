@@ -20,6 +20,7 @@ export class LoginRegistrationFormComponent {
   isLoginForm: boolean = true;
   @Output() onOpenRegistrationChanged = new EventEmitter();
 
+
   openRegistrationForm() {
     this.isLoginForm = false;
     this.onOpenRegistrationChanged.emit();
@@ -45,7 +46,6 @@ export class LoginRegistrationFormComponent {
     );
 
     this.authorizationForm.disable();
-
     this._asyncSubscribe = this.authService.login(data).subscribe({
       next: (value: IAuthResponseUserInterface) => {
         this.authService.navigateLk(value.role)

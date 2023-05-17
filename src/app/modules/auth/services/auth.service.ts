@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import { catchError, Observable, Subject, throwError } from "rxjs";
 import {tap} from "rxjs/operators"
 import {Router} from "@angular/router";
@@ -33,6 +33,9 @@ export class AuthService  {
   }
 
   login(user: IAuthorizationUser): Observable<IAuthResponseUserInterface> {
+
+    const headers = new HttpHeaders()
+      .set('Access-Control-Allow-Origin:', '*');
     return this._http.post<IAuthResponseUserInterface>(`https://localhost:7079/account/login`, user)
       .pipe(
         tap((value: IAuthResponseUserInterface) => {

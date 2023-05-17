@@ -8,6 +8,45 @@
       <div class="lk__navigate-info">
         <p>Организация | {{organization}} </p>
       </div>
+      <div class="find-group" *ngIf="groups$ | async as groups">
+        <label>выбрать группу:</label>
+        <select [(ngModel)]="group" name="findGroup" (change)="onFindGroup()">
+          <option *ngFor="let item of groups" [value]="item">{{item.name}}</option>
+        </select>
+      </div>
+      <div>
+        <p>
+          Просмотр решенных заданий
+        </p>
+        <div>
+          <div *ngFor="let solvedTask of solvedTasks$ | async">
+            <p>{{solvedTask.name}}</p>
+            <p>Оценка: {{solvedTask.score}}</p>
+            <button (click)="onOpenSolvedTask(solvedTask.id)">
+              <p>
+                Просмотр
+              </p>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p>
+          Просмотр назначенных заданий
+        </p>
+        <div>
+          <div *ngFor="let appTask of appTasks$ | async">
+            <p>{{appTask.name}}</p>
+            <p>Выполнить до: {{appTask.deadline}}</p>
+            <button (click)="onOpenAppTask(appTask)">
+              <p>
+                Просмотр
+              </p>
+            </button>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>

@@ -1,32 +1,32 @@
 import {Data} from "@angular/router";
 
 export interface IGroup{
-  Id: number;
-  Name: string;
+  id: number;
+  name: string;
 }
 
 export interface ISolvedTask {
-  Id: number;
-  Name: string;
-  Score: number;
+  id: number;
+  name: string;
+  score: number;
 }
 
 export interface ISolvedTaskFullInfo {
-  Id: number;
-  Name: string;
-  Description: string;
-  Difficulty: string;
-  Subject: string;
-  ReceivedAnswer: string;
-  Deadline: Data;
-  Scores: number;
+  id: number;
+  name: string;
+  description: string;
+  difficulty: string;
+  subject: string;
+  receivedAnswer: string;
+  deadline: Data;
+  scores: number;
 }
 
 export interface IAppTask {
-  Id: number;
-  Name: string;
-  Description: string;
-  Difficulty: string;
-  Subject: string;
-  Deadline: Data;
+  id: number;
+  name: string;
+  description: string;
+  difficulty: string;
+  subject: string;
+  deadline: Data;
 }
