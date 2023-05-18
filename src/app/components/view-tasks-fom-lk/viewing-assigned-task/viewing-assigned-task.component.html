@@ -1,0 +1,5 @@
+<div *ngIf="appTask" class="task">
+  <p class="task__name">{{appTask.name}}</p>
+  <p class="task__date">Выполнить до: {{appTask.deadline | date}}</p>
+  <a class="task__link" routerLink="">Начать выполнение</a>
+</div>

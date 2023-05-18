@@ -1,0 +1,16 @@
+<div  *ngIf="solvedTasks$ | async as solvedTasks">
+  <div class="jobs__title">
+    <p>
+      Просмотр решенных заданий
+    </p>
+  </div>
+
+  <div class="jobs">
+    <ul>
+      <li class="jobs__task" *ngFor="let solvedTask of solvedTasks; let last = last" [class.last]="last">
+        <app-viewing-solved-task [solvedTask]="solvedTask"/>
+      </li>
+    </ul>
+  </div>
+
+</div>

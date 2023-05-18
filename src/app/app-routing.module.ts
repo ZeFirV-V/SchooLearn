@@ -7,7 +7,6 @@ import { RatingPageWeb } from "./pages/rating/rating.page.web";
 import { FAQPageWeb } from "./pages/FAQ/FAQ.page.web";
 import {PrivateOfficePageWeb} from "./pages/private-office/private-office.page.web";
 import {LoginPageWeb} from "./pages/login/login.page.web";
-import {PageNotFoundPageWeb} from "./pages/not-found/not-found-.page.web";
 import {SiteLayoutComponent} from "./layouts/site-layout/site-layout.component";
 import {AuthGuard} from "./modules/auth/guards/auth.guard";
 import {Role} from "./modules/auth/enums/role.enum";
@@ -21,21 +20,24 @@ import {
   Step2RegistrationCompanyFormComponent
 } from "./pages/registration/children/registration-organization/children/step2-registration-company-form/step2-registration-company-form.component";
 import {
-  RegistrationCompanyPageComponent
-} from "./pages/registration/children/registration-organization/registration-company-page/registration-company-page.component";
-import {
   RegistrationStudentComponent
 } from "./pages/registration/children/registration-student/registration-student/registration-student.component";
 import {
   RegistrationTeacherComponent
 } from "./pages/registration/children/registration-teacher/teacher-organization/registration-teacher.component";
 import {StudentComponent} from "./pages/private-office/student/student.component";
-import {SideBarComponent} from "./components/side-bar/side-bar.component";
+import {
+  ViewSolvedTaskPageComponent
+} from "./pages/tasks/childrens/view-solved-task-page/view-solved-task-page.component";
+import {TeacherComponent} from "./pages/private-office/teacher/teacher.component";
 
 const tasksRoutes: Routes = [
   { path: '', component: TasksPageWeb},
   { path: 'subjects', component: SubjectsPageWeb},
   { path: 'subjects/:subjectName', component: TaskPageWeb },
+
+  { path: 'view-solved-task/:taskId', component: ViewSolvedTaskPageComponent },
+  { path: ':subjectName/:taskId', component: ViewSolvedTaskPageComponent },
 ];
 
 
@@ -107,8 +109,7 @@ const routes: Routes = [
       // {path: 'company', children: registrationCompanyFormRoutes},
       {path: 'registration', children: registrationRoutes},
       {path: 'authorization', component: LoginPageWeb},
-      {path: 'edit', component: StudentComponent},
-      {path: '**', redirectTo: '', pathMatch: "full"}
+      {path: 'edit', component: TeacherComponent},
     ]
   },
 

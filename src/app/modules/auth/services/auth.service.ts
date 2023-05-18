@@ -1,11 +1,11 @@
 import {Injectable} from "@angular/core";
-import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { catchError, Observable, Subject, throwError } from "rxjs";
 import {tap} from "rxjs/operators"
 import {Router} from "@angular/router";
 import { IAuthorizationUser} from "../interfaces/auth/athorization-user.interface";
 import {IAuthResponseUserInterface} from "../interfaces/auth/auth-responce-user.interface";
-import {Role} from "../enums/role.enum";
+import {Role } from "../enums/role.enum";
 import {IRegistrationOrganization} from "../interfaces/registration/registration-organization.interface";
 
 import {IRegistrationUser} from "../interfaces/registration/registration-user.interface";
@@ -16,7 +16,6 @@ import {environment} from "../../../../environments/environment";
 })
 export class AuthService  {
   public error$: Subject<string> = new Subject<string>();
-  private urlAuth: string = ``;
 
   constructor(private _http: HttpClient, private _router: Router) { }
 
@@ -33,9 +32,6 @@ export class AuthService  {
   }
 
   login(user: IAuthorizationUser): Observable<IAuthResponseUserInterface> {
-
-    const headers = new HttpHeaders()
-      .set('Access-Control-Allow-Origin:', '*');
     return this._http.post<IAuthResponseUserInterface>(`https://localhost:7079/account/login`, user)
       .pipe(
         tap((value: IAuthResponseUserInterface) => {
@@ -45,12 +41,38 @@ export class AuthService  {
       )
   }
 
+  private roleConverter(roleInNumber: number) {
+    switch (roleInNumber){
+      case 1:
+      {
+        break;
+      }
+      case 2: {
+        break;
+      }
+      case 3: {
+        break;
+      }
+      case 4: {
+        break;
+      }
+      case 5: {
+        break;
+      }
+      default: {
+        console.error("ошибка в роли в методе roleConverter");
+        break;
+      }
+    }
+  }
+
   private setToken(response: IAuthResponseUserInterface | null): void {
     if (response) {
       console.log(response);
+
       localStorage.setItem('user', JSON.stringify(response));
       localStorage.setItem('role', response.role);
-      localStorage.setItem('token', response.token);
+      localStorage.setItem('token', response.token.toString());
     } else {
       localStorage.clear();
     }

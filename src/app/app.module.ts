@@ -19,6 +19,14 @@ import {LoginRegistrationFormComponent} from "./components/login-registration-fo
 import {MatInputModule} from "@angular/material/input";
 import { StudentComponent } from './pages/private-office/student/student.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
+import { ViewingAssignedJobsComponent } from './components/view-tasks-fom-lk/viewing-assigned-jobs/viewing-assigned-jobs.component';
+import { ViewingAssignedTaskComponent } from './components/view-tasks-fom-lk/viewing-assigned-task/viewing-assigned-task.component';
+import { ViewingSolvedTasksComponent } from './components/view-tasks-fom-lk/viewing-solved-tasks/viewing-solved-tasks.component';
+import { ViewingSolvedTaskComponent } from './components/view-tasks-fom-lk/viewing-solved-task/viewing-solved-task.component';
+import {MatSelectModule} from "@angular/material/select";
+import { ViewSolvedTaskPageComponent } from './pages/tasks/childrens/view-solved-task-page/view-solved-task-page.component';
+import { ViewAssignedTaskPageComponent } from './pages/tasks/childrens/view-assigned-task-page/view-assigned-task-page.component';
+import { TeacherComponent } from './pages/private-office/teacher/teacher.component';
 
 @NgModule({
 
@@ -32,6 +40,13 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
     LoginRegistrationFormComponent,
     StudentComponent,
     SideBarComponent,
+    ViewingAssignedJobsComponent,
+    ViewingAssignedTaskComponent,
+    ViewingSolvedTasksComponent,
+    ViewingSolvedTaskComponent,
+    ViewSolvedTaskPageComponent,
+    ViewAssignedTaskPageComponent,
+    TeacherComponent,
 
 
   ],
@@ -46,6 +61,7 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
     ReactiveFormsModule,
     MatRadioModule,
     MatInputModule,
+    MatSelectModule,
     // SkeletonModule,
   ],
   providers: [

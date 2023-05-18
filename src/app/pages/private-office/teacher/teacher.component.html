@@ -1,5 +1,5 @@
 <div class="container lk">
-  <app-side-bar nickname="{{nickName}}" role="student"></app-side-bar>
+  <app-side-bar nickname="{{nickName}}" role="teacher" (subjectId)="getGroupsSubject($event)"></app-side-bar>
   <div class="lk__info">
     <div class="lk__title">
       <h2>Информация</h2>
@@ -17,11 +17,9 @@
       </div>
     </div>
 
-      <div class="lk__tasks">
-        <app-viewing-solved-tasks [id]="id"/>
-        <app-viewing-assigned-jobs [id]="id"/>
-      </div>
+    <div class="lk__tasks">
+      <app-viewing-solved-tasks [id]="id"/>
+      <app-viewing-assigned-jobs [id]="id"/>
+    </div>
   </div>
 </div>
-
-

@@ -9,7 +9,7 @@ export interface IAuthResponseUserInterface {
   token: string,
 }
 
-interface IInstitution {
+export interface IInstitution {
   id: number;
   name: string;
 }

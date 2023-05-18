@@ -6,7 +6,7 @@ import {ITask} from "../../../../../../modules/tasks/interfaces/task.itnerface";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
-  selector: 'app-task',
+  selector: 'app-task.scss',
   templateUrl: './task.page.web.html',
   styleUrls: ['./task.page.web.scss']
 })

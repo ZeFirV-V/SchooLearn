@@ -1,5 +1,3 @@
-import {Data} from "@angular/router";
-
 export interface IGroup{
   id: number;
   name: string;
@@ -8,7 +6,7 @@ export interface IGroup{
 export interface ISolvedTask {
   id: number;
   name: string;
-  score: number;
+  scores: number;
 }
 
 export interface ISolvedTaskFullInfo {
@@ -18,7 +16,7 @@ export interface ISolvedTaskFullInfo {
   difficulty: string;
   subject: string;
   receivedAnswer: string;
-  deadline: Data;
+  deadline: Date;
   scores: number;
 }
 
@@ -28,5 +26,10 @@ export interface IAppTask {
   description: string;
   difficulty: string;
   subject: string;
-  deadline: Data;
+  deadline: Date;
+}
+
+export interface ISubject {
+  id: number;
+  name: string;
 }

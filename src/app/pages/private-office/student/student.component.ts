@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import {InfoService} from "../../../modules/info-lk/info.service";
 import {Observable} from "rxjs";
-import {IAppTask, IGroup, ISolvedTask} from "../../../modules/info-lk/info.interfases";
+import {IGroup, } from "../../../modules/info-lk/info.interfases";
+import {IInstitution} from "../../../modules/auth/interfaces/auth/auth-responce-user.interface";
 
 @Component({
   selector: 'app-student',
@@ -10,43 +11,24 @@ import {IAppTask, IGroup, ISolvedTask} from "../../../modules/info-lk/info.inter
 })
 export class StudentComponent {
   constructor(private infoService: InfoService) { }
-  role?: string;
   nickName?: string;
-  organization?: string;
+  organization?: IInstitution;
   groups$?: Observable<IGroup[]>;
-  group?: IGroup;
-  solvedTasks$?: Observable<ISolvedTask[]>;
-  appTasks$?: Observable<IAppTask[]>;
+  currentGroup?: number;
+  id!: number;
   nameTeacher$?: Observable<string>;
 
   ngOnInit() {
-    this.groups$ = this.infoService.getGroups();
-    let user = this.infoService.getInfoStudent();
-    this.role = user.role;
+    this.groups$ = this.infoService.getGroups(true);
+    let user = this.infoService.getInfoStudent(true);
     this.nickName = user.nickName;
-    this.organization = user.institution;
+    this.organization = user.institution.name;
   }
 
-  onFindGroup() {
-    const id = this.group?.id;
-    if (!id) {
-      console.error("Ошибка, НЕТ ТАКОГО ID");
-      return;
+  onFindGroup(event: any) {
+    this.id = parseInt(event.target.value);
+    if (this.id) {
+      this.nameTeacher$ = this.infoService.getGroupInfo(this.id, true);
     }
-    this.nameTeacher$ = this.infoService.getGroupInfo(id);
-    this.solvedTasks$ = this.infoService.getSolvedTasksInfo(id);
-    this.appTasks$ = this.infoService.getAppTasks(id);
-  }
-
-  onOpenSolvedTask(id: number) {
-    this.infoService.getSolvedTaskFullInfo(id).subscribe(
-      (data)=> {
-        console.log(data);
-      }
-    )
-  }
-
-  onOpenAppTask(task: any) {
-    console.log(task)
   }
 }
