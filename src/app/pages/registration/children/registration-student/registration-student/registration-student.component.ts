@@ -39,18 +39,12 @@ export class RegistrationStudentComponent {
   onSubmitRegistration() {
     this.submitted = true;
     const data: IRegistrationUser = new RegistrationStudent(
-      this.registrationStudentForm.controls["companyName"].value,
       this.registrationStudentForm.controls["studentName"].value,
       this.registrationStudentForm.controls["studentLogin"].value,
       this.registrationStudentForm.controls["password"].value,
       this.registrationStudentForm.controls["repeatPassword"].value,
       Role.Student,
     );
-
-    const user: IAuthorizationUser = new AuthorizationUser(
-      this.registrationStudentForm.controls["studentLogin"].value,
-      this.registrationStudentForm.controls["password"].value
-    )
 
     this.registrationStudentForm.disable();
 
@@ -65,18 +59,6 @@ export class RegistrationStudentComponent {
         console.log(error);
         this.registrationStudentForm.enable();
         this.submitted = false;
-      },
-    });
-
-    this._asyncSubscribeAuthorization = this._authService.login(user).subscribe({
-      next: (value) => {
-        this._authService.navigateLk(value.role)
-        this.submitted = false;
-      },
-
-      error: (error) => {
-        console.error("Ошибка авторизации");
-        console.log(error);
       },
     });
   }
