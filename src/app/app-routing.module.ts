@@ -14,12 +14,6 @@ import {SubjectsPageWeb} from "./pages/tasks/childrens/subjects/subjects.page.we
 import {TasksPageWeb} from "./pages/tasks/childrens/tasks-home/tasks.component";
 import {TaskPageWeb} from "./pages/tasks/childrens/subjects/childrens/task/task.page.web";
 import {
-  Step1RegistrationCompanyFormComponent
-} from "./pages/registration/children/registration-organization/children/step1-registration-company-form/step1-registration-company-form.component";
-import {
-  Step2RegistrationCompanyFormComponent
-} from "./pages/registration/children/registration-organization/children/step2-registration-company-form/step2-registration-company-form.component";
-import {
   RegistrationStudentComponent
 } from "./pages/registration/children/registration-student/registration-student/registration-student.component";
 import {
@@ -33,6 +27,12 @@ import {TeacherComponent} from "./pages/private-office/teacher/teacher.component
 import {CreateTaskComponent} from "./pages/tasks/childrens/create-task/create-task.component";
 import {CreateSubjectComponent} from "./pages/tasks/childrens/create-subject/create-subject.component";
 import {CreateGroupComponent} from "./pages/tasks/childrens/create-group/create-group.component";
+import {
+  RegistrationAdminComponent
+} from "./pages/registration/children/registration-admin/registration-admin.component";
+import {
+  RegistrationCompanyPageComponent
+} from "./pages/registration/children/registration-organization/registration-company-page/registration-company-page.component";
 
 const tasksRoutes: Routes = [
   { path: '', component: TasksPageWeb},
@@ -75,16 +75,11 @@ const lkRoutes: Routes = [
   },
 ];
 
-const registrationCompanyFormRoutes: Routes = [
-  { path: '', redirectTo: '/registration/company/step1', pathMatch: 'full',},
-  { path: 'step1', component: Step1RegistrationCompanyFormComponent },
-  { path: 'step2', component: Step2RegistrationCompanyFormComponent },
-];
-
 const registrationRoutes: Routes = [
   { path: 'teacher', component: RegistrationTeacherComponent },
+  { path: 'admin', component: RegistrationAdminComponent },
   { path: 'student', component: RegistrationStudentComponent },
-  { path: 'company', children: registrationCompanyFormRoutes},
+  { path: 'company', component: RegistrationCompanyPageComponent},
   { path: '', redirectTo: '/**', pathMatch: "full"},
 ];
 

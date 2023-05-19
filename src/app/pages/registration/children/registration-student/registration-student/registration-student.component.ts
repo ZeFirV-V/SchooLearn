@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {RegistrationStudent} from "../../../../../modules/auth/interfaces/registration/registration-student.interface";
 import {IRegistrationUser} from "../../../../../modules/auth/interfaces/registration/registration-user.interface";
 import {Role} from "../../../../../modules/auth/enums/role.enum";
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {AuthService} from "../../../../../modules/auth/services/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {
@@ -23,9 +23,14 @@ export class RegistrationStudentComponent {
               private _route: ActivatedRoute,
               private fb: FormBuilder) {
   }
+  institution$?: Observable<{id: number, name: string}[]>;
 
+  ngOnInit() {
+    this.institution$ = this._authService.getInstitution();
+  }
   public registrationStudentForm: FormGroup = new FormGroup({
     companyName: new FormControl("", Validators.required),
+    studentEmail: new FormControl("", Validators.required),
     studentName: new FormControl("", Validators.required),
     studentLogin: new FormControl("", Validators.required),
     userPassword: new FormControl("", Validators.required),
@@ -41,10 +46,10 @@ export class RegistrationStudentComponent {
     const data: IRegistrationUser = new RegistrationStudent(
       this.registrationStudentForm.controls["studentName"].value,
       this.registrationStudentForm.controls["studentLogin"].value,
-      this.registrationStudentForm.controls["password"].value,
+      this.registrationStudentForm.controls["studentEmail"].value,
+      4,
       this.registrationStudentForm.controls["password"].value,
       this.registrationStudentForm.controls["repeatPassword"].value,
-      Role.Student,
     );
 
     this.registrationStudentForm.disable();
@@ -53,6 +58,7 @@ export class RegistrationStudentComponent {
       next: (value) => {
         this.registrationStudentForm.reset();
         this.submitted = false;
+        this._router.navigate(['']);
       },
 
       error: (error) => {

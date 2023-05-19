@@ -52,7 +52,7 @@
                       class="select-company"
                       id="companyName"
                       type="text">
-            <mat-option *ngFor="let state of states"
+            <mat-option *ngFor="let state of institution$ | async"
                         [value]="state">
               {{state}}
             </mat-option>
@@ -127,6 +127,25 @@
                && registrationStudentForm.controls['studentLogin'].touched">
             <p>
               Обязательно для заполнения. Придумайте логин не менее 8 символов, он должен включать строчные и заглавные буквы
+            </p>
+          </div>
+        </div>
+
+        <div class="registrationForm__control-box">
+          <label for="studentEmail" [ngStyle]="{'color': registrationStudentForm.controls['studentEmail'].touched && registrationStudentForm.controls['studentEmail'].invalid ? 'red' : 'black'}" class="registrationForm__label">Придумайте email</label>
+          <input
+            class="registrationForm__control"
+            id="studentEmail"
+            type="text"
+            name="studentEmail"
+            [formControlName]="'studentEmail'"
+          >
+          <div
+            class="registrationForm__error"
+            *ngIf="registrationStudentForm.controls['studentEmail'].invalid
+               && registrationStudentForm.controls['studentEmail'].touched">
+            <p>
+              Обязательно для заполнения.
             </p>
           </div>
         </div>

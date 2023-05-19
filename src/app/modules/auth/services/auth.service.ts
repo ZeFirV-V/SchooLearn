@@ -9,7 +9,7 @@ import {Role } from "../enums/role.enum";
 import {IRegistrationOrganization} from "../interfaces/registration/registration-organization.interface";
 
 import {IRegistrationUser} from "../interfaces/registration/registration-user.interface";
-import {environment} from "../../../../environments/environment";
+import {ISolvedTaskFullInfo} from "../../info-lk/info.interfases";
 
 @Injectable({
   providedIn: 'root'
@@ -20,15 +20,23 @@ export class AuthService  {
   constructor(private _http: HttpClient, private _router: Router) { }
 
   registerStudent(user: IRegistrationUser): Observable<boolean> {
-    return this._http.post<boolean>('/regist', user) //TODO: ПОМЕНЯТЬ ПУТЬ
+    return this._http.post<boolean>('https://localhost:7079/account/register', user) //TODO: ПОМЕНЯТЬ ПУТЬ
+  }
+  //
+  registerTeacher(user: IRegistrationUser): Observable<boolean> {
+    return this._http.post<boolean>('https://localhost:7079/account/register', user) //TODO: ПОМЕНЯТЬ ПУТЬ
   }
 
-  registerTeacher(user: IRegistrationUser): Observable<boolean> {
-    return this._http.post<boolean>('/regist', user) //TODO: ПОМЕНЯТЬ ПУТЬ
+  registerAdmin(user: IRegistrationUser): Observable<boolean> {
+    return this._http.post<boolean>('https://localhost:7079/account/register', user) //TODO: ПОМЕНЯТЬ ПУТЬ
   }
 
   registerCompany(company: IRegistrationOrganization): Observable<boolean> {
-    return this._http.post<boolean>('/registCompany', company)
+    return this._http.post<boolean>('https://localhost:7079/institution/create', company)
+  }
+
+  getInstitution(): Observable<{ id: number, name: string }[]> {
+    return this._http.get<{ id: number, name: string }[]>(`https://localhost:7079/institution/confirmed`)
   }
 
   login(user: IAuthorizationUser): Observable<IAuthResponseUserInterface> {

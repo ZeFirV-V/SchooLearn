@@ -1,13 +1,14 @@
 import {IRegistrationUser} from "./registration-user.interface";
 
-export interface IRegistrationTeacher extends IRegistrationUser {
+export interface IRegistrationAdmin extends IRegistrationUser {
   invitationCode: string;
 }
-export class RegistrationTeacher implements IRegistrationTeacher {
+
+export class RegistrationAdmin implements IRegistrationAdmin {
   constructor(public nickname: string,
               public login: string,
               public email: string,
-              public role: 3 = 3,
+              public role: 2 = 2,
               public password: string,
               public passwordConfirm: string,
               public invitationCode: string) {}

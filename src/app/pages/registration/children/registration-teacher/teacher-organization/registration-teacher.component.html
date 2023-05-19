@@ -1,29 +1,3 @@
-<!--<p>registration-student works!</p>-->
-<!--<div *ngIf="phase === 1">-->
-<!--  <label>Name:</label>-->
-<!--  <input type="text" formControlName="name">-->
-<!--  <label>Email:</label>-->
-<!--  <input type="email" formControlName="email">-->
-<!--  <button (click)="nextPhase()">Next</button>-->
-<!--</div>-->
-
-<!--<div *ngIf="phase === 2">-->
-<!--  <label>Age:</label>-->
-<!--  <input type="number" formControlName="age">-->
-<!--  <button (click)="prevPhase()">Previous</button>-->
-<!--  <button (click)="nextPhase()">Next</button>-->
-<!--</div>-->
-
-<!--<div *ngIf="phase === 3">-->
-<!--  <label>Street:</label>-->
-<!--  <input type="text" formControlName="address.street">-->
-<!--  <label>City:</label>-->
-<!--  <input type="text" formControlName="address.city">-->
-<!--  <label>State:</label>-->
-<!--  <input type="text" formControlName="address.state">-->
-<!--  <button (click)="prevPhase()">Previous</button>-->
-<!--  <button (click)="submit()">Submit</button>-->
-<!--</div>-->
 <div class="form-box">
 <form
   class="registrationForm"
@@ -37,14 +11,14 @@
     <div class="box-company__control">
       <div class="box-company__title-box">
         <p>Выберите образовательную организацию</p>
-        <a [routerLink]="['/registration/company/step1']" class="registration-company-link">Регистрация</a>
+        <a [routerLink]="['/registration/company']" class="registration-company-link">Регистрация</a>
       </div>
       <div class="box-select">
         <mat-select [formControlName]="'companyName'"
                     class="select-company"
                     id="companyName"
                     type="text">
-          <mat-option *ngFor="let state of states"
+          <mat-option *ngFor="let state of institution$ | async"
                       [value]="state">
             {{state}}
           </mat-option>

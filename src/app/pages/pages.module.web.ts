@@ -14,12 +14,6 @@ import {TasksPageWeb} from "./tasks/childrens/tasks-home/tasks.component";
 import {TasksPage} from "./tasks/tasks.page.web";
 import {TaskPageWeb} from "./tasks/childrens/subjects/childrens/task/task.page.web";
 import {
-  Step1RegistrationCompanyFormComponent
-} from "./registration/children/registration-organization/children/step1-registration-company-form/step1-registration-company-form.component";
-import {
-  Step2RegistrationCompanyFormComponent
-} from "./registration/children/registration-organization/children/step2-registration-company-form/step2-registration-company-form.component";
-import {
   RegistrationCompanyPageComponent
 } from "./registration/children/registration-organization/registration-company-page/registration-company-page.component";
 import {
@@ -39,6 +33,7 @@ import {
   InformationRoleButtonsComponent
 } from "../components/information-role-buttons/information-role-buttons.component";
 import {HeadUniquePageComponent} from "../components/head-unique-page/head-unique-page.component";
+import {RegistrationAdminComponent} from "./registration/children/registration-admin/registration-admin.component";
 
 @NgModule({
   declarations: [
@@ -53,14 +48,14 @@ import {HeadUniquePageComponent} from "../components/head-unique-page/head-uniqu
     SubjectsPageWeb,
     TasksPage,
     TaskPageWeb,
-    Step1RegistrationCompanyFormComponent,
-    Step2RegistrationCompanyFormComponent,
     RegistrationCompanyPageComponent,
     RegistrationStudentComponent,
     RegistrationTeacherComponent,
     SubtextComponent,
     InformationRoleButtonsComponent,
-    HeadUniquePageComponent
+    HeadUniquePageComponent,
+    RegistrationAdminComponent
+
   ],
     imports: [
         ReactiveFormsModule, // TODO: потом удалить, после СОЗДАНИЯ МОДУЛЯ ДЛЯ ЛОГИНА

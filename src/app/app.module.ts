@@ -37,6 +37,7 @@ import { CreateTaskComponent } from './pages/tasks/childrens/create-task/create-
 import { SubjectBoxForCreateTaskComponent } from './components/subject-box-for-create-task/subject-box-for-create-task.component';
 import { CreateSubjectComponent } from './pages/tasks/childrens/create-subject/create-subject.component';
 import { CreateGroupComponent } from './pages/tasks/childrens/create-group/create-group.component';
+import { RegistrationAdminComponent } from './pages/registration/children/registration-admin/registration-admin.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,7 @@ import { CreateGroupComponent } from './pages/tasks/childrens/create-group/creat
     CreateTaskComponent,
     SubjectBoxForCreateTaskComponent,
     CreateSubjectComponent,
-    CreateGroupComponent
+    CreateGroupComponent,
   ],
 
   imports: [

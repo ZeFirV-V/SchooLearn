@@ -1,24 +1,18 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { IRegistrationUser } from "../../../../../modules/auth/interfaces/registration/registration-user.interface";
-import { Role } from "../../../../../modules/auth/enums/role.enum";
+import {AuthService} from "../../../../modules/auth/services/auth.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Observable, Subscription} from "rxjs";
-import { AuthService } from "../../../../../modules/auth/services/auth.service";
-import { ActivatedRoute, Router } from "@angular/router";
-import {
-  AuthorizationUser,
-  IAuthorizationUser
-} from "../../../../../modules/auth/interfaces/auth/athorization-user.interface";
-import { RegistrationTeacher } from "../../../../../modules/auth/interfaces/registration/registration-teacher.interface";
+import {IRegistrationUser} from "../../../../modules/auth/interfaces/registration/registration-user.interface";
+import {RegistrationAdmin} from "../../../../modules/auth/interfaces/registration/registration-admin.interface";
 import {Location} from "@angular/common";
-import {RegistrationAdmin} from "../../../../../modules/auth/interfaces/registration/registration-admin.interface";
 
 @Component({
-  selector: 'app-registration-student',
-  templateUrl: './registration-teacher.component.html',
-  styleUrls: ['./registration-teacher.component.scss']
+  selector: 'app-registration-admin',
+  templateUrl: './registration-admin.component.html',
+  styleUrls: ['./registration-admin.component.scss']
 })
-export class RegistrationTeacherComponent {
+export class RegistrationAdminComponent {
   constructor(private location: Location,
               public _authService: AuthService,
               private _router: Router,
@@ -45,11 +39,11 @@ export class RegistrationTeacherComponent {
 
   onSubmitRegistration() {
     this.submitted = true;
-    const data: IRegistrationUser = new RegistrationTeacher(
+    const data: IRegistrationUser = new RegistrationAdmin(
       this.registrationTeacherForm.controls["teacherName"].value,
       this.registrationTeacherForm.controls["teacherLogin"].value,
       this.registrationTeacherForm.controls["teacherEmail"].value,
-      3,
+      2,
       this.registrationTeacherForm.controls["teacherPassword"].value,
       this.registrationTeacherForm.controls["repeatTeacherPassword"].value,
       this.registrationTeacherForm.controls["teacherKey"].value,
