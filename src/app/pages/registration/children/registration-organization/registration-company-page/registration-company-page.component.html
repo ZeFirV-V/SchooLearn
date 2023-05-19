@@ -11,7 +11,7 @@
     <div class="registrationForm__group">
       <div class="registrationForm__controls-box">
         <div class="registrationForm__control-box">
-          <label for="email" [ngStyle]="{'color': registrationForm.controls['companyEmail'].touched && registrationForm.controls['companyEmail'].invalid ? 'red' : 'black'}" class="registrationForm__label">Введите email (на почту придёт письмо с подтверждением)</label>
+          <label for="email" class="registrationForm__label" [ngStyle]="{'color': registrationForm.controls['companyEmail'].touched && registrationForm.controls['companyEmail'].invalid ? 'red' : 'black'}" >Введите email (на почту придёт письмо с подтверждением)</label>
           <input
             class="registrationForm__control"
             id="email"
@@ -27,7 +27,7 @@
           </div>
         </div>
         <div class="registrationForm__control-box">
-          <label for="name" [ngStyle]="{'color': registrationForm.controls['companyName'].touched && registrationForm.controls['companyName'].invalid ? 'red' : 'black'}" class="registrationForm__label">Название</label>
+          <label for="name" [ngStyle]="{'color': registrationForm.controls['companyName'].touched && registrationForm.controls['companyName'].invalid ? 'red' : 'black'}" class="registrationForm__label">Введите полное название ОО *</label>
           <input
             class="registrationForm__control"
             id="name"
@@ -44,7 +44,7 @@
           </div>
         </div>
         <div class="registrationForm__control-box">
-          <label for="INN" [ngStyle]="{'color': registrationForm.controls['companyINN'].touched && registrationForm.controls['companyINN'].invalid ? 'red' : 'black'}" class="registrationForm__label">ИНН</label>
+          <label for="INN" [ngStyle]="{'color': registrationForm.controls['companyINN'].touched && registrationForm.controls['companyINN'].invalid ? 'red' : 'black'}" class="registrationForm__label">Введите ИНН ОО *</label>
           <input
             class="registrationForm__control"
             id="INN"
@@ -61,7 +61,7 @@
           </div>
         </div>
         <div class="registrationForm__control-box">
-          <label for="name" [ngStyle]="{'color': registrationForm.controls['companyUrl'].touched && registrationForm.controls['companyUrl'].invalid ? 'red' : 'black'}" class="registrationForm__label">Имя</label>
+          <label for="name" [ngStyle]="{'color': registrationForm.controls['companyUrl'].touched && registrationForm.controls['companyUrl'].invalid ? 'red' : 'black'}" class="registrationForm__label">Введите адрес официального сайта ОО *</label>
           <input
             class="registrationForm__control"
             id="url"
@@ -78,16 +78,25 @@
           </div>
         </div>
       </div>
-    </div>
-
-
-    <div>
-      <button
-        type="submit"
-        [disabled]="registrationForm.invalid || submitted || registrationForm.disabled"
-      >
-        Отправить запрос
-      </button>
+      <div class="registrationForm__subtext-box">
+        <app-subtext class="registrationForm__subtext-box">
+          * Образовательная организация
+        </app-subtext>
+      </div>
+      <div class="buttons-box">
+        <button
+          class="form-button form-button__next form-button__company"
+          type="submit"
+          [disabled]="registrationForm.invalid || submitted || registrationForm.disabled"
+        >
+          <div class="form-button__next__img-box">
+            <p class="form-button__text">
+              Отправить запрос
+            </p>
+            <img src="/assets/arrow-right.svg" alt="next">
+          </div>
+        </button>
+      </div>
     </div>
   </form>
 </div>
