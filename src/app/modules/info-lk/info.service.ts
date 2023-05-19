@@ -75,17 +75,18 @@ export class InfoService {
       return of(tasksInfo);
     }
 
-    const solvedTaskFullInfo = localStorage.getItem("solvedTaskFullInfo");
-    const solvedTaskInLocal: ISolvedTaskFullInfo = solvedTaskFullInfo !== null ? JSON.parse(solvedTaskFullInfo) : {};
-    if (solvedTaskInLocal && Object.entries(solvedTaskInLocal).length !== 0 && solvedTaskInLocal.id === id) {
-      return of(solvedTaskInLocal)
-    }
+    // const solvedTaskFullInfo = localStorage.getItem("solvedTaskFullInfo");
+    // const solvedTaskInLocal: ISolvedTaskFullInfo = solvedTaskFullInfo !== null ? JSON.parse(solvedTaskFullInfo) : {};
+    // if (solvedTaskInLocal && Object.entries(solvedTaskInLocal).length !== 0 && solvedTaskInLocal.id === id) {
+    //   return of(solvedTaskInLocal)
+    // }
 
-    return this.http.get<ISolvedTaskFullInfo>(`https://localhost:7079/task/solved?groupId=${id}`).pipe(
-      tap((data) => {
-        localStorage.setItem("solvedTaskFullInfo", JSON.stringify(data));
-      })
-    );
+    return this.http.get<ISolvedTaskFullInfo>(`https://localhost:7079/task/solved/${id}`);
+    // .pipe(
+    //   tap((data) => {
+    //     localStorage.setItem("solvedTaskFullInfo", JSON.stringify(data));
+    //   })
+    // );
   }
 
   getAppTasks(id: number, noApi: boolean = false): Observable<IAppTask[]> {

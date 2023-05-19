@@ -53,7 +53,7 @@
                       id="companyName"
                       type="text">
             <mat-option *ngFor="let state of institution$ | async"
-                        [value]="state">
+                        [value]="state.name">
               {{state}}
             </mat-option>
           </mat-select>
