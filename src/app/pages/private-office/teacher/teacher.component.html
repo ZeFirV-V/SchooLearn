@@ -16,10 +16,26 @@
         </select>
       </div>
     </div>
-
+    <div class="lk__group-code" *ngIf="key$ | async as key">
+      <div class="lk__key">
+        <div class="lk__key-img">
+          <img src="assets/key.svg" alt="key">
+        </div>
+        <p>Код для присоединения: {{key}}</p>
+      </div>
+      <div class="lk__generate-code">
+        <button (click)="onGetNewCodeGroup()">Сгенерировать новый</button>
+      </div>
+    </div>
     <div class="lk__tasks">
-      <app-viewing-solved-tasks [id]="id"/>
-      <app-viewing-assigned-jobs [id]="id"/>
+      <app-view-assigned-tasks-for-teacher [id]="id"/>
+    </div>
+    <div class="lk__create-task-button-box" *ngIf="key$">
+      <a routerLink="/tasks/create">
+        <div class="lk__create-task-button">
+          <p>Создать задание</p>
+        </div>
+      </a>
     </div>
   </div>
 </div>

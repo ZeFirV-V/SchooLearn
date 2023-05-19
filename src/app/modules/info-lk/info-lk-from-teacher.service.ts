@@ -10,10 +10,10 @@ import {Role} from "../auth/enums/role.enum";
   providedIn: 'root'
 })
 export class InfoLkFromTeacherService {
-
+  private readonly noApi: boolean= false
   constructor(private http: HttpClient, private _router: Router) { }
   getGroups(id: number, noApi: boolean = false): Observable<IGroup[]> {
-    if(noApi) {
+    if(this.noApi) {
       const groups: IGroup[] = [{id: 1, name: "nameGroup-1"}, {id: 2, name: "nameGroup-2"}, {id: 3, name: "nameGroup-3"}]
       return of(groups);
     }
@@ -21,29 +21,29 @@ export class InfoLkFromTeacherService {
   }
 
   getSubjects(noApi: boolean = false): Observable<IGroup[]> {
-    if(noApi) {
+    if(this.noApi) {
       const groups: ISubject[] = [{id: 1, name: "nameSubject-1"}, {id: 2, name: "nameSubject-2"}, {id: 3, name: "nameSubject-3"}]
       return of(groups);
     }
     return this.http.get<IGroup[]>(`https://localhost:7079/teacher/subjects`);
   }
 
-  getCode(groupId: number, noApi: boolean = false) {
-    if(noApi) {
+  getCode(groupId: number, noApi: boolean = false): Observable<string>  {
+    if(this.noApi) {
       return of("code-from-group")
     }
     return this.http.get<string>(`https://localhost:7079/teacher/group/${groupId}/code`);
   }
 
   getNewCode(groupId: number, noApi: boolean = false) {
-    if(noApi) {
+    if(this.noApi) {
       return of("code-from-group-new")
     }
     return this.http.get<string>(`https://localhost:7079/teacher/group/${groupId}/generate-code`);
   }
 
   getInfoUser(noApi: boolean = false) {
-    if(noApi) {
+    if(this.noApi) {
       const user: IAuthResponseUserInterface = {
         email: "EMAIL",
         nickName: "nickName",
@@ -56,5 +56,9 @@ export class InfoLkFromTeacherService {
     let value = localStorage.getItem('user');
     if (value)
       return JSON.parse(value);
+  }
+
+  createSubject(subject: string) {
+    return this.http.post<boolean>('https://localhost:7079/teacher/subject/add', subject)
   }
 }

@@ -41,37 +41,38 @@ export class AuthService  {
       )
   }
 
-  private roleConverter(roleInNumber: number) {
+  private roleConverter(roleInNumber: number): Role {
     switch (roleInNumber){
       case 1:
       {
-        break;
+        return Role.Teacher;
       }
       case 2: {
-        break;
+        return Role.Student;
       }
       case 3: {
-        break;
+        return Role.Teacher;
       }
       case 4: {
-        break;
+        return Role.Student;
       }
       case 5: {
-        break;
+        return Role.Student;
       }
       default: {
         console.error("ошибка в роли в методе roleConverter");
-        break;
+        return Role.Student;
       }
     }
   }
 
-  private setToken(response: IAuthResponseUserInterface | null): void {
+  private setToken(response: any | null): void {
     if (response) {
       console.log(response);
-
-      localStorage.setItem('user', JSON.stringify(response));
-      localStorage.setItem('role', response.role);
+      const user:IAuthResponseUserInterface = response;
+      user.role = this.roleConverter(response.role);
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('role', user.role);
       localStorage.setItem('token', response.token.toString());
     } else {
       localStorage.clear();

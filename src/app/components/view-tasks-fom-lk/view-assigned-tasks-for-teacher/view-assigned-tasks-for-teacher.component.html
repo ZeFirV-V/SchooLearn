@@ -1,0 +1,15 @@
+<div  *ngIf="appTasks$ | async as appTasks">
+  <div class="jobs__title">
+    <p>
+      Просмотр назначенных заданий
+    </p>
+  </div>
+
+  <div class="jobs">
+    <ul>
+      <li class="jobs__task" *ngFor="let appTask of appTasks; let last = last" [class.last]="last">
+        <app-view-assigned-task-for-teacher [task]="appTask"/>
+      </li>
+    </ul>
+  </div>
+</div>

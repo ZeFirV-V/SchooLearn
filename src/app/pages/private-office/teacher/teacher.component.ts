@@ -17,6 +17,7 @@ export class TeacherComponent {
   groups$?: Observable<IGroup[]>;
   currentGroup?: number;
   id!: number;
+  key$?: Observable<string>;
   nameTeacher$?: Observable<string>;
 
   ngOnInit() {
@@ -27,6 +28,11 @@ export class TeacherComponent {
 
   onFindGroup(event: any) {
     this.id = parseInt(event.target.value);
+    this.key$ = this.infoLkFromTeacherService.getCode(this.id , true);
+  }
+
+  onGetNewCodeGroup() {
+    this.key$ = this.infoLkFromTeacherService.getNewCode(this.id , true);
   }
 
   getGroupsSubject(id: number) {

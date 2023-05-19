@@ -30,6 +30,9 @@ import {
   ViewSolvedTaskPageComponent
 } from "./pages/tasks/childrens/view-solved-task-page/view-solved-task-page.component";
 import {TeacherComponent} from "./pages/private-office/teacher/teacher.component";
+import {CreateTaskComponent} from "./pages/tasks/childrens/create-task/create-task.component";
+import {CreateSubjectComponent} from "./pages/tasks/childrens/create-subject/create-subject.component";
+import {CreateGroupComponent} from "./pages/tasks/childrens/create-group/create-group.component";
 
 const tasksRoutes: Routes = [
   { path: '', component: TasksPageWeb},
@@ -37,7 +40,14 @@ const tasksRoutes: Routes = [
   { path: 'subjects/:subjectName', component: TaskPageWeb },
 
   { path: 'view-solved-task/:taskId', component: ViewSolvedTaskPageComponent },
-  { path: ':subjectName/:taskId', component: ViewSolvedTaskPageComponent },
+  // { path: ':subjectName/:taskId', component: ViewSolvedTaskPageComponent },
+  { path: 'create', children: [
+      {path: 'subject', component: CreateSubjectComponent},
+      {path: 'group', component: CreateGroupComponent},
+      {path: '', component: CreateTaskComponent,  pathMatch: "full"},
+
+    ]
+  },
 ];
 
 
@@ -97,7 +107,7 @@ const routes: Routes = [
       {
         path: 'lk-teacher',
         canActivate: [AuthGuard],
-        component: PrivateOfficePageWeb,
+        component: TeacherComponent,
         data: { roles: [Role.Teacher] }
       }, //Использует guard для лк учителя
       {

@@ -1,0 +1,51 @@
+<div class="container">
+  <div *ngIf="phase === 1">
+    <div class="create-task__text-box">
+      <h2>
+        Выберите предмет, по которому будет создано задание
+      </h2>
+      <p>
+        Ваши предметы:
+      </p>
+    </div>
+
+    <div class="subjects__box">
+      <div  *ngFor="let subject of subjects$ | async">
+        <app-subject-box-for-create-task subjectName="{{subject.name}}" (emitSubjectClick)="editSubject(subject)"></app-subject-box-for-create-task>
+
+      </div>
+      <div>
+        <a class="subject__create-box" routerLink="/tasks/create/subject">
+          <p class="subject__create-name">Создать предмет</p>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="phase === 2" class="add-groups">
+    <h2>Добавьте классы: </h2>
+    <select>
+      <option></option>
+    </select>
+  </div>
+
+  <div class="create-subject__buttons-box">
+    <button
+      (click)="backPhase()"
+      class="create-subject__button">
+      <img width="24" height="24" src="/assets/back-arrow.svg" alt="back">
+      <p class="form-button__text">
+        Назад
+      </p>
+    </button>
+
+    <button
+      (click)="nextPhase()"
+      class="create-subject__button">
+      <p class="form-button__text">
+        Далее
+      </p>
+      <img width="24" height="24" src="/assets/button-right-arrow.svg" alt="back">
+    </button>
+  </div>
+</div>
+

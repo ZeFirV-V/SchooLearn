@@ -10,7 +10,7 @@ import * as events from "events";
   styleUrls: ['./side-bar.component.scss']
 })
 export class SideBarComponent {
-  constructor(private infoLkFromTeacherService: InfoLkFromTeacherService, private renderer: Renderer2, private el: ElementRef) { }
+  constructor(private infoLkFromTeacherService: InfoLkFromTeacherService) { }
   subjects$?: Observable<ISubject[]>;
   selectedSubjectId?: number;
   @Input() nickname: string = "";

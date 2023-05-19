@@ -1,0 +1,8 @@
+<div *ngIf="task" class="task">
+  <p class="task__name">{{task.name}}</p>
+  <p class="task__date">Дедлайн: {{task.deadline | date}}</p>
+  <div class="side-bar__nickname-edit">
+    <img src="assets/edit.svg" alt="edit image">
+  </div>
+  <a class="task__link" routerLink="">Просмотр</a>
+</div>

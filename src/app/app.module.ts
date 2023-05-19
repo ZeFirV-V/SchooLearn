@@ -27,9 +27,18 @@ import {MatSelectModule} from "@angular/material/select";
 import { ViewSolvedTaskPageComponent } from './pages/tasks/childrens/view-solved-task-page/view-solved-task-page.component';
 import { ViewAssignedTaskPageComponent } from './pages/tasks/childrens/view-assigned-task-page/view-assigned-task-page.component';
 import { TeacherComponent } from './pages/private-office/teacher/teacher.component';
+import {
+  ViewAssignedTaskForTeacherComponent
+} from "./components/view-tasks-fom-lk/view-assigned-task-for-teacher/view-assigned-task-for-teacher.component";
+import {
+  ViewAssignedTasksForTeacherComponent
+} from "./components/view-tasks-fom-lk/view-assigned-tasks-for-teacher/view-assigned-tasks-for-teacher.component";
+import { CreateTaskComponent } from './pages/tasks/childrens/create-task/create-task.component';
+import { SubjectBoxForCreateTaskComponent } from './components/subject-box-for-create-task/subject-box-for-create-task.component';
+import { CreateSubjectComponent } from './pages/tasks/childrens/create-subject/create-subject.component';
+import { CreateGroupComponent } from './pages/tasks/childrens/create-group/create-group.component';
 
 @NgModule({
-
   declarations: [
     AppComponent,
     NavbarComponent,
@@ -47,8 +56,12 @@ import { TeacherComponent } from './pages/private-office/teacher/teacher.compone
     ViewSolvedTaskPageComponent,
     ViewAssignedTaskPageComponent,
     TeacherComponent,
-
-
+    ViewAssignedTaskForTeacherComponent,
+    ViewAssignedTasksForTeacherComponent,
+    CreateTaskComponent,
+    SubjectBoxForCreateTaskComponent,
+    CreateSubjectComponent,
+    CreateGroupComponent
   ],
 
   imports: [
@@ -79,4 +92,4 @@ import { TeacherComponent } from './pages/private-office/teacher/teacher.compone
   bootstrap: [AppComponent]
 })
 
-export class AppModule { }
+export class AppModule {}

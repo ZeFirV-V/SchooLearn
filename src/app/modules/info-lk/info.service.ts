@@ -12,11 +12,13 @@ import {Role} from "../auth/enums/role.enum";
   providedIn: 'root'
 })
 export class InfoService {
+  private readonly noApi: boolean= false
+
   subject: any = {}
   constructor(private http: HttpClient, private _router: Router) { }
 
   getGroups(noApi: boolean = false): Observable<IGroup[]> {
-    if(noApi) {
+    if(this.noApi) {
       const groups: IGroup[] = [{id: 1, name: "nameGroup-1"}, {id: 2, name: "nameGroup-2"}, {id: 3, name: "nameGroup-3"}]
       return of(groups);
     }
@@ -49,7 +51,7 @@ export class InfoService {
     if(id === 0) {
       return of();
     }
-    if (noApi) {
+    if (this.noApi) {
       return of([{id: 1, name: "name-1", scores: 1 }, {id: 2, name: "name-2", scores: 1 }, {id: 3, name: "name-3", scores: 1 }])
     }
     return this.http.get<ISolvedTask[]>(`https://localhost:7079/task/solved?groupId=${id}`);
@@ -59,7 +61,7 @@ export class InfoService {
     if(id === 0) {
       return of();
     }
-    if (noApi) {
+    if (this.noApi) {
       const tasksInfo: ISolvedTaskFullInfo = {
         id: 1,
         name: "name-1",
@@ -90,7 +92,7 @@ export class InfoService {
     if(id === 0) {
       return of();
     }
-    if(noApi) {
+    if(this.noApi) {
       const tasksInfo: IAppTask[] = [{
         id: 1,
         name: "name-1",
@@ -133,7 +135,7 @@ export class InfoService {
   }
 
   getInfoStudent(noApi: boolean = false) {
-    if(noApi) {
+    if(this.noApi) {
       const user: IAuthResponseUserInterface = {
         email: "EMAIL",
         nickName: "nickName",
