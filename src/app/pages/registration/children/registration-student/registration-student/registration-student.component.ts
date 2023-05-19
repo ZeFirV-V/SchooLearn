@@ -42,6 +42,7 @@ export class RegistrationStudentComponent {
       this.registrationStudentForm.controls["studentName"].value,
       this.registrationStudentForm.controls["studentLogin"].value,
       this.registrationStudentForm.controls["password"].value,
+      this.registrationStudentForm.controls["password"].value,
       this.registrationStudentForm.controls["repeatPassword"].value,
       Role.Student,
     );

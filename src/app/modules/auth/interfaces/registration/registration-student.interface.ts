@@ -8,6 +8,7 @@ export class RegistrationStudent implements IRegistrationStudent {
               public nickname: string,
               public login: string,
               public password: string,
+              public repeatPassword: string,
               public email: string,
               public role: Role) {}
 }
