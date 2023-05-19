@@ -11,7 +11,7 @@
     <div class="registrationForm__group">
       <div class="registrationForm__controls-box">
         <div class="registrationForm__control-box">
-          <label for="email" [ngStyle]="{'color': registrationForm.controls['companyEmail'].touched && registrationForm.controls['companyEmail'].invalid ? 'red' : 'black'}" class="registrationForm__label">email</label>
+          <label for="email" [ngStyle]="{'color': registrationForm.controls['companyEmail'].touched && registrationForm.controls['companyEmail'].invalid ? 'red' : 'black'}" class="registrationForm__label">Введите email (на почту придёт письмо с подтверждением)</label>
           <input
             class="registrationForm__control"
             id="email"
@@ -27,7 +27,7 @@
           </div>
         </div>
         <div class="registrationForm__control-box">
-          <label for="name">Название</label>
+          <label for="name" [ngStyle]="{'color': registrationForm.controls['companyName'].touched && registrationForm.controls['companyName'].invalid ? 'red' : 'black'}" class="registrationForm__label">Название</label>
           <input
             class="registrationForm__control"
             id="name"
@@ -44,7 +44,7 @@
           </div>
         </div>
         <div class="registrationForm__control-box">
-          <label for="INN">ИНН</label>
+          <label for="INN" [ngStyle]="{'color': registrationForm.controls['companyINN'].touched && registrationForm.controls['companyINN'].invalid ? 'red' : 'black'}" class="registrationForm__label">ИНН</label>
           <input
             class="registrationForm__control"
             id="INN"
@@ -61,7 +61,7 @@
           </div>
         </div>
         <div class="registrationForm__control-box">
-          <label for="name">Имя</label>
+          <label for="name" [ngStyle]="{'color': registrationForm.controls['companyUrl'].touched && registrationForm.controls['companyUrl'].invalid ? 'red' : 'black'}" class="registrationForm__label">Имя</label>
           <input
             class="registrationForm__control"
             id="url"
