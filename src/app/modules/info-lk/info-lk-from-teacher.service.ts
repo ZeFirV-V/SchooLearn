@@ -11,7 +11,7 @@ import {ITask} from "../tasks/interfaces/task.itnerface";
   providedIn: 'root'
 })
 export class InfoLkFromTeacherService {
-  private readonly noApi: boolean= true
+  private readonly noApi: boolean= false;
   constructor(private http: HttpClient, private _router: Router) { }
   getGroups(id: number, noApi: boolean = false): Observable<IGroup[]> {
     if(this.noApi) {
