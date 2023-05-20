@@ -15,7 +15,7 @@ export class StudentComponent {
   organization?: IInstitution;
   groups$?: Observable<IGroup[]>;
   currentGroup?: number;
-  id!: number;
+  id: number = 0;
   nameTeacher$?: Observable<string>;
 
   ngOnInit() {
@@ -23,10 +23,14 @@ export class StudentComponent {
     let user = this.infoService.getInfoStudent(true);
     this.nickName = user.nickName;
     this.organization = user.institution.name;
+    let id = sessionStorage.getItem("id-student-group");
+    if(id) {
+      this.id = JSON.parse(id);
+    }
   }
 
-  onFindGroup(event: any) {
-    this.id = parseInt(event.target.value);
+  onFindGroup() {
+    sessionStorage.setItem("id-student-group", JSON.stringify(this.id));
     if (this.id) {
       this.nameTeacher$ = this.infoService.getGroupInfo(this.id, true);
     }

@@ -10,9 +10,9 @@
       </div>
       <div class="lk__find-group" *ngIf="groups$ | async as groups">
         <label class="lk__find-group-title">Группа:</label>
-        <select class="lk__find-group-text" name="findGroup" (change)="onFindGroup($event)">
-          <option disabled selected value="">Выберите группу</option>
-          <option class="lk__find-group-text" *ngFor="let item of groups" [value]="item.id">{{item.name}}</option>
+        <select class="lk__find-group-text" [(ngModel)]="id" name="findGroup" (change)="onFindGroup()">
+          <option disabled selected [ngValue]="0">Выберите группу</option>
+          <option class="lk__find-group-text" *ngFor="let item of groups" [ngValue]="item.id">{{item.name}}</option>
         </select>
       </div>
     </div>

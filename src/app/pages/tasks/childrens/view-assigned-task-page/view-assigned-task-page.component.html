@@ -1,1 +1,43 @@
-<p>view-assigned-task-page works!</p>
+<div class="container" *ngIf="task$ | async as task">
+  <div class="task__section-1">
+    <div>
+      <h3 class="task__title">{{task.subject}}</h3>
+      <p class="task__name">{{task.name}}</p>
+      <p class="task__difficulty">Уровень: {{task.difficulty}}</p>
+    </div>
+    <div class="task__effect-section">
+      <div class="task__end-button">
+        <button>
+          <p>
+            Завершить выполнение
+          </p>
+        </button>
+      </div>
+      <div class="task__date">
+        <p>
+          Выполнить до: <br/>{{task.deadline | date}}
+        </p>
+      </div>
+    </div>
+
+  </div>
+  <div class="task__section-2">
+    <div class="task__description">
+      <p>{{task.description}}</p>
+    </div>
+
+  </div>
+  <div class="task__section-3">
+    <input class="task__input">
+  </div>
+  <div class="task__section-4">
+    <button
+      (click)="backPhase()"
+      class="task__button">
+      <img width="24" height="24" src="/assets/back-arrow.svg" alt="back">
+      <p class="form-button__text">
+        Назад
+      </p>
+    </button>
+  </div>
+</div>

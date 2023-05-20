@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Observable, of, switchMap} from "rxjs";
-import {ISolvedTaskFullInfo} from "../../../../modules/info-lk/info.interfases";
+import {IAppTakFullInfo, ISolvedTaskFullInfo} from "../../../../modules/info-lk/info.interfases";
 import {InfoService} from "../../../../modules/info-lk/info.service";
 import {ActivatedRoute} from "@angular/router";
 import {Location} from "@angular/common";
@@ -11,7 +11,7 @@ import {Location} from "@angular/common";
   styleUrls: ['./view-assigned-task-page.component.scss']
 })
 export class ViewAssignedTaskPageComponent {
-  task$!: Observable<ISolvedTaskFullInfo>;
+  task$!: Observable<IAppTakFullInfo>;
 
   constructor(private infoService: InfoService,
               private route: ActivatedRoute,
@@ -22,7 +22,7 @@ export class ViewAssignedTaskPageComponent {
       switchMap(params => {
         let id: string | null =  params.get('taskId')
         if(id !== null)
-          return this.infoService.getSolvedTaskFullInfo(parseInt(id), true);
+          return this.infoService.getAppTaskFullInfo(parseInt(id), true);
         else {
           return of()
         }

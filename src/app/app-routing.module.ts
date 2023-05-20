@@ -33,6 +33,10 @@ import {
 import {
   RegistrationCompanyPageComponent
 } from "./pages/registration/children/registration-organization/registration-company-page/registration-company-page.component";
+import {
+  ViewAssignedTaskPageComponent
+} from "./pages/tasks/childrens/view-assigned-task-page/view-assigned-task-page.component";
+import {SubjectResolver} from "./modules/info-lk/subject.resolver";
 
 const tasksRoutes: Routes = [
   { path: '', component: TasksPageWeb},
@@ -40,10 +44,10 @@ const tasksRoutes: Routes = [
   { path: 'subjects/:subjectName', component: TaskPageWeb },
 
   { path: 'view-solved-task/:taskId', component: ViewSolvedTaskPageComponent },
-  // { path: ':subjectName/:taskId', component: ViewSolvedTaskPageComponent },
+  { path: 'view-assigned-task/:taskId', component: ViewAssignedTaskPageComponent },
   { path: 'create', children: [
       {path: 'subject', component: CreateSubjectComponent},
-      {path: 'group', component: CreateGroupComponent},
+      {path: 'group/:subjectId', component: CreateGroupComponent, resolve: { validSubject: SubjectResolver }},
       {path: '', component: CreateTaskComponent,  pathMatch: "full"},
 
     ]

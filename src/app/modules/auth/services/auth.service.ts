@@ -56,7 +56,7 @@ export class AuthService  {
         return Role.Teacher;
       }
       case 2: {
-        return Role.Student;
+        return Role.AdministratorTeacher;
       }
       case 3: {
         return Role.Teacher;

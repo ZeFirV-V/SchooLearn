@@ -12,7 +12,7 @@ import * as events from "events";
 export class SideBarComponent {
   constructor(private infoLkFromTeacherService: InfoLkFromTeacherService) { }
   subjects$?: Observable<ISubject[]>;
-  selectedSubjectId?: number;
+  selectedSubjectId: number = 0;
   @Input() nickname: string = "";
   @Input() role: string = "";
   @Output() subjectId = new EventEmitter<number>();
@@ -20,9 +20,14 @@ export class SideBarComponent {
     if(this.role === 'teacher') {
       this.subjects$ = this.infoLkFromTeacherService.getSubjects(true);
     }
+    let id = sessionStorage.getItem("id-student-subject");
+    if(id) {
+      this.selectedSubjectId = JSON.parse(id);
+    }
   }
   emitSubject(subjectId: number) {
     this.selectedSubjectId = subjectId;
+    sessionStorage.setItem("id-student-subject", JSON.stringify(this.selectedSubjectId));
     this.subjectId.emit(subjectId);
   }
 }

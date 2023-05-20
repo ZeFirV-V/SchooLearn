@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Observable} from "rxjs";
-import {ISubject} from "../../../../modules/info-lk/info.interfases";
+import {IGroup, ISubject} from "../../../../modules/info-lk/info.interfases";
 import {InfoLkFromTeacherService} from "../../../../modules/info-lk/info-lk-from-teacher.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
@@ -10,11 +10,15 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./create-task.component.scss']
 })
 export class CreateTaskComponent {
-  constructor(private infoLkFromTeacherService: InfoLkFromTeacherService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private infoLkFromTeacherService: InfoLkFromTeacherService,
+              private route: ActivatedRoute,
+              private router: Router) { }
   newSubject?: boolean;
   phase: number = 1;
-
+  selectedSubjectName: string = "";
   subjects$?: Observable<ISubject[]>
+  groups$?: Observable<IGroup[]>
+  idGroup?: number;
   ngOnInit() {
     this.subjects$ = this.infoLkFromTeacherService.getSubjects(true);
     this.route.queryParams.subscribe(params => {
@@ -26,7 +30,8 @@ export class CreateTaskComponent {
   }
 
   editSubject(subject: ISubject) {
-
+    this.selectedSubjectName = subject.name;
+    this.groups$ = this.infoLkFromTeacherService.getGroups(subject.id);
   }
 
   onClick() {

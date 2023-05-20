@@ -16,7 +16,7 @@ export class TeacherComponent {
   organization?: IInstitution;
   groups$?: Observable<IGroup[]>;
   currentGroup?: number;
-  id!: number;
+  id: number = 0;
   key$?: Observable<string>;
   nameTeacher$?: Observable<string>;
 
@@ -24,11 +24,24 @@ export class TeacherComponent {
     let user = this.infoLkFromTeacherService.getInfoUser(true);
     this.nickName = user.nickName;
     this.organization = user.institution.name;
+    let id = sessionStorage.getItem("id-teacher-group");
+    if(id) {
+      this.id = JSON.parse(id);
+    }
+
+    let idSubject = sessionStorage.getItem("id-student-subject");
+    if(idSubject) {
+      this.groups$ = this.infoLkFromTeacherService.getGroups(JSON.parse(idSubject), true);
+    }
+    this.onFindGroup()
   }
 
-  onFindGroup(event: any) {
-    this.id = parseInt(event.target.value);
-    this.key$ = this.infoLkFromTeacherService.getCode(this.id , true);
+  onFindGroup() {
+    sessionStorage.setItem("id-teacher-group", JSON.stringify(this.id));
+    if (this.id) {
+      this.key$ = this.infoLkFromTeacherService.getCode(this.id , true);
+    }
+
   }
 
   onGetNewCodeGroup() {

@@ -11,8 +11,9 @@
 
     <div class="subjects__box">
       <div  *ngFor="let subject of subjects$ | async">
-        <app-subject-box-for-create-task subjectName="{{subject.name}}" (emitSubjectClick)="editSubject(subject)"></app-subject-box-for-create-task>
-
+        <button [ngClass]="{active: selectedSubjectName === subject.name}" class="subject-button__box" (click)="editSubject(subject)">
+          <p class="subject-button__name">{{subject.name}}</p>
+        </button>
       </div>
       <div>
         <a class="subject__create-box" routerLink="/tasks/create/subject">
@@ -22,10 +23,19 @@
     </div>
   </div>
   <div *ngIf="phase === 2" class="add-groups">
-    <h2>Добавьте классы: </h2>
-    <select>
-      <option></option>
-    </select>
+    <div style="display: flex; justify-content: space-between">
+      <h2>Добавьте классы: </h2>
+      <button>
+        создать группу
+      </button>
+    </div>
+    <div class="lk__find-group" *ngIf="groups$ | async as groups">
+      <label class="lk__find-group-title">Группа:</label>
+      <select class="lk__find-group-text" [(ngModel)]="idGroup" name="findGroup">
+        <option disabled selected [ngValue]="0">Выберите группу</option>
+        <option class="lk__find-group-text" *ngFor="let item of groups" [ngValue]="item.id">{{item.name}}</option>
+      </select>
+    </div>
   </div>
 
   <div class="create-subject__buttons-box">

@@ -11,12 +11,19 @@
         {{nickname}}
       </span>
     </a>
-    <button class="log-reg__button log-reg__text" #toggleButton (click)="toggleMenu()">
-      Войти
-    </button>
+    <ng-container *ngIf="!isEntered">
+      <button class="log-reg__button log-reg__text" #toggleButton (click)="toggleMenu()">
+        Войти
+      </button>
 
-    <div class="menu" *ngIf="isMenuOpen" #menu>
-      <app-login-registration-form (onOpenRegistrationChanged)="openRegistrationChanged()"/>
-    </div>
+      <div class="menu" *ngIf="isMenuOpen" #menu>
+        <app-login-registration-form (onOpenRegistrationChanged)="openRegistrationChanged()"/>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="isEntered">
+      <button class="log-reg__button log-reg__text" #toggleButton (click)="exit()">
+        Выйти
+      </button>
+    </ng-container>
   </header>
 </div>

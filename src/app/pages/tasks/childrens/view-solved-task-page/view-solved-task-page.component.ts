@@ -29,6 +29,10 @@ export class ViewSolvedTaskPageComponent {
     );
   }
 
+  endTask() {
+    this.infoService.sendReply();
+  }
+
   backPhase() {
     this.location.back();
   }

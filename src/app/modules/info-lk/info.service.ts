@@ -3,8 +3,8 @@ import { HttpClient } from "@angular/common/http";
 import { Router} from "@angular/router";
 import { environment } from "../../../environments/environment";
 import { tap } from "rxjs/operators";
-import {never, Observable, of} from "rxjs";
-import { IAppTask, IGroup, ISolvedTask, ISolvedTaskFullInfo } from "./info.interfases";
+import { Observable, of} from "rxjs";
+import {IAppTakFullInfo, IAppTask, IGroup, ISolvedTask, ISolvedTaskFullInfo} from "./info.interfases";
 import {IAuthResponseUserInterface} from "../auth/interfaces/auth/auth-responce-user.interface";
 import {Role} from "../auth/enums/role.enum";
 
@@ -12,7 +12,7 @@ import {Role} from "../auth/enums/role.enum";
   providedIn: 'root'
 })
 export class InfoService {
-  private readonly noApi: boolean= false
+  private readonly noApi: boolean= true
 
   subject: any = {}
   constructor(private http: HttpClient, private _router: Router) { }
@@ -88,7 +88,7 @@ export class InfoService {
     //   })
     // );
   }
-
+  //IAppTakFullInfo
   getAppTasks(id: number, noApi: boolean = false): Observable<IAppTask[]> {
     if(id === 0) {
       return of();
@@ -97,23 +97,14 @@ export class InfoService {
       const tasksInfo: IAppTask[] = [{
         id: 1,
         name: "name-1",
-        description: "description-1",
-        difficulty: "difficulty-1",
-        subject: "subject-1",
         deadline: new Date(),
       }, {
         id: 2,
         name: "name-2",
-        description: "description-2",
-        difficulty: "difficulty-2",
-        subject: "subject-2",
         deadline: new Date(),
       }, {
         id: 3,
         name: "name-3",
-        description: "description-3",
-        difficulty: "difficulty-3",
-        subject: "subject-3",
         deadline: new Date(),
       }
       ]
@@ -122,9 +113,6 @@ export class InfoService {
         const tasksInfo2: IAppTask[] = [{
           id: 1,
           name: "name-1",
-          description: "description-1",
-          difficulty: "difficulty-1",
-          subject: "subject-1",
           deadline: new Date(),
         }]
         return of(tasksInfo2);
@@ -133,6 +121,30 @@ export class InfoService {
 
     }
     return this.http.get<IAppTask[]>(`https://localhost:7079/task/current?groupId=${id}`);
+  }
+
+  getAppTaskFullInfo(id: number, noApi: boolean = false): Observable<IAppTakFullInfo> {
+    if(id === 0) {
+      return of();
+    }
+    if(this.noApi) {
+      const tasksInfo: IAppTakFullInfo = {
+        id: 1,
+        name: "name-1",
+        description: "description",
+        subject: "subject",
+        difficulty: "difficulty",
+        teacher: "teacher",
+        institution: "institution",
+        isPublic: false,
+        isExtendedTask: false,
+        creationDateTime: new Date(),
+        deadline: new Date(),
+      }
+      return of(tasksInfo);
+
+    }
+    return this.http.get<IAppTakFullInfo>(`https://localhost:7079/task/${id}`);
   }
 
   getInfoStudent(noApi: boolean = false) {
@@ -149,6 +161,10 @@ export class InfoService {
     let value = localStorage.getItem('user');
     if (value)
       return JSON.parse(value);
+  }
+
+  sendReply(): Observable<any> {
+    return of();
   }
 
   // getInfoSubjectFromStudent(subject: string): Observable<ISubjectFromLK> {

@@ -21,6 +21,8 @@ export class LoginRegistrationFormComponent {
   @Output() onOpenRegistrationChanged = new EventEmitter();
 
 
+
+
   openRegistrationForm() {
     this.isLoginForm = false;
     this.onOpenRegistrationChanged.emit();
