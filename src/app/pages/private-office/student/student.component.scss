@@ -2,6 +2,75 @@
   margin-top: 100px;
   margin-bottom: 100px;
   display: flex;
+
+  &__add-in-group-box {
+    display: block;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    padding: 25px 15px;
+    background: #FFFFFF;
+    border: 2px solid #7396FF;
+    border-radius: 20px;
+
+    p {
+      font-family: 'Raleway', serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 21px;
+
+      color: #000000;
+    }
+
+    div {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      button {
+        padding: 10px 20px;
+        background: linear-gradient(82.66deg, #7DF854 14.42%, #7396FF 88.67%);
+        border: 1px solid #7396FF;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+
+        p {
+          font-family: 'Raleway', serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 21px;
+          /* identical to box height */
+
+
+          color: #000000;
+        }
+      }
+    }
+    input {
+      margin-top: 20px;
+      background: rgba(217, 217, 217, 0.27);
+      border: 1px solid #547DF8;
+      border-radius: 10px;
+      padding: 10px 15px;
+    }
+  }
+
+  &__add-in-group-button {
+    border: unset;
+    background: unset;
+      font-family: 'Raleway', serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 23px;
+      text-align: justify;
+
+      color: #547DF8;
+
+
+  }
   &__find-group {
     margin-left: 60px;
     display: flex;

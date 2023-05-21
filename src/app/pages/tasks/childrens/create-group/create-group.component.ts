@@ -19,13 +19,15 @@ export class CreateGroupComponent {
 
 
   ngOnInit() {
-    this.route.paramMap.pipe(
-      switchMap(params => {
-        let subjectId: string | null =  params.get('currentSubjectId')
-        this.currentSubjectId = subjectId? parseInt(subjectId) : undefined;
-        return of();
-      })
-    );
+    let a: string | null = this.route.snapshot.paramMap.get('id');
+    this.currentSubjectId = a ? parseInt(a) : -1;
+    // this.route.paramMap.pipe(
+    //   switchMap(params => {
+    //     let subjectId: string | null =  params.get('subjectId')
+    //     this.currentSubjectId = subjectId? parseInt(subjectId) : undefined;
+    //     return of();
+    //   })
+    // );
   }
 
   backPhase() {

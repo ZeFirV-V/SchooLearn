@@ -4,7 +4,7 @@ export interface IAuthResponseUserInterface {
   email: string;
   nickName: string;
   login: string;
-  institution: IInstitution;
+  institution?: IInstitution;
   role: Role;
   token: string,
 }

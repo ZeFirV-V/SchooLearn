@@ -162,6 +162,12 @@ export class InfoService {
     if (value)
       return JSON.parse(value);
   }
+  accessionGroup(codeGroup: string) {
+    return this.http.post<boolean>(`https://localhost:7079/student/group/create-application?invitationCode=${codeGroup}`, {})
+
+  }
+  //POST
+  // https://localhost:7079/student/group/{groupId}/create-application?invitationCode=gjnbj4
 
   sendReply(): Observable<any> {
     return of();

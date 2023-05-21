@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {IAuthResponseUserInterface} from "../auth/interfaces/auth/auth-responce-user.interface";
 import {Role} from "../auth/enums/role.enum";
 import {ITask} from "../tasks/interfaces/task.itnerface";
+import {catchError} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,11 @@ import {ITask} from "../tasks/interfaces/task.itnerface";
 export class InfoLkFromTeacherService {
   private readonly noApi: boolean= false;
   constructor(private http: HttpClient, private _router: Router) { }
+
+  getTasks() {
+  //  https://localhost:7079/task/assigned?groupId=12
+  }
+
   getGroups(id: number, noApi: boolean = false): Observable<IGroup[]> {
     if(this.noApi) {
       const groups: IGroup[] = [{id: 1, name: "nameGroup-1"}, {id: 2, name: "nameGroup-2"}, {id: 3, name: "nameGroup-3"}]
@@ -29,11 +35,11 @@ export class InfoLkFromTeacherService {
     return this.http.get<IGroup[]>(`https://localhost:7079/teacher/subjects`);
   }
 
-  getCode(groupId: number, noApi: boolean = false): Observable<string>  {
+  getCode(groupId: number, noApi: boolean = false): Observable<{code: string}>  {
     if(this.noApi) {
-      return of("code-from-group")
+      return of({ code: "code-from-group"})
     }
-    return this.http.get<string>(`https://localhost:7079/teacher/group/${groupId}/code`);
+    return this.http.get<{code: string}>(`https://localhost:7079/teacher/group/${groupId}/code`);
   }
 
   getNewCode(groupId: number, noApi: boolean = false) {
@@ -67,10 +73,18 @@ export class InfoLkFromTeacherService {
       name: group,
     }
     return this.http.post<boolean>(`https://localhost:7079/teacher/group/create?subjectId=${subjectId}`, groupName)
+      .pipe(    catchError(err => {
+          throw 'error in source. Details: ' + err;
+        })
+      )
+      .subscribe({
+        next: x => console.log(x),
+        error: err => console.log(err)
+      });
   }
 
-  addTask(subject: string, group: string, task: ICreateTask) {
+  addTask(groupId: number, task: ICreateTask) {
     //TODO: Поставить нужный апи
-    return this.http.post<boolean>('https://localhost:7079/task/add', task)
+    return this.http.post<boolean>(`https://localhost:7079/task/add?groupId=${groupId}`, task)
   }
 }

@@ -14,10 +14,10 @@ const student = { id: 2, email: 'Student@bk.ru', nickname: 'Student', password: 
 
 const companies = ["1", "2", "3"];
 
-const subjects = [
-  { id: 1, name: "math"},
-  { id: 2, name: "info"},
-]
+// const subjects = [
+//   { id: 1, name: "math"},
+//   { id: 2, name: "info"},
+// ]
 
 
 const task =
@@ -42,8 +42,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           return authenticate();
         case url.endsWith('/users') && method === 'GET':
           return getUsers();
-        case url.endsWith('/subjects') && method === 'GET':
-          return getSubjects();
+        // case url.endsWith('/subjects') && method === 'GET':
+        //   return getSubjects();
         case url.endsWith('/companies') && method === 'GET':
           return getCompanies();
         case url.endsWith('/subjects/math') && method === 'GET':
@@ -77,10 +77,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     function getUser() {
       return ok(student);
     }
-
-    function getSubjects() {
-      return ok(subjects);
-    }
+    //
+    // function getSubjects() {
+    //   return ok(subjects);
+    // }
 
     function getCompanies() {
       return ok(companies);

@@ -54,31 +54,6 @@ const tasksRoutes: Routes = [
   },
 ];
 
-
-
-
-
-const lkRoutes: Routes = [
-  {
-    path: 'lk-student',
-    canActivate: [AuthGuard],
-    component: PrivateOfficePageWeb,
-    data: { roles: [Role.Student] }
-  }, // использует guard
-  {
-    path: 'lk-teacher',
-    canActivate: [AuthGuard],
-    component: PrivateOfficePageWeb,
-    data: { roles: [Role.Teacher] }
-  }, //Использует guard для лк учителя
-  {
-    path: 'lk-admin',
-    canActivate: [AuthGuard],
-    component: PrivateOfficePageWeb,
-    data: { roles: [Role.AdministratorTeacher] }
-  },
-];
-
 const registrationRoutes: Routes = [
   { path: 'teacher', component: RegistrationTeacherComponent },
   { path: 'admin', component: RegistrationAdminComponent },
@@ -118,7 +93,7 @@ const routes: Routes = [
       // {path: 'company', children: registrationCompanyFormRoutes},
       {path: 'registration', children: registrationRoutes},
       {path: 'authorization', component: LoginPageWeb},
-      {path: 'edit', component: TeacherComponent},
+      {path: 'edit', component: StudentComponent},
     ]
   },
 

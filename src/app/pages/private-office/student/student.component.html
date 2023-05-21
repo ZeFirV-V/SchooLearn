@@ -15,6 +15,26 @@
           <option class="lk__find-group-text" *ngFor="let item of groups" [ngValue]="item.id">{{item.name}}</option>
         </select>
       </div>
+      <div class="lk__find-group">
+        <button (click)="addInGroup()" #toggleButton class="lk__add-in-group-button">
+            Подключиться
+        </button>
+      </div>
+
+      <div class="menu" *ngIf="isOpenAddInGroupBox" #menu>
+        <div class="lk__add-in-group-box">
+          <p>Введите код:</p>
+          <input [(ngModel)]="groupCode">
+          <div>
+            <button (click)="onAccessionClick()">
+              <p>
+              Подключиться
+            </p>
+            </button>
+
+          </div>
+        </div>
+      </div>
     </div>
 
       <div class="lk__tasks">
