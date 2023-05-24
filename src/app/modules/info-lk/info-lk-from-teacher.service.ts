@@ -32,7 +32,7 @@ export class InfoLkFromTeacherService {
       const groups: ISubject[] = [{id: 1, name: "nameSubject-1"}, {id: 2, name: "nameSubject-2"}, {id: 3, name: "nameSubject-3"}]
       return of(groups);
     }
-    return this.http.get<IGroup[]>(`https://localhost:7079/teacher/subjects`);
+    return this.http.get<IGroup[]>(`http://mukanovarman777.fvds.ru:8080/task/subjects`);
   }
 
   getCode(groupId: number, noApi: boolean = false): Observable<{code: string}>  {
@@ -42,11 +42,11 @@ export class InfoLkFromTeacherService {
     return this.http.get<{code: string}>(`https://localhost:7079/teacher/group/${groupId}/code`);
   }
 
-  getNewCode(groupId: number, noApi: boolean = false) {
+  getNewCode(groupId: number, noApi: boolean = false): Observable<boolean> {
     if(this.noApi) {
-      return of("code-from-group-new")
+      return of(true)
     }
-    return this.http.get<string>(`https://localhost:7079/teacher/group/${groupId}/generate-code`);
+    return this.http.get<boolean>(`https://localhost:7079/teacher/group/${groupId}/generate-code`);
   }
 
   getInfoUser(noApi: boolean = false) {

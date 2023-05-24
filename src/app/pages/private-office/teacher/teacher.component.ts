@@ -4,6 +4,7 @@ import {IInstitution} from "../../../modules/auth/interfaces/auth/auth-responce-
 import {Observable} from "rxjs";
 import {IGroup} from "../../../modules/info-lk/info.interfases";
 import {InfoLkFromTeacherService} from "../../../modules/info-lk/info-lk-from-teacher.service";
+import {dateTimestampProvider} from "rxjs/internal/scheduler/dateTimestampProvider";
 
 @Component({
   selector: 'app-teacher',
@@ -44,6 +45,11 @@ export class TeacherComponent {
   }
 
   onGetNewCodeGroup() {
+    this.infoLkFromTeacherService.getNewCode(this.id).subscribe(
+      (data) => {
+        this.key$ = this.infoLkFromTeacherService.getCode(this.id);
+      }
+    )
   }
 
   getGroupsSubject(id: number) {

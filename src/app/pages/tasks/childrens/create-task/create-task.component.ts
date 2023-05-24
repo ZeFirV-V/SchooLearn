@@ -3,7 +3,7 @@ import {Observable, Subscriber, Subscription} from "rxjs";
 import {ICreateTask, IGroup, ISubject} from "../../../../modules/info-lk/info.interfases";
 import {InfoLkFromTeacherService} from "../../../../modules/info-lk/info-lk-from-teacher.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-create-task',
@@ -23,7 +23,16 @@ export class CreateTaskComponent {
   idGroup: number = 0;
   lkSubscription?: Subscription;
 
-  taskForm!: FormGroup;
+  public taskForm: FormGroup = new FormGroup({
+    name: new FormControl("", Validators.required),
+    description: new FormControl("", Validators.required),
+    difficulty: new FormControl("", Validators.required),
+    subject: new FormControl("", Validators.required),
+    answer: new FormControl("", Validators.required),
+    isExtended: new FormControl(false, Validators.required),
+    isPublic: new FormControl(false, Validators.required),
+    deadline: new FormControl("", Validators.required),
+  });
   loading = false;
 
   ngOnInit() {
@@ -34,27 +43,14 @@ export class CreateTaskComponent {
         this.subjects$ = this.infoLkFromTeacherService.getSubjects(true);
       }
     });
-    if (this.selectedSubject)
-      this.taskForm = this.formBuilder.group({
-        name: ['', Validators.required],
-        description: ['', Validators.required],
-        difficulty: ['', Validators.required],
-        subject: [this.selectedSubject.name, Validators.required],
-        answer: [''],
-        isExtended: [false],
-        isPublic: [false],
-        deadline: ['', Validators.required]
-      });
   }
 
   editSubject(subject: ISubject) {
     this.selectedSubject = subject;
     this.groups$ = this.infoLkFromTeacherService.getGroups(subject.id);
+    this.taskForm.controls['subject'].setValue(subject.name);
   }
 
-  onClick() {
-
-  }
   backPhase(){
     if(this.phase === 1){
       this.router.navigate(["lk-teacher"]);
@@ -69,9 +65,18 @@ export class CreateTaskComponent {
   }
 
   submit() {
-    const formData: ICreateTask = {...this.taskForm.value, deadline: new Date(this.taskForm.value.deadline)};
+    const data: ICreateTask = {
+      name: this.taskForm.controls["name"].value,
+      description: this.taskForm.controls["description"].value,
+      difficulty:this.taskForm.controls["difficulty"].value,
+      subject:this.taskForm.controls["subject"].value,
+      answer: this.taskForm.controls["answer"].value,
+      isExtended: this.taskForm.controls["isExtended"].value,
+      isPublic: this.taskForm.controls["isPublic"].value,
+      deadline: this.taskForm.controls["deadline"].value,
+    };
     this.loading = true;
-    this.lkSubscription = this.infoLkFromTeacherService.addTask(this.idGroup, formData).subscribe(
+    this.lkSubscription = this.infoLkFromTeacherService.addTask(this.idGroup, data).subscribe(
       () => {
         this.loading = false;
         this.taskForm.reset();

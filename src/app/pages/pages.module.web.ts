@@ -12,7 +12,7 @@ import {SubjectsPageWeb} from "./tasks/childrens/subjects/subjects.page.web";
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {TasksPageWeb} from "./tasks/childrens/tasks-home/tasks.component";
 import {TasksPage} from "./tasks/tasks.page.web";
-import {TaskPageWeb} from "./tasks/childrens/subjects/childrens/task/task.page.web";
+import {TaskPageWeb} from "./tasks/childrens/task/task.page.web";
 import {
   RegistrationCompanyPageComponent
 } from "./registration/children/registration-organization/registration-company-page/registration-company-page.component";

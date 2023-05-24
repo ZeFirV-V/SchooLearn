@@ -38,6 +38,7 @@ import { SubjectBoxForCreateTaskComponent } from './components/subject-box-for-c
 import { CreateSubjectComponent } from './pages/tasks/childrens/create-subject/create-subject.component';
 import { CreateGroupComponent } from './pages/tasks/childrens/create-group/create-group.component';
 import { RegistrationAdminComponent } from './pages/registration/children/registration-admin/registration-admin.component';
+import { ChangeNicknameComponent } from './components/change-nickname/change-nickname.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { RegistrationAdminComponent } from './pages/registration/children/regist
     SubjectBoxForCreateTaskComponent,
     CreateSubjectComponent,
     CreateGroupComponent,
+    ChangeNicknameComponent,
   ],
 
   imports: [

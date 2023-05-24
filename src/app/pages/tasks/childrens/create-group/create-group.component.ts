@@ -19,7 +19,7 @@ export class CreateGroupComponent {
 
 
   ngOnInit() {
-    let a: string | null = this.route.snapshot.paramMap.get('id');
+    let a: string | null = this.route.snapshot.paramMap.get('subjectId');
     this.currentSubjectId = a ? parseInt(a) : -1;
     // this.route.paramMap.pipe(
     //   switchMap(params => {

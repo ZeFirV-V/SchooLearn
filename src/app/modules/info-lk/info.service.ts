@@ -12,7 +12,7 @@ import {Role} from "../auth/enums/role.enum";
   providedIn: 'root'
 })
 export class InfoService {
-  private readonly noApi: boolean= false;
+  private readonly noApi: boolean= true;
 
   subject: any = {}
   constructor(private http: HttpClient, private _router: Router) { }
@@ -164,7 +164,10 @@ export class InfoService {
   }
   accessionGroup(codeGroup: string) {
     return this.http.post<boolean>(`https://localhost:7079/student/group/create-application?invitationCode=${codeGroup}`, {})
+  }
 
+  changeNickName(newNickName: string) {
+    return this.http.post<boolean>(`https://localhost:7079/account/rename?name=${newNickName}`, {})
   }
   //POST
   // https://localhost:7079/student/group/{groupId}/create-application?invitationCode=gjnbj4

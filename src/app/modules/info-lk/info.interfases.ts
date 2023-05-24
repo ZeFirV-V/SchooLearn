@@ -46,7 +46,6 @@ export interface ISubject {
 }
 
 export interface ICreateTask {
-  id: number;
   name: string;
   description: string;
   difficulty: string;
@@ -55,5 +54,4 @@ export interface ICreateTask {
   isExtended: boolean;
   isPublic: boolean;
   deadline: Date;
-  creationDateTime: Date;
 }

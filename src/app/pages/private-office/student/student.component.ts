@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
 import {InfoService} from "../../../modules/info-lk/info.service";
-import {Observable} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {IGroup, } from "../../../modules/info-lk/info.interfases";
 import {IInstitution} from "../../../modules/auth/interfaces/auth/auth-responce-user.interface";
 
@@ -19,6 +19,7 @@ export class StudentComponent implements AfterViewInit{
   nameTeacher$?: Observable<string>;
   isOpenAddInGroupBox: boolean = false;
   groupCode: string = "";
+  accessionGroupSubscription?: Subscription;
   @ViewChild('toggleButton') toggleButton!: ElementRef;
   @ViewChild('menu') menu?: ElementRef;
 
@@ -58,6 +59,10 @@ export class StudentComponent implements AfterViewInit{
   }
 
   onAccessionClick() {
-    this.infoService.accessionGroup(this.groupCode)
+    this.accessionGroupSubscription = this.infoService.accessionGroup(this.groupCode).subscribe();
+  }
+
+  ngOnDestroy() {
+    this.accessionGroupSubscription?.unsubscribe();
   }
 }

@@ -12,7 +12,7 @@ import {AuthGuard} from "./modules/auth/guards/auth.guard";
 import {Role} from "./modules/auth/enums/role.enum";
 import {SubjectsPageWeb} from "./pages/tasks/childrens/subjects/subjects.page.web";
 import {TasksPageWeb} from "./pages/tasks/childrens/tasks-home/tasks.component";
-import {TaskPageWeb} from "./pages/tasks/childrens/subjects/childrens/task/task.page.web";
+import {TaskPageWeb} from "./pages/tasks/childrens/task/task.page.web";
 import {
   RegistrationStudentComponent
 } from "./pages/registration/children/registration-student/registration-student/registration-student.component";
@@ -37,11 +37,11 @@ import {
   ViewAssignedTaskPageComponent
 } from "./pages/tasks/childrens/view-assigned-task-page/view-assigned-task-page.component";
 import {SubjectResolver} from "./modules/info-lk/subject.resolver";
+import {ChangeNicknameComponent} from "./components/change-nickname/change-nickname.component";
 
 const tasksRoutes: Routes = [
   { path: '', component: TasksPageWeb},
-  { path: 'subjects', component: SubjectsPageWeb},
-  { path: 'subjects/:subjectName', component: TaskPageWeb },
+  { path: ':subjectId', component: TaskPageWeb, resolve: { validSubject: SubjectResolver } },
 
   { path: 'view-solved-task/:taskId', component: ViewSolvedTaskPageComponent },
   { path: 'view-assigned-task/:taskId', component: ViewAssignedTaskPageComponent },
@@ -93,7 +93,7 @@ const routes: Routes = [
       // {path: 'company', children: registrationCompanyFormRoutes},
       {path: 'registration', children: registrationRoutes},
       {path: 'authorization', component: LoginPageWeb},
-      {path: 'edit', component: StudentComponent},
+      {path: 'edit', component: TasksPageWeb},
     ]
   },
 
