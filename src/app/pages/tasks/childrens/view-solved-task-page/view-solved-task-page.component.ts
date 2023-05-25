@@ -36,4 +36,15 @@ export class ViewSolvedTaskPageComponent {
   backPhase() {
     this.location.back();
   }
+  calculateDifficulty(difficulty: string) {
+    if(difficulty === "легкий")
+      return 1;
+    else if(difficulty === "средний") {
+      return 2;
+    }
+    else if(difficulty === "сложный") {
+      return 3;
+    }
+    return 0
+  }
 }

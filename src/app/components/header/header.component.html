@@ -17,7 +17,7 @@
       </button>
 
       <div class="menu" *ngIf="isMenuOpen" #menu>
-        <app-login-registration-form (onOpenRegistrationChanged)="openRegistrationChanged()"/>
+        <app-login-registration-form (onOpenRegistrationChanged)="openRegistrationChanged()" (onCloseForm)="toggleMenu()"/>
       </div>
     </ng-container>
     <ng-container *ngIf="isEntered">

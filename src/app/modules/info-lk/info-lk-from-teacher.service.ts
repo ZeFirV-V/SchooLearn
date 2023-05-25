@@ -12,19 +12,15 @@ import {catchError} from "rxjs/operators";
   providedIn: 'root'
 })
 export class InfoLkFromTeacherService {
-  private readonly noApi: boolean= false;
+  private readonly noApi: boolean = false;
   constructor(private http: HttpClient, private _router: Router) { }
-
-  getTasks() {
-  //  https://localhost:7079/task/assigned?groupId=12
-  }
 
   getGroups(id: number, noApi: boolean = false): Observable<IGroup[]> {
     if(this.noApi) {
       const groups: IGroup[] = [{id: 1, name: "nameGroup-1"}, {id: 2, name: "nameGroup-2"}, {id: 3, name: "nameGroup-3"}]
       return of(groups);
     }
-    return this.http.get<IGroup[]>(`https://localhost:7079/teacher/groups?subjectId=${id}`);
+    return this.http.get<IGroup[]>(`http://server.schoolearn.ru:8080/teacher/groups?subjectId=${id}`);
   }
 
   getSubjects(noApi: boolean = false): Observable<ISubject[]> {
@@ -32,21 +28,21 @@ export class InfoLkFromTeacherService {
       const groups: ISubject[] = [{id: 1, name: "nameSubject-1"}, {id: 2, name: "nameSubject-2"}, {id: 3, name: "nameSubject-3"}]
       return of(groups);
     }
-    return this.http.get<IGroup[]>(`http://mukanovarman777.fvds.ru:8080/task/subjects`);
+    return this.http.get<ISubject[]>(`http://server.schoolearn.ru:8080/task/subjects`);
   }
 
   getCode(groupId: number, noApi: boolean = false): Observable<{code: string}>  {
     if(this.noApi) {
       return of({ code: "code-from-group"})
     }
-    return this.http.get<{code: string}>(`https://localhost:7079/teacher/group/${groupId}/code`);
+    return this.http.get<{code: string}>(`http://server.schoolearn.ru:8080/teacher/group/${groupId}/code`);
   }
 
-  getNewCode(groupId: number, noApi: boolean = false): Observable<boolean> {
+  getNewCode(groupId: number, noApi: boolean = false) {
     if(this.noApi) {
       return of(true)
     }
-    return this.http.get<boolean>(`https://localhost:7079/teacher/group/${groupId}/generate-code`);
+    return this.http.get(`http://server.schoolearn.ru:8080/teacher/group/${groupId}/generate-code`);
   }
 
   getInfoUser(noApi: boolean = false) {
@@ -66,13 +62,13 @@ export class InfoLkFromTeacherService {
   }
 
   createSubject(subject: string) {
-    return this.http.post<boolean>('https://localhost:7079/teacher/subject/add', subject)
+    return this.http.post<boolean>('http://server.schoolearn.ru:8080/teacher/subject/add', subject)
   }
   createGroup(subjectId: number, group: string) {
     let groupName: {name: string } = {
       name: group,
     }
-    return this.http.post<boolean>(`https://localhost:7079/teacher/group/create?subjectId=${subjectId}`, groupName)
+    return this.http.post<boolean>(`http://server.schoolearn.ru:8080/teacher/group/create?subjectId=${subjectId}`, groupName)
       .pipe(    catchError(err => {
           throw 'error in source. Details: ' + err;
         })
@@ -85,6 +81,6 @@ export class InfoLkFromTeacherService {
 
   addTask(groupId: number, task: ICreateTask) {
     //TODO: Поставить нужный апи
-    return this.http.post<boolean>(`https://localhost:7079/task/add?groupId=${groupId}`, task)
+    return this.http.post<boolean>(`http://server.schoolearn.ru:8080/task/add?groupId=${groupId}`, task)
   }
 }

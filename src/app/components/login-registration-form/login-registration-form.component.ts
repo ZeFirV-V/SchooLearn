@@ -19,6 +19,7 @@ export class LoginRegistrationFormComponent {
   submitted: boolean = false;
   isLoginForm: boolean = true;
   @Output() onOpenRegistrationChanged = new EventEmitter();
+  @Output() onCloseForm = new EventEmitter();
 
 
 
@@ -37,6 +38,7 @@ export class LoginRegistrationFormComponent {
 
   goToRegistrationPage() {
     this._router.navigate([`/registration/${this.role}`]).then();
+    this.onCloseForm.emit();
   }
 
   onSubmitLogin() {
@@ -53,6 +55,7 @@ export class LoginRegistrationFormComponent {
         this.authService.navigateLk(value.role)
         this.authorizationForm.reset();
         this.submitted = false;
+        this.onCloseForm.emit();
       },
       error: (error: Error) => {
         console.error("Ошибка авторизации");

@@ -34,6 +34,9 @@ import {
 } from "../components/information-role-buttons/information-role-buttons.component";
 import {HeadUniquePageComponent} from "../components/head-unique-page/head-unique-page.component";
 import {RegistrationAdminComponent} from "./registration/children/registration-admin/registration-admin.component";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -68,6 +71,9 @@ import {RegistrationAdminComponent} from "./registration/children/registration-a
         MatButtonModule,
         PerfectScrollbarModule,
         RouterLink,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatIconModule,
     ],
   exports: [
     AboutPageWeb,

@@ -38,7 +38,7 @@ export class CreateGroupComponent {
     if(this.currentSubjectId)
     {
       this.infoLkFromTeacherService.createGroup(this.currentSubjectId, this.currentGroupName);
-      this.router.navigate(["tasks/create"], { queryParams: { newGroup: "true"}});
+      this.router.navigate(["tasks/create/subject"], { queryParams: { newGroup: "true"}});
     }
   }
 }

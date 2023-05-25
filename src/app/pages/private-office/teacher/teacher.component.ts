@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {IGroup} from "../../../modules/info-lk/info.interfases";
 import {InfoLkFromTeacherService} from "../../../modules/info-lk/info-lk-from-teacher.service";
 import {dateTimestampProvider} from "rxjs/internal/scheduler/dateTimestampProvider";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-teacher',
@@ -12,7 +13,7 @@ import {dateTimestampProvider} from "rxjs/internal/scheduler/dateTimestampProvid
   styleUrls: ['./teacher.component.scss']
 })
 export class TeacherComponent {
-  constructor(private infoLkFromTeacherService: InfoLkFromTeacherService) { }
+  constructor(private infoLkFromTeacherService: InfoLkFromTeacherService, private router: Router) { }
   nickName?: string;
   organization?: IInstitution;
   groups$?: Observable<IGroup[]>;
@@ -54,5 +55,9 @@ export class TeacherComponent {
 
   getGroupsSubject(id: number) {
     this.groups$ = this.infoLkFromTeacherService.getGroups(id, true);
+  }
+
+  qwe() {
+    this.router.navigate(["tasks/create"]);
   }
 }

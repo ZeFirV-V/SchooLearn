@@ -151,3 +151,22 @@
     align-items: center;
   }
 }
+.task__result-green p {
+  font-family: 'Raleway', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+
+  color: #14FF00;
+}
+
+.task__result-red p {
+  font-family: 'Raleway', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+
+  color: red;
+}

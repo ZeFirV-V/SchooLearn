@@ -86,7 +86,7 @@ import { ChangeNicknameComponent } from './components/change-nickname/change-nic
       multi: true,
       useClass: TokenInterceptor,
     }, //TODO: сделать в дальнейшем отдельный Interceptor для обработки ошибок
-    fakeBackendProvider,
+    // fakeBackendProvider,
     {
       provide: MAT_RADIO_DEFAULT_OPTIONS,
       useValue: { color: '#D3AAF8' },

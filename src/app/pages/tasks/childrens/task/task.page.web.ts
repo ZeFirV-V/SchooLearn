@@ -36,7 +36,6 @@ export class TaskPageWeb implements OnInit {
   endTask(task: IAppTakFullInfo) {
     if(this.answer)
       this.result$ = this.taskService.checkAnswer(task.id, this.answer)
-    console.log(123)
   }
 
   calculateDifficulty(difficulty: string) {

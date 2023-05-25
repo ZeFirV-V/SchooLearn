@@ -45,13 +45,17 @@ const tasksRoutes: Routes = [
 
   { path: 'view-solved-task/:taskId', component: ViewSolvedTaskPageComponent },
   { path: 'view-assigned-task/:taskId', component: ViewAssignedTaskPageComponent },
-  { path: 'create', children: [
-      {path: 'subject', component: CreateSubjectComponent},
-      {path: 'group/:subjectId', component: CreateGroupComponent, resolve: { validSubject: SubjectResolver }},
-      {path: '', component: CreateTaskComponent,  pathMatch: "full"},
+  { path: 'create', component: CreateTaskComponent },
+  { path: 'create/subject', component: CreateTaskComponent },
+  { path: 'create/subject/group/:subjectId', component: CreateGroupComponent, resolve: { validSubject: SubjectResolver } },
 
-    ]
-  },
+  // children: [
+  //     {path: '', component: CreateTaskComponent, pathMatch: "full"},
+  //     {path: 'subject', component: CreateSubjectComponent},
+  //     {path: 'group/:subjectId', component: CreateGroupComponent, resolve: { validSubject: SubjectResolver }},
+  //
+  //   ]
+  // },
 ];
 
 const registrationRoutes: Routes = [
@@ -59,7 +63,7 @@ const registrationRoutes: Routes = [
   { path: 'admin', component: RegistrationAdminComponent },
   { path: 'student', component: RegistrationStudentComponent },
   { path: 'company', component: RegistrationCompanyPageComponent},
-  { path: '', redirectTo: '/**', pathMatch: "full"},
+  // { path: '', redirectTo: '/**', pathMatch: "full"},
 ];
 
 const routes: Routes = [
@@ -93,7 +97,7 @@ const routes: Routes = [
       // {path: 'company', children: registrationCompanyFormRoutes},
       {path: 'registration', children: registrationRoutes},
       {path: 'authorization', component: LoginPageWeb},
-      {path: 'edit', component: TasksPageWeb},
+      // {path: 'edit', component: StudentComponent},
     ]
   },
 

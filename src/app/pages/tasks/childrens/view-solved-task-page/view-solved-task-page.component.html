@@ -23,21 +23,24 @@
         {{task.receivedAnswer}}
       </p>
     </div>
-    <div class="task__result">
-      <p *ngIf="task.scores > 0" class="task__result-properly">
-        Верно
-      </p>
-      <p *ngIf="task.scores === 0" class="task__result-wrong">
-        Неверно
-      </p>
-    </div>
-    <div class="task__scores">
-      <p>
-        {{task.scores}} / 1
-      </p>
-    </div>
-    <div class="task__score">
+<!--    <div class="task__result">-->
+<!--      <p *ngIf="task.scores > 0" class="task__result-properly">-->
+<!--        Верно-->
+<!--      </p>-->
+<!--      <p *ngIf="task.scores === 0" class="task__result-wrong">-->
+<!--        Неверно-->
+<!--      </p>-->
+<!--    </div>-->
 
+    <div class="task__result" *ngIf="task.scores">
+      <div class="task__result-green" *ngIf="task.scores !== 0" style="display: flex; gap: 10px">
+        <p>верно</p>
+        <p>{{task.scores}} / {{calculateDifficulty(task.difficulty)}}</p>
+      </div>
+      <div class="task__result-red" *ngIf="task.scores === 0" style="display: flex; gap: 10px">
+        <p>неверно</p>
+        <p>{{task.scores}} / {{calculateDifficulty(task.difficulty)}}</p>
+      </div>
     </div>
   </div>
   <div class="task__section-4">

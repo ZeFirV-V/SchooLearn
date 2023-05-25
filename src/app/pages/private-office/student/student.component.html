@@ -5,7 +5,7 @@
       <h2>Информация</h2>
     </div>
     <div class="lk__student-info">
-      <div class="lk__navigate-info">
+      <div *ngIf="organization" class="lk__navigate-info">
         <p>Организация | <span>{{organization}}</span></p>
       </div>
       <div class="lk__find-group" *ngIf="groups$ | async as groups">

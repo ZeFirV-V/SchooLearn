@@ -204,3 +204,58 @@
     }
   }
 }
+.task__result-green p {
+  font-family: 'Raleway', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+
+  color: #14FF00;
+}
+
+.task__result-red p {
+  font-family: 'Raleway', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+
+  color: red;
+}
+
+.active {
+  background: #7396FF !important;
+}
+
+.task__button-next  {
+  width: 124px;
+  height: 64px;
+
+  button {
+    background: #FFFFFF;
+    border: 1px solid #7396FF;
+    padding: 20px;
+    border-radius: 25px;
+
+  }
+
+
+}
+
+.task__button-next-box {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  p {
+    font-family: 'Raleway', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+
+    color: #000000;
+  }
+}

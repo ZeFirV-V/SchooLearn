@@ -12,7 +12,7 @@ import {Role} from "../auth/enums/role.enum";
   providedIn: 'root'
 })
 export class InfoService {
-  private readonly noApi: boolean= true;
+  private readonly noApi: boolean = false;
 
   subject: any = {}
   constructor(private http: HttpClient, private _router: Router) { }
@@ -22,7 +22,7 @@ export class InfoService {
       const groups: IGroup[] = [{id: 1, name: "nameGroup-1"}, {id: 2, name: "nameGroup-2"}, {id: 3, name: "nameGroup-3"}]
       return of(groups);
     }
-    return this.http.get<IGroup[]>(`https://localhost:7079/student/groups`);
+    return this.http.get<IGroup[]>(`http://server.schoolearn.ru:8080/student/groups`);
   }
 
   getGroupInfo(id: number, noApi: boolean = false): Observable<string> {
@@ -38,7 +38,7 @@ export class InfoService {
       return of(groupInfoInLocal[id.toString()])
     }
 
-    return this.http.get<string>(`https://localhost:7079/student/groups/${id}`)
+    return this.http.get<string>(`http://server.schoolearn.ru:8080/student/groups/${id}`)
       .pipe(
         tap((data) => {
           groupInfoInLocal[id.toString()] = data;
@@ -54,7 +54,7 @@ export class InfoService {
     if (this.noApi) {
       return of([{id: 1, name: "name-1", scores: 1 }, {id: 2, name: "name-2", scores: 1 }, {id: 3, name: "name-3", scores: 1 }])
     }
-    return this.http.get<ISolvedTask[]>(`https://localhost:7079/task/solved?groupId=${id}`);
+    return this.http.get<ISolvedTask[]>(`http://server.schoolearn.ru:8080/task/solved?groupId=${id}`);
   }
 
   getSolvedTaskFullInfo(id: number, noApi: boolean = false): Observable<ISolvedTaskFullInfo> {
@@ -81,7 +81,7 @@ export class InfoService {
     //   return of(solvedTaskInLocal)
     // }
 
-    return this.http.get<ISolvedTaskFullInfo>(`https://localhost:7079/task/solved/${id}`);
+    return this.http.get<ISolvedTaskFullInfo>(`http://server.schoolearn.ru:8080/task/solved/${id}`);
     // .pipe(
     //   tap((data) => {
     //     localStorage.setItem("solvedTaskFullInfo", JSON.stringify(data));
@@ -120,7 +120,7 @@ export class InfoService {
       return of(tasksInfo);
 
     }
-    return this.http.get<IAppTask[]>(`https://localhost:7079/task/current?groupId=${id}`);
+    return this.http.get<IAppTask[]>(`http://server.schoolearn.ru:8080/task/current?groupId=${id}`);
   }
 
   getAppTaskFullInfo(id: number, noApi: boolean = false): Observable<IAppTakFullInfo> {
@@ -144,14 +144,14 @@ export class InfoService {
       return of(tasksInfo);
 
     }
-    return this.http.get<IAppTakFullInfo>(`https://localhost:7079/task/${id}`);
+    return this.http.get<IAppTakFullInfo>(`http://server.schoolearn.ru:8080/task/${id}`);
   }
 
   getInfoStudent(noApi: boolean = false) {
     if(this.noApi) {
       const user: IAuthResponseUserInterface = {
         email: "EMAIL",
-        nickName: "nickName",
+        nickName: "Фамилия Имя Отчество",
         login: "login",
         institution: {id: 1, name: "name institution"},
         role: Role.Student,
@@ -163,11 +163,11 @@ export class InfoService {
       return JSON.parse(value);
   }
   accessionGroup(codeGroup: string) {
-    return this.http.post<boolean>(`https://localhost:7079/student/group/create-application?invitationCode=${codeGroup}`, {})
+    return this.http.post<boolean>(`http://server.schoolearn.ru:8080/student/group/create-application?invitationCode=${codeGroup}`, {})
   }
 
   changeNickName(newNickName: string) {
-    return this.http.post<boolean>(`https://localhost:7079/account/rename?name=${newNickName}`, {})
+    return this.http.post<boolean>(`http://server.schoolearn.ru:8080/account/rename?name=${newNickName}`, {})
   }
   //POST
   // https://localhost:7079/student/group/{groupId}/create-application?invitationCode=gjnbj4

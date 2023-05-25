@@ -52,7 +52,7 @@ export class NewTaskService {
       }
       return of(tasksInfo);
     }
-    return this.http.get<IAppTakFullInfo>(`https://localhost:7079/task/any?subjectId=${subjectId}`);
+    return this.http.get<IAppTakFullInfo>(`http://server.schoolearn.ru:8080/task/any?subjectId=${subjectId}`);
   }
 
   checkAnswer(taskId: number, answer: string): Observable<boolean> {
@@ -60,7 +60,7 @@ export class NewTaskService {
     if (a) {
       return of(true);
     }
-    return this.http.put<boolean>(`https://localhost:7079/task/check`, {
+    return this.http.put<boolean>(`http://server.schoolearn.ru:8080/task/check`, {
       taskId: taskId,
       answer: answer,
     });
