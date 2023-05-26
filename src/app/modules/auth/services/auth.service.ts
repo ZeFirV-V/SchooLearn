@@ -20,27 +20,27 @@ export class AuthService  {
   constructor(private _http: HttpClient, private _router: Router) { }
 
   registerStudent(user: IRegistrationUser): Observable<boolean> {
-    return this._http.post<boolean>('http://server.schoolearn.ru:8080/account/register', user) //TODO: ПОМЕНЯТЬ ПУТЬ
+    return this._http.post<boolean>('https://www.schoolearn.store/account/register', user) //TODO: ПОМЕНЯТЬ ПУТЬ
   }
   //
   registerTeacher(user: IRegistrationUser): Observable<boolean> {
-    return this._http.post<boolean>('http://server.schoolearn.ru:8080/account/register', user) //TODO: ПОМЕНЯТЬ ПУТЬ
+    return this._http.post<boolean>('https://www.schoolearn.store/account/register', user) //TODO: ПОМЕНЯТЬ ПУТЬ
   }
 
   registerAdmin(user: IRegistrationUser): Observable<boolean> {
-    return this._http.post<boolean>('http://server.schoolearn.ru:8080/account/register', user) //TODO: ПОМЕНЯТЬ ПУТЬ
+    return this._http.post<boolean>('https://www.schoolearn.store/account/register', user) //TODO: ПОМЕНЯТЬ ПУТЬ
   }
 
   registerCompany(company: IRegistrationOrganization): Observable<boolean> {
-    return this._http.post<boolean>('http://server.schoolearn.ru:8080/institution/create', company)
+    return this._http.post<boolean>('https://www.schoolearn.store/institution/create', company)
   }
 
   getInstitution(): Observable<{ id: number, name: string }[]> {
-    return this._http.get<{ id: number, name: string }[]>(`http://server.schoolearn.ru:8080/institution/confirmed`)
+    return this._http.get<{ id: number, name: string }[]>(`https://www.schoolearn.store/institution/confirmed`)
   }
 
   login(user: IAuthorizationUser): Observable<IAuthResponseUserInterface> {
-    return this._http.post<IAuthResponseUserInterface>(`http://server.schoolearn.ru:8080/account/login`, user)
+    return this._http.post<IAuthResponseUserInterface>(`https://www.schoolearn.store/account/login`, user)
       .pipe(
         tap((value: IAuthResponseUserInterface) => {
           const user:IAuthResponseUserInterface = value;

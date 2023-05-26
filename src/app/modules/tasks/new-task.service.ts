@@ -35,7 +35,7 @@ export class NewTaskService {
   constructor(private http: HttpClient, private _router: Router) { }
 
   getFreeTask(subjectId: number): Observable<IAppTakFullInfo> {
-    let a = true;
+    let a = false;
     if (a) {
       const tasksInfo: IAppTakFullInfo = {
         id: 1,
@@ -52,15 +52,15 @@ export class NewTaskService {
       }
       return of(tasksInfo);
     }
-    return this.http.get<IAppTakFullInfo>(`http://server.schoolearn.ru:8080/task/any?subjectId=${subjectId}`);
+    return this.http.get<IAppTakFullInfo>(`https://www.schoolearn.store/task/any?subjectId=${subjectId}`);
   }
 
   checkAnswer(taskId: number, answer: string): Observable<boolean> {
-    let a = true;
+    let a = false;
     if (a) {
       return of(true);
     }
-    return this.http.put<boolean>(`http://server.schoolearn.ru:8080/task/check`, {
+    return this.http.put<boolean>(`https://www.schoolearn.store/task/check`, {
       taskId: taskId,
       answer: answer,
     });

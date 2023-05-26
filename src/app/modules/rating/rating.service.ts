@@ -16,24 +16,24 @@ export interface IRatingUser {
 export class RatingService {
   constructor(private http: HttpClient, private _router: Router) { }
   sort(subjectId: number, groupId: number,fromDate: Date,  toDate: Date): Observable<IRatingUser[]> {
-    return of([
-      {
-        place: 1,
-        nickname: "string",
-        scores: 1,
-      }
-    ])
-    // return this.http.get<IRatingUser[]>(`http://server.schoolearn.ru:8080/rating/get?groupId=${subjectId}&subjectId=${groupId}&from=${fromDate}&to=${toDate}`);
+    // return of([
+    //   {
+    //     place: 1,
+    //     nickname: "Фамилия Имя Отчество",
+    //     scores: 1,
+    //   }
+    // ])
+    return this.http.get<IRatingUser[]>(`https://www.schoolearn.store/rating/get?groupId=${subjectId}&subjectId=${groupId}&from=${fromDate}&to=${toDate}`);
   }
 
   getMyRating(subjectId: number, groupId: number,fromDate: Date,  toDate: Date): Observable<IRatingUser> {
-    return of(
-      {
-        place: 1,
-        nickname: "string",
-        scores: 1,
-      }
-    )
-    // return this.http.get<IRatingUser>(`http://server.schoolearn.ru:8080/rating/my?groupId=${subjectId}&subjectId=${groupId}&from=${fromDate}&to=${toDate}`);
+    // return of(
+    //   {
+    //     place: 1,
+    //     nickname: "Фамилия Имя Отчество",
+    //     scores: 1,
+    //   }
+    // )
+    return this.http.get<IRatingUser>(`https://www.schoolearn.store/rating/my?groupId=${subjectId}&subjectId=${groupId}&from=${fromDate}&to=${toDate}`);
   }
 }

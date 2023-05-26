@@ -82,7 +82,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       //   return error('Username or password is incorrect');
       // }
       console.log(123)
-      return ok(new Object({ email: 'Teacher@bk.ru', nickname: 'Teacher', login: 'ivanova_irina25', institution: "school", role: 3, token: "123123123"}));
+      return ok(new Object({ email: 'Teacher@bk.ru', nickname: 'Teacher', login: 'ivanova_irina25', institution: "school", role: 4, token: "123123123"}));
     }
 
     function getUser() {
