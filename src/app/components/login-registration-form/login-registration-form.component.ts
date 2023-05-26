@@ -20,6 +20,8 @@ export class LoginRegistrationFormComponent {
   isLoginForm: boolean = true;
   @Output() onOpenRegistrationChanged = new EventEmitter();
   @Output() onCloseForm = new EventEmitter();
+  @Output() onLogin: EventEmitter<boolean> = new EventEmitter();
+
 
 
 
@@ -56,6 +58,7 @@ export class LoginRegistrationFormComponent {
         this.authorizationForm.reset();
         this.submitted = false;
         this.onCloseForm.emit();
+        this.onLogin.emit(true);
       },
       error: (error: Error) => {
         console.error("Ошибка авторизации");

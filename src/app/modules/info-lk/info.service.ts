@@ -12,7 +12,7 @@ import {Role} from "../auth/enums/role.enum";
   providedIn: 'root'
 })
 export class InfoService {
-  private readonly noApi: boolean = false;
+  private readonly noApi: boolean = true;
 
   subject: any = {}
   constructor(private http: HttpClient, private _router: Router) { }

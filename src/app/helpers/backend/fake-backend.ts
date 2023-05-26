@@ -6,9 +6,16 @@ import {Role} from "../../modules/auth/enums/role.enum";
 
 
 const users = [
-  { id: 1, email: 'Teacher@bk.ru', nickname: 'Teacher', password: 'admin', login: 'Admin', organization: 'school', role: Role.Teacher },
-  { id: 2, email: 'Student@bk.ru', nickname: 'Student', password: 'user', login: 'Normal', organization: 'school', role: Role.Student }
+  { id: 1, email: 'Teacher@bk.ru', nickname: 'Teacher', password: '123AAA123', login: 'ivanova_irina25', organization: 'school', role: 3},
+  { id: 2, email: 'Student@bk.ru', nickname: 'Student', password: 'user', login: 'Normal', organization: 'school', role: 4 }
 ];
+//  email: string;
+//   nickName: string;
+//   login: string;
+//   institution?: IInstitution;
+//   role: Role;
+//   token: string,
+const user =   { email: 'Teacher@bk.ru', nickname: 'Teacher', login: 'ivanova_irina25', institution: "school", role: 3, token: "123123123"};
 
 const student = { id: 2, email: 'Student@bk.ru', nickname: 'Student', password: 'user', login: 'Normal', organization: 'school', role: Role.Student }
 
@@ -38,8 +45,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
     function handleRoute() {
       switch (true) {
-        case url.endsWith('/users/authenticate') && method === 'POST':
+        case url.endsWith('/account/login') && method === 'POST': {
           return authenticate();
+        }
         case url.endsWith('/users') && method === 'GET':
           return getUsers();
         // case url.endsWith('/subjects') && method === 'GET':
@@ -50,8 +58,13 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           return getTask();
         case url.endsWith('/users/1') && method === 'GET':
           return getUser();
-        case url.match(/\/users\/\d+$/) && method === 'GET':
+        case url.match(/\/users\/\d+$/) && method === 'GET': {
           return getUserById();
+        }
+        case url.endsWith('/task/add?groupId=1') && method === 'POST': {
+          console.log(body)
+          return ok(500)
+        }
         default:
           // pass through any requests not handled above
           return next.handle(request);
@@ -61,17 +74,15 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
     // route functions
     function authenticate() {
-      const { login, password } = body;
-      const user = users.find(x => x.login === login && x.password === password);
-      if (!user) return error('Username or password is incorrect');
-      return ok({
-        email: user.email,
-        nickname: user.nickname,
-        login: user.login,
-        organization: user.organization,
-        role: user.role,
-        idToken: `fake-jwt-token.${user.id}`
-      });
+      // const { login, password } = body;
+      // console.log(login, password)
+      // const user = users.find(x => x.login === login && x.password === password);
+      // if (!user) {
+      //   console.log(1233)
+      //   return error('Username or password is incorrect');
+      // }
+      console.log(123)
+      return ok(new Object({ email: 'Teacher@bk.ru', nickname: 'Teacher', login: 'ivanova_irina25', institution: "school", role: 3, token: "123123123"}));
     }
 
     function getUser() {
@@ -128,7 +139,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     }
 
     function isAdmin() {
-      return currentUser()?.role === Role.Teacher;
+      return false;
+      // return currentUser()?.role === Role.Teacher;
     }
 
     function currentUser() {

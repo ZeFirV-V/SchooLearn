@@ -12,7 +12,7 @@ import {catchError} from "rxjs/operators";
   providedIn: 'root'
 })
 export class InfoLkFromTeacherService {
-  private readonly noApi: boolean = false;
+  private readonly noApi: boolean = true;
   constructor(private http: HttpClient, private _router: Router) { }
 
   getGroups(id: number, noApi: boolean = false): Observable<IGroup[]> {

@@ -43,47 +43,44 @@ export class AuthService  {
     return this._http.post<IAuthResponseUserInterface>(`http://server.schoolearn.ru:8080/account/login`, user)
       .pipe(
         tap((value: IAuthResponseUserInterface) => {
-          this.setToken(value);
+          const user:IAuthResponseUserInterface = value;
+          user.role = this.roleConverter(parseInt(value.role));
+          this.setToken(user);
         }),
         catchError(this.handleError.bind(this))
       )
   }
 
   private roleConverter(roleInNumber: number): Role {
+    console.log(roleInNumber)
     switch (roleInNumber){
-      case 1:
-      {
-        return Role.Teacher;
-      }
-      case 2: {
-        return Role.AdministratorTeacher;
-      }
       case 3: {
         return Role.Teacher;
       }
       case 4: {
         return Role.Student;
       }
-      case 5: {
-        return Role.Student;
+      case 2: {
+        return Role.AdministratorTeacher;
       }
       default: {
         console.error("ошибка в роли в методе roleConverter");
-        return Role.Student;
+        alert("ошибка авторизации")
+        return Role.NonUser;
       }
     }
   }
 
   private setToken(response: any | null): void {
     if (response) {
-      console.log(response);
-      const user:IAuthResponseUserInterface = response;
-      user.role = this.roleConverter(response.role);
-      localStorage.setItem('user', JSON.stringify(user));
-      localStorage.setItem('role', user.role);
+      // const user:IAuthResponseUserInterface = response;
+      // user.role = this.roleConverter(parseInt(response.role));
+      localStorage.setItem('user', JSON.stringify(response));
+      localStorage.setItem('role', response.role);
       localStorage.setItem('token', response.token.toString());
     } else {
       localStorage.clear();
+      sessionStorage.clear();
     }
   }
 
@@ -127,6 +124,7 @@ export class AuthService  {
   }
 
   logout() {
+    this._router.navigate(["/"]);
     this.setToken(null); //TODO: сделать переадресацию на авторизацию
   }
 }

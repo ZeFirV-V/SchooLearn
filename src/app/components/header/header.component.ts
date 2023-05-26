@@ -49,6 +49,14 @@ export class HeaderComponent implements AfterViewInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
+  onLogin(isLogin: boolean) {
+    if(isLogin) {
+      this.isEntered = true;
+    } else {
+      alert("Вы не авторизованы")
+    }
+  }
+
   exit() {
     this.authService.logout()
     this.isEntered = false;

@@ -77,9 +77,10 @@ export class CreateTaskComponent {
     };
     this.loading = true;
     this.lkSubscription = this.infoLkFromTeacherService.addTask(this.idGroup, data).subscribe(
-      () => {
+      (data) => {
         this.loading = false;
         this.taskForm.reset();
+        this.router.navigate(["/lk-teacher"])
       },
       error => {
         this.loading = false;
