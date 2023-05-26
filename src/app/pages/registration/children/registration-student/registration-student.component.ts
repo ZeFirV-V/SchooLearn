@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {RegistrationStudent} from "../../../../../modules/auth/interfaces/registration/registration-student.interface";
-import {IRegistrationUser} from "../../../../../modules/auth/interfaces/registration/registration-user.interface";
-import {Role} from "../../../../../modules/auth/enums/role.enum";
+import {RegistrationStudent} from "../../../../modules/auth/interfaces/registration/registration-student.interface";
+import {IRegistrationUser} from "../../../../modules/auth/interfaces/registration/registration-user.interface";
+import {Role} from "../../../../modules/auth/enums/role.enum";
 import {Observable, Subscription} from "rxjs";
-import {AuthService} from "../../../../../modules/auth/services/auth.service";
+import {AuthService} from "../../../../modules/auth/services/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {
   AuthorizationUser,
   IAuthorizationUser
-} from "../../../../../modules/auth/interfaces/auth/athorization-user.interface";
+} from "../../../../modules/auth/interfaces/auth/athorization-user.interface";
 import {moveItemInArray} from "@angular/cdk/drag-drop";
 
 @Component({

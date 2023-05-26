@@ -15,10 +15,10 @@ import {TasksPageWeb} from "./pages/tasks/childrens/tasks-home/tasks.component";
 import {TaskPageWeb} from "./pages/tasks/childrens/task/task.page.web";
 import {
   RegistrationStudentComponent
-} from "./pages/registration/children/registration-student/registration-student/registration-student.component";
+} from "./pages/registration/children/registration-student/registration-student.component";
 import {
   RegistrationTeacherComponent
-} from "./pages/registration/children/registration-teacher/teacher-organization/registration-teacher.component";
+} from "./pages/registration/children/registration-teacher/registration-teacher.component";
 import {StudentComponent} from "./pages/private-office/student/student.component";
 import {
   ViewSolvedTaskPageComponent
@@ -31,8 +31,8 @@ import {
   RegistrationAdminComponent
 } from "./pages/registration/children/registration-admin/registration-admin.component";
 import {
-  RegistrationCompanyPageComponent
-} from "./pages/registration/children/registration-organization/registration-company-page/registration-company-page.component";
+  RegistCompanyComponent
+} from "./pages/registration/children/registration-organization/regist-company.component";
 import {
   ViewAssignedTaskPageComponent
 } from "./pages/tasks/childrens/view-assigned-task-page/view-assigned-task-page.component";
@@ -62,7 +62,7 @@ const registrationRoutes: Routes = [
   { path: 'teacher', component: RegistrationTeacherComponent },
   { path: 'admin', component: RegistrationAdminComponent },
   { path: 'student', component: RegistrationStudentComponent },
-  { path: 'company', component: RegistrationCompanyPageComponent},
+  { path: 'company', component: RegistCompanyComponent},
   // { path: '', redirectTo: '/**', pathMatch: "full"},
 ];
 

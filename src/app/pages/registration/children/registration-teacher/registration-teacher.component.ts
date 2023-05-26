@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { IRegistrationUser } from "../../../../../modules/auth/interfaces/registration/registration-user.interface";
-import { Role } from "../../../../../modules/auth/enums/role.enum";
+import { IRegistrationUser } from "../../../../modules/auth/interfaces/registration/registration-user.interface";
+import { Role } from "../../../../modules/auth/enums/role.enum";
 import {Observable, Subscription} from "rxjs";
-import { AuthService } from "../../../../../modules/auth/services/auth.service";
+import { AuthService } from "../../../../modules/auth/services/auth.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import {
   AuthorizationUser,
   IAuthorizationUser
-} from "../../../../../modules/auth/interfaces/auth/athorization-user.interface";
-import { RegistrationTeacher } from "../../../../../modules/auth/interfaces/registration/registration-teacher.interface";
+} from "../../../../modules/auth/interfaces/auth/athorization-user.interface";
+import { RegistrationTeacher } from "../../../../modules/auth/interfaces/registration/registration-teacher.interface";
 import {Location} from "@angular/common";
-import {RegistrationAdmin} from "../../../../../modules/auth/interfaces/registration/registration-admin.interface";
+import {RegistrationAdmin} from "../../../../modules/auth/interfaces/registration/registration-admin.interface";
 
 @Component({
   selector: 'app-registration-student',

@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
-import {AuthService} from "../../../../../modules/auth/services/auth.service";
+import {AuthService} from "../../../../modules/auth/services/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {
   IRegistrationOrganization,
   RegistrationOrganization
-} from "../../../../../modules/auth/interfaces/registration/registration-organization.interface";
+} from "../../../../modules/auth/interfaces/registration/registration-organization.interface";
 
 @Component({
   selector: 'app-registration-company-page',
-  templateUrl: './registration-company-page.component.html',
-  styleUrls: ['./registration-company-page.component.scss']
+  templateUrl: './regist-company.component.html',
+  styleUrls: ['./regist-company.component.scss']
 })
-export class RegistrationCompanyPageComponent {
+export class RegistCompanyComponent {
   constructor(public _authService: AuthService,
               private _router: Router,
               private _route: ActivatedRoute) { }

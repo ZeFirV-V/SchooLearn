@@ -14,14 +14,14 @@ import {TasksPageWeb} from "./tasks/childrens/tasks-home/tasks.component";
 import {TasksPage} from "./tasks/tasks.page.web";
 import {TaskPageWeb} from "./tasks/childrens/task/task.page.web";
 import {
-  RegistrationCompanyPageComponent
-} from "./registration/children/registration-organization/registration-company-page/registration-company-page.component";
+  RegistCompanyComponent
+} from "./registration/children/registration-organization/regist-company.component";
 import {
   RegistrationStudentComponent
-} from "./registration/children/registration-student/registration-student/registration-student.component";
+} from "./registration/children/registration-student/registration-student.component";
 import {
   RegistrationTeacherComponent
-} from "./registration/children/registration-teacher/teacher-organization/registration-teacher.component";
+} from "./registration/children/registration-teacher/registration-teacher.component";
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
@@ -51,7 +51,7 @@ import {MatIconModule} from "@angular/material/icon";
     SubjectsPageWeb,
     TasksPage,
     TaskPageWeb,
-    RegistrationCompanyPageComponent,
+    RegistCompanyComponent,
     RegistrationStudentComponent,
     RegistrationTeacherComponent,
     SubtextComponent,

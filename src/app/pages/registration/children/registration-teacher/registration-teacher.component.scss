@@ -1,5 +1,5 @@
-@use '/src/app/pages/registration/styles/company.style.scss';
-@use '/src/app/pages/registration/styles/registration-form.style.scss';
+@use '../../styles/company.style';
+@use '../../styles/registration-form.style';
 
 .registration-company-link {
   font-weight: 400;
