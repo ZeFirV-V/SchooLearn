@@ -39,6 +39,7 @@ import {
 import {SubjectResolver} from "./modules/info-lk/subject.resolver";
 import {ChangeNicknameComponent} from "./components/change-nickname/change-nickname.component";
 import {TasksGard} from "./modules/gards/gard";
+import {AdminComponent} from "./pages/private-office/admin/admin.component";
 
 const tasksRoutes: Routes = [
   { path: '', component: TasksPageWeb, canActivate: [TasksGard], data: { roles: [Role.Student]} },
@@ -92,7 +93,7 @@ const routes: Routes = [
       {
         path: 'lk-admin',
         canActivate: [AuthGuard],
-        component: PrivateOfficePageWeb,
+        component: AdminComponent,
         data: { roles: [Role.AdministratorTeacher] }
       }, // использует guard
       // {path: 'company', children: registrationCompanyFormRoutes},

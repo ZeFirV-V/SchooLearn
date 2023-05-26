@@ -22,6 +22,8 @@ export class SideBarComponent implements AfterViewInit{
   @Output() subjectId = new EventEmitter<number>();
   @ViewChild('toggleButton') toggleButton!: ElementRef;
   @ViewChild('menu') menu?: ElementRef;
+  currentPage = 1;
+  productsPerPage = 5;
   ngOnInit() {
     if(this.role === 'teacher') {
       this.subjects$ = this.infoLkFromTeacherService.getSubjects(true);
@@ -72,4 +74,9 @@ export class SideBarComponent implements AfterViewInit{
   ngOnDestroy() {
     this.newNickNameSubscription?.unsubscribe();
   }
+
+  onPageChange(page: number): void {
+    this.currentPage = page;
+  }
+
 }

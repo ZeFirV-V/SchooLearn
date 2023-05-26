@@ -39,6 +39,9 @@ import { CreateSubjectComponent } from './pages/tasks/childrens/create-subject/c
 import { CreateGroupComponent } from './pages/tasks/childrens/create-group/create-group.component';
 import { RegistrationAdminComponent } from './pages/registration/children/registration-admin/registration-admin.component';
 import { ChangeNicknameComponent } from './components/change-nickname/change-nickname.component';
+import {PaginationComponent} from "./components/pagination/pagination.components";
+import {MatIconModule} from "@angular/material/icon";
+import { AdminComponent } from './pages/private-office/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +68,8 @@ import { ChangeNicknameComponent } from './components/change-nickname/change-nic
     CreateSubjectComponent,
     CreateGroupComponent,
     ChangeNicknameComponent,
+    PaginationComponent,
+    AdminComponent,
   ],
 
   imports: [
@@ -78,6 +83,7 @@ import { ChangeNicknameComponent } from './components/change-nickname/change-nic
     MatRadioModule,
     MatInputModule,
     MatSelectModule,
+    MatIconModule,
     // SkeletonModule,
   ],
   providers: [

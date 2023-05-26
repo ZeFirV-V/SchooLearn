@@ -6,7 +6,12 @@
   </div>
 
   <div class="jobs">
-    <ul>
+    <div *ngIf="appTasks.length === 0" class="jobs__free">
+      <p>
+        Когда Вам назначат задания, они отобразятся здесь
+      </p>
+    </div>
+    <ul *ngIf="appTasks.length !== 0">
       <li class="jobs__task" *ngFor="let appTask of appTasks; let last = last" [class.last]="last">
         <app-view-assigned-task-for-teacher [task]="appTask"/>
       </li>

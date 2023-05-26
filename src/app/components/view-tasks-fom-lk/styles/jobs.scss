@@ -6,6 +6,23 @@
   padding: 25px;
   margin-bottom: 35px;
 
+  &__free {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;
+
+    p {
+      font-family: 'Raleway', serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 21px;
+
+      color: #918FAC;
+    }
+  }
+
   &__title {
     margin-bottom: 45px;
     p {
