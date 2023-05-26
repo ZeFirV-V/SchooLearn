@@ -38,16 +38,17 @@ import {
 } from "./pages/tasks/childrens/view-assigned-task-page/view-assigned-task-page.component";
 import {SubjectResolver} from "./modules/info-lk/subject.resolver";
 import {ChangeNicknameComponent} from "./components/change-nickname/change-nickname.component";
+import {TasksGard} from "./modules/gards/gard";
 
 const tasksRoutes: Routes = [
-  { path: '', component: TasksPageWeb},
-  { path: ':subjectId', component: TaskPageWeb, resolve: { validSubject: SubjectResolver } },
+  { path: '', component: TasksPageWeb, canActivate: [TasksGard], data: { roles: [Role.Student]} },
+  { path: ':subjectId', component: TaskPageWeb, resolve: { validSubject: SubjectResolver }, canActivate: [TasksGard], data: { roles: [Role.Student]}  },
 
-  { path: 'view-solved-task/:taskId', component: ViewSolvedTaskPageComponent },
-  { path: 'view-assigned-task/:taskId', component: ViewAssignedTaskPageComponent },
-  { path: 'create', component: CreateTaskComponent },
-  { path: 'create/subject', component: CreateTaskComponent },
-  { path: 'create/subject/group/:subjectId', component: CreateGroupComponent, resolve: { validSubject: SubjectResolver } },
+  { path: 'view-solved-task/:taskId', component: ViewSolvedTaskPageComponent, canActivate: [TasksGard], data: { roles: [Role.Student, Role.Teacher, Role.AdministratorTeacher]}},
+  { path: 'view-assigned-task/:taskId', component: ViewAssignedTaskPageComponent, canActivate: [TasksGard], data: { roles: [Role.Student]}},
+  { path: 'create', component: CreateTaskComponent, canActivate: [TasksGard], data: { roles: [Role.Teacher]} },
+  { path: 'create/subject', component: CreateTaskComponent, canActivate: [TasksGard], data: { roles: [Role.Teacher]} },
+  { path: 'create/subject/group/:subjectId', component: CreateGroupComponent, resolve: { validSubject: SubjectResolver }, canActivate: [TasksGard], data: { roles: [Role.Teacher]} },
 
   // children: [
   //     {path: '', component: CreateTaskComponent, pathMatch: "full"},
@@ -73,7 +74,7 @@ const routes: Routes = [
       {path: 'about', component: AboutPageWeb},
       {path: 'tasks', component: TasksPage, children: tasksRoutes},
 
-      {path: 'rating', component: RatingPageWeb},
+      {path: 'rating', component: RatingPageWeb, canActivate: [TasksGard], data: { roles: [Role.Student, Role.Teacher, Role.AdministratorTeacher]}},
       {path: 'FAQ', component: FAQPageWeb},
       // {path: 'lk', component: lkPage, children: lkRoutes},
       {
