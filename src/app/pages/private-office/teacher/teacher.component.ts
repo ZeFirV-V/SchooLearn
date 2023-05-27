@@ -48,6 +48,7 @@ export class TeacherComponent {
   onGetNewCodeGroup() {
     this.infoLkFromTeacherService.getNewCode(this.id).subscribe(
       (data) => {
+        console.log(data)
         this.key$ = this.infoLkFromTeacherService.getCode(this.id);
       }
     )

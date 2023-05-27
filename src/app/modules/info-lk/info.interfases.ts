@@ -30,8 +30,8 @@ export interface IAppTakFullInfo {
   id: number;
   name: string;
   description: string;
-  subject: string;
-  difficulty: string;
+  subject: { id: number, name: string };
+  difficulty: {id: number, name: string, scores: number, tasks: []};
   teacher: string;
   institution: string;
   isPublic: boolean;

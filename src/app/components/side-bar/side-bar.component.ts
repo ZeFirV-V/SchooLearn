@@ -66,6 +66,7 @@ export class SideBarComponent implements AfterViewInit{
   changeNickName() {
     this.newNickNameSubscription = this.infoService.changeNickName(this.newNickName).subscribe(
       (data) => {
+        console.log(data)
         this.nickname = this.newNickName;
       }
     );

@@ -25,6 +25,7 @@
       </div>
       <div class="side-bar__role">
         <p *ngIf="role === 'teacher'">Преподаватель</p>
+        <p *ngIf="role !== 'teacher'">{{role}}</p>
       </div>
     </div>
     <div *ngIf="subjects$ | async as subjects" class="side-bar__subjects">

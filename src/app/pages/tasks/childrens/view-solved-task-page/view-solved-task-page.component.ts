@@ -27,6 +27,9 @@ export class ViewSolvedTaskPageComponent {
         }
       })
     );
+    this.task$.subscribe(
+      (data) => console.log(data)
+    )
   }
 
   endTask() {

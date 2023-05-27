@@ -15,7 +15,7 @@ import {NewTaskService} from "../../../../modules/tasks/new-task.service";
 export class TaskPageWeb implements OnInit {
   task$!: Observable<IAppTakFullInfo>;
   answer?: string;
-  result$?: Observable<boolean>;
+  result$?: Observable<any>;
   constructor(private taskService: NewTaskService,
               private route: ActivatedRoute,
               private location: Location) { }

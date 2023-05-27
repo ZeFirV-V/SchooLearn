@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable, of} from "rxjs";
-import {ICreateTask, IGroup, ISolvedTaskFullInfo, ISubject} from "./info.interfases";
+import {IAppTask, ICreateTask, IGroup, ISolvedTask, ISolvedTaskFullInfo, ISubject} from "./info.interfases";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {IAuthResponseUserInterface} from "../auth/interfaces/auth/auth-responce-user.interface";
@@ -39,10 +39,7 @@ export class InfoLkFromTeacherService {
   }
 
   getNewCode(groupId: number, noApi: boolean = false) {
-    if(this.noApi) {
-      return of(true)
-    }
-    return this.http.get(`https://www.schoolearn.store/teacher/group/${groupId}/generate-code`);
+    return this.http.put(`https://www.schoolearn.store/teacher/group/${groupId}/generate-code`, {});
   }
 
   getInfoUser(noApi: boolean = false) {
@@ -80,7 +77,18 @@ export class InfoLkFromTeacherService {
   }
 
   addTask(groupId: number, task: ICreateTask) {
-    //TODO: Поставить нужный апи
     return this.http.post<boolean>(`https://www.schoolearn.store/task/add?groupId=${groupId}`, task)
+  }
+  getSolvedTasksInfoFromTeacher(id: number, noApi: boolean = false): Observable<IAppTask[]> {
+    return this.http.get<IAppTask[]>(`https://www.schoolearn.store/task/assigned?groupId=${id}`);
+  }
+
+
+  getCodeFromAdmin(): Observable<{code: string}>  {
+    return this.http.get<{code: string}>(`https://www.schoolearn.store/administrator/invitation-code`);
+  }
+
+  getNewCodeFromAdmin() {
+    return this.http.put(`https://www.schoolearn.store/administrator/invitation-code/new `, {});
   }
 }

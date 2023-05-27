@@ -3,6 +3,7 @@ import {InfoService} from "../../../modules/info-lk/info.service";
 import {Observable, Subscription} from "rxjs";
 import {IGroup, } from "../../../modules/info-lk/info.interfases";
 import {IInstitution} from "../../../modules/auth/interfaces/auth/auth-responce-user.interface";
+import {IRatingUser, RatingService} from "../../../modules/rating/rating.service";
 
 @Component({
   selector: 'app-student',
@@ -10,7 +11,7 @@ import {IInstitution} from "../../../modules/auth/interfaces/auth/auth-responce-
   styleUrls: ['./student.component.scss']
 })
 export class StudentComponent implements AfterViewInit{
-  constructor(private renderer: Renderer2, private infoService: InfoService) { }
+  constructor(private renderer: Renderer2, private infoService: InfoService, private ratingService: RatingService) { }
   nickName?: string;
   organization?: IInstitution;
   groups$?: Observable<IGroup[]>;
@@ -19,7 +20,9 @@ export class StudentComponent implements AfterViewInit{
   nameTeacher$?: Observable<string>;
   isOpenAddInGroupBox: boolean = false;
   groupCode: string = "";
+  subjectsCount?: number;
   accessionGroupSubscription?: Subscription;
+  myRating$?: Observable<IRatingUser>;
   @ViewChild('toggleButton') toggleButton!: ElementRef;
   @ViewChild('menu') menu?: ElementRef;
 
@@ -32,7 +35,9 @@ export class StudentComponent implements AfterViewInit{
     let id = sessionStorage.getItem("id-student-group");
     if(id) {
       this.id = JSON.parse(id);
+      this.myRating$ = this.ratingService.getMyRatingInLK(this.id);
     }
+
   }
   ngAfterViewInit() {
     this.renderer.listen('window', 'click', (e: Event) => {
@@ -52,6 +57,7 @@ export class StudentComponent implements AfterViewInit{
     if (this.id) {
       this.nameTeacher$ = this.infoService.getGroupInfo(this.id, true);
     }
+    this.myRating$ = this.ratingService.getMyRatingInLK(this.id);
   }
 
   addInGroup() {
@@ -64,5 +70,9 @@ export class StudentComponent implements AfterViewInit{
 
   ngOnDestroy() {
     this.accessionGroupSubscription?.unsubscribe();
+  }
+
+  onSubjectsCount(count: number) {
+    this.subjectsCount = count;
   }
 }

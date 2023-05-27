@@ -123,23 +123,6 @@ export class InfoService {
     if(id === 0) {
       return of();
     }
-    if(this.noApi) {
-      const tasksInfo: IAppTakFullInfo = {
-        id: 1,
-        name: "name-1",
-        description: "description",
-        subject: "subject",
-        difficulty: "difficulty",
-        teacher: "teacher",
-        institution: "institution",
-        isPublic: false,
-        isExtendedTask: false,
-        creationDateTime: new Date(),
-        deadline: new Date(),
-      }
-      return of(tasksInfo);
-
-    }
     return this.http.get<IAppTakFullInfo>(`https://www.schoolearn.store/task/${id}`);
   }
 
@@ -163,7 +146,7 @@ export class InfoService {
   }
 
   changeNickName(newNickName: string) {
-    return this.http.post<boolean>(`https://www.schoolearn.store/account/rename?name=${newNickName}`, {})
+    return this.http.put(`https://www.schoolearn.store/account/rename?name=${newNickName}`, {})
   }
   //POST
   // https://localhost:7079/student/group/{groupId}/create-application?invitationCode=gjnbj4

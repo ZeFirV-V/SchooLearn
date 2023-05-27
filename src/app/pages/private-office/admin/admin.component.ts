@@ -24,13 +24,14 @@ export class AdminComponent {
     let user = this.infoLkFromTeacherService.getInfoUser(true);
     this.nickName = user.nickName;
     this.organization = user.institution.name;
-    this.key$ = this.infoLkFromTeacherService.getCode(this.id , true); //TODO: ПОМЕНЯТЬ
+    this.key$ = this.infoLkFromTeacherService.getCodeFromAdmin();
   }
 
   onGetNewCodeGroup() {
-    this.infoLkFromTeacherService.getNewCode(this.id).subscribe( //TODO: ПОМЕНЯТЬ
+    this.infoLkFromTeacherService.getNewCodeFromAdmin().subscribe(
       (data) => {
-        this.key$ = this.infoLkFromTeacherService.getCode(this.id);
+        console.log(data)
+        this.key$ = this.infoLkFromTeacherService.getCodeFromAdmin();
       }
     )
   }

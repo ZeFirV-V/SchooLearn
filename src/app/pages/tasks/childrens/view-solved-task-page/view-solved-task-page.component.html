@@ -35,7 +35,7 @@
     <div class="task__result" *ngIf="task.scores">
       <div class="task__result-green" *ngIf="task.scores !== 0" style="display: flex; gap: 10px">
         <p>верно</p>
-        <p>{{task.scores}} / {{calculateDifficulty(task.difficulty)}}</p>
+        <p>{{task.scores}} / {{calculateDifficulty(task.difficulty.toLowerCase())}}</p>
       </div>
       <div class="task__result-red" *ngIf="task.scores === 0" style="display: flex; gap: 10px">
         <p>неверно</p>

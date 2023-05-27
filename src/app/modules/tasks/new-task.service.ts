@@ -35,32 +35,15 @@ export class NewTaskService {
   constructor(private http: HttpClient, private _router: Router) { }
 
   getFreeTask(subjectId: number): Observable<IAppTakFullInfo> {
-    let a = false;
-    if (a) {
-      const tasksInfo: IAppTakFullInfo = {
-        id: 1,
-        name: "name-1",
-        description: "description",
-        subject: "subject",
-        difficulty: "сложный",
-        teacher: "teacher",
-        institution: "institution",
-        isPublic: false,
-        isExtendedTask: false,
-        creationDateTime: new Date(),
-        deadline: new Date(),
-      }
-      return of(tasksInfo);
-    }
     return this.http.get<IAppTakFullInfo>(`https://www.schoolearn.store/task/any?subjectId=${subjectId}`);
   }
 
-  checkAnswer(taskId: number, answer: string): Observable<boolean> {
+  checkAnswer(taskId: number, answer: string) {
     let a = false;
     if (a) {
       return of(true);
     }
-    return this.http.put<boolean>(`https://www.schoolearn.store/task/check`, {
+    return this.http.post(`https://www.schoolearn.store/task/check`, {
       taskId: taskId,
       answer: answer,
     });

@@ -23,7 +23,7 @@ export class RatingService {
     //     scores: 1,
     //   }
     // ])
-    return this.http.get<IRatingUser[]>(`https://www.schoolearn.store/rating/get?groupId=${subjectId}&subjectId=${groupId}&from=${fromDate}&to=${toDate}`);
+    return this.http.get<IRatingUser[]>(`https://www.schoolearn.store/rating/get?groupId=${groupId}&subjectId=${subjectId}&from=${fromDate}&to=${toDate}`);
   }
 
   getMyRating(subjectId: number, groupId: number,fromDate: Date,  toDate: Date): Observable<IRatingUser> {
@@ -34,6 +34,10 @@ export class RatingService {
     //     scores: 1,
     //   }
     // )
-    return this.http.get<IRatingUser>(`https://www.schoolearn.store/rating/my?groupId=${subjectId}&subjectId=${groupId}&from=${fromDate}&to=${toDate}`);
+    return this.http.get<IRatingUser>(`https://www.schoolearn.store/rating/my?groupId=${groupId}&subjectId=${subjectId}&from=${fromDate}&to=${toDate}`);
+  }
+
+  getMyRatingInLK(groupId: number): Observable<IRatingUser> {
+    return this.http.get<IRatingUser>(`https://www.schoolearn.store/rating/my?groupId=${groupId}`);
   }
 }

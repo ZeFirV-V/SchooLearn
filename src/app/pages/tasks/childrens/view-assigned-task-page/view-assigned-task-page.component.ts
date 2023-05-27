@@ -13,7 +13,7 @@ import {NewTaskService} from "../../../../modules/tasks/new-task.service";
 })
 export class ViewAssignedTaskPageComponent {
   task$!: Observable<IAppTakFullInfo>;
-  result$?: Observable<boolean>;
+  result?: boolean;
   answer?: string;
 
   constructor(private taskService: NewTaskService,
@@ -50,9 +50,27 @@ export class ViewAssignedTaskPageComponent {
     return 0
   }
 
+  checkResult() {
+    return this.result == null;
+  }
+
   endTask(task: IAppTakFullInfo) {
+    this.task$.subscribe(
+      (data) => console.log(data)
+    )
     if(this.answer) {
-      this.result$ = this.taskService.checkAnswer(task.id, this.answer);
+      this.taskService.checkAnswer(task.id, this.answer).subscribe(
+        (response) => {
+          this.result = true;
+          console.log('Ответ сервера:', response);
+        },
+        (error) => {
+          this.result = false;
+
+          // если решение было неправильное
+          // console.log('Ошибка:', error);
+        }
+      );
     }
   }
 

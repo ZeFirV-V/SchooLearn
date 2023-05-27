@@ -1,13 +1,13 @@
 <div class="container" *ngIf="task$ | async as task">
   <div class="task__section-1">
     <div>
-      <h3 class="task__title">{{task.subject}}</h3>
+      <h3 class="task__title">{{task.subject.name}}</h3>
       <p class="task__name">{{task.name}}</p>
-      <p class="task__difficulty">Уровень: {{task.difficulty}}</p>
+      <p class="task__difficulty">Уровень: {{task.difficulty.name}}</p>
     </div>
     <div class="task__effect-section">
       <div class="task__end-button">
-        <button [ngClass]="{active: result$ || !answer}" [disabled]="result$ || !answer" (click)="endTask(task)">
+        <button [ngClass]="{active: result || !answer}" [disabled]="result || !answer" (click)="endTask(task)">
           <p>
             Завершить выполнение
           </p>
@@ -15,8 +15,6 @@
       </div>
 
     </div>
-
-
   </div>
   <div class="task__section-2">
     <div class="task__description">
@@ -25,15 +23,15 @@
 
   </div>
   <div class="task__section-3">
-    <input [(ngModel)]="answer" [disabled]="!!result$" class="task__input">
-    <div class="task__result" *ngIf="result$ | async as result">
+    <input [(ngModel)]="answer" [disabled]="!!result" class="task__input">
+    <div class="task__result" *ngIf="!checkResult()">
       <div class="task__result-green" *ngIf="result" style="display: flex; gap: 10px">
         <p>верно</p>
-        <p>{{calculateDifficulty(task.difficulty)}} / {{calculateDifficulty(task.difficulty)}}</p>
+        <p>{{task.difficulty.scores}} / {{task.difficulty.scores}}</p>
       </div>
       <div class="task__result-red" *ngIf="!result" style="display: flex; gap: 10px">
         <p>неверно</p>
-        <p>0 / {{calculateDifficulty(task.difficulty)}}</p>
+        <p>0 / {{task.difficulty.scores}}</p>
       </div>
     </div>
   </div>
