@@ -27,7 +27,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
       console.log("Успешная авторизация");
       return of(true);
     } else {
-      this._router.navigate(['/authorization'], {
+      this._router.navigate(['/'], {
         queryParams: {
           accessDenied: true,
         },

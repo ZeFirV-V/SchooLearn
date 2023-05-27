@@ -127,16 +127,6 @@ export class InfoService {
   }
 
   getInfoStudent(noApi: boolean = false) {
-    if(this.noApi) {
-      const user: IAuthResponseUserInterface = {
-        email: "EMAIL",
-        nickName: "Фамилия Имя Отчество",
-        login: "login",
-        institution: {id: 1, name: "name institution"},
-        role: Role.Student,
-        token: "token"}
-      return user;
-    }
     let value = localStorage.getItem('user');
     if (value)
       return JSON.parse(value);

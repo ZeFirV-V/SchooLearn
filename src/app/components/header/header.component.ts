@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, Renderer2, ViewChild } from '@ang
 import {InformationRoleButtonsComponent} from "../information-role-buttons/information-role-buttons.component";
 import {LoginRegistrationFormComponent} from "../login-registration-form/login-registration-form.component";
 import {AuthService} from "../../modules/auth/services/auth.service";
+import {Role} from "../../modules/auth/enums/role.enum";
 
 @Component({
   selector: 'app-header',
@@ -21,6 +22,8 @@ export class HeaderComponent implements AfterViewInit {
 
   ngOnInit() {
     this.isEntered = this.authService.isAuthenticated();
+    if(this.authService.user)
+      this.nickname = this.authService.user!.login;
   }
   ngAfterViewInit() {
     this.renderer.listen('window', 'click', (e: Event) => {
@@ -52,13 +55,27 @@ export class HeaderComponent implements AfterViewInit {
   onLogin(isLogin: boolean) {
     if(isLogin) {
       this.isEntered = true;
+      console.log(this.authService.user);
+
+      if(this.authService.user)
+        this.nickname = this.authService.user!.login;
     } else {
       alert("Вы не авторизованы")
     }
   }
 
   exit() {
+    this.nickname = undefined;
     this.authService.logout()
     this.isEntered = false;
+  }
+
+  goToLK() {
+    const roleString = this.authService.role;
+    if(roleString) {
+      console.log(roleString)
+      const role: Role = roleString as Role;
+      this.authService.navigateLk(role);
+    }
   }
 }

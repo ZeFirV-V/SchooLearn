@@ -6,11 +6,11 @@
     <nav class="header__list">
       <app-navbar/>
     </nav>
-    <a class="header__account" [routerLink]="['/lk']" *ngIf="nickname">
+    <button class="header__account" (click)="goToLK()" *ngIf="nickname">
       <span >
         {{nickname}}
       </span>
-    </a>
+    </button>
     <ng-container *ngIf="!isEntered">
       <button class="log-reg__button log-reg__text" #toggleButton (click)="toggleMenu()">
         Войти

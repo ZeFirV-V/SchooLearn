@@ -7,6 +7,7 @@ export interface IAuthResponseUserInterface {
   institution?: IInstitution;
   role: Role;
   token: string,
+  lifeTime: number;
 }
 
 export interface IInstitution {

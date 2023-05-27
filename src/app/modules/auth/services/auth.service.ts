@@ -43,12 +43,18 @@ export class AuthService  {
     return this._http.post<IAuthResponseUserInterface>(`https://www.schoolearn.store/account/login`, user)
       .pipe(
         tap((value: IAuthResponseUserInterface) => {
+          console.log(value)
           const user:IAuthResponseUserInterface = value;
           user.role = this.roleConverter(parseInt(value.role));
           this.setToken(user);
         }),
         catchError(this.handleError.bind(this))
       )
+  }
+
+  get user() : IAuthResponseUserInterface | null {
+    const user = localStorage.getItem('user')
+    return user ? JSON.parse(user) : null;
   }
 
   private roleConverter(roleInNumber: number): Role {
@@ -75,6 +81,8 @@ export class AuthService  {
     if (response) {
       // const user:IAuthResponseUserInterface = response;
       // user.role = this.roleConverter(parseInt(response.role));
+      localStorage.setItem('loginTime', JSON.stringify(Date.now()))
+      localStorage.setItem('lifeTime', response.lifeTime)
       localStorage.setItem('user', JSON.stringify(response));
       localStorage.setItem('role', response.role);
       localStorage.setItem('token', response.token.toString());
@@ -91,6 +99,9 @@ export class AuthService  {
         break;
       case Role.Student:
         this._router.navigate(['/lk-student']).then(); // переход на лк
+        break;
+      case Role.AdministratorTeacher:
+        this._router.navigate(['/lk-admin']).then(); // переход на лк
         break;
     }
   }
@@ -119,8 +130,29 @@ export class AuthService  {
     return localStorage.getItem('role');
   }
 
+  // isAuthenticated(): boolean {
+  //   return !!this.token;
+  // }
+
   isAuthenticated(): boolean {
-    return !!this.token;
+    const token = this.token;
+    if (!token) {
+      console.log(token)
+      return false;
+    }
+
+    const lifeTime = Number(localStorage.getItem('lifeTime'));
+    if (!lifeTime) {
+      return false;
+    }
+
+    const now = Date.now();
+    const expiredAt = lifeTime + Number(localStorage.getItem('loginTime'));
+    if (now >= expiredAt) {
+      alert("Вышло время токена, перезайдите")
+      return false;
+    }
+    return true;
   }
 
   logout() {

@@ -43,16 +43,6 @@ export class InfoLkFromTeacherService {
   }
 
   getInfoUser(noApi: boolean = false) {
-    if(this.noApi) {
-      const user: IAuthResponseUserInterface = {
-        email: "EMAIL",
-        nickName: "nickName",
-        login: "login",
-        institution: {id: 1, name: "name institution"},
-        role: Role.Teacher,
-        token: "token"}
-      return user;
-    }
     let value = localStorage.getItem('user');
     if (value)
       return JSON.parse(value);

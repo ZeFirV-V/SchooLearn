@@ -61,7 +61,6 @@ export class TeacherComponent implements OnDestroy{
   onGetNewCodeGroup() {
     this.infoLkFromTeacherService.getNewCode(this.id).subscribe(
       (data) => {
-        console.log(data)
         this.key$ = this.infoLkFromTeacherService.getCode(this.id);
       }
     )
@@ -76,6 +75,7 @@ export class TeacherComponent implements OnDestroy{
         if(!ids.includes(this.id)){
           this.id = 0;
           this.key$ = undefined;
+          sessionStorage.setItem("id-teacher-group", JSON.stringify(this.id));
         }
       }
     );
