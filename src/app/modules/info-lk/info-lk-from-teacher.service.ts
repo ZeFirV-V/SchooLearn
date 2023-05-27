@@ -91,4 +91,21 @@ export class InfoLkFromTeacherService {
   getNewCodeFromAdmin() {
     return this.http.put(`https://www.schoolearn.store/administrator/invitation-code/new `, {});
   }
+
+  getApplicationStudents(groupId: number): Observable<applicationStudent[]> {
+    return this.http.get<applicationStudent[]>(`https://www.schoolearn.store/teacher/group/${groupId}/applications`);
+  }
+
+  getConnectedStudents(groupId: number): Observable<applicationStudent[]> {
+    return this.http.get<applicationStudent[]>(`https://www.schoolearn.store/teacher/group/${groupId}/all`);
+  }
+
+  putConnectedStudentsInGroup(groupId: number, studentId: number, isApproved: boolean) {
+    return this.http.put(`https://www.schoolearn.store/teacher/group/${groupId}/application/consider?${studentId}=2&isApproved=${isApproved}`, {});
+  }
+}
+
+export interface applicationStudent {
+  id: number,
+  nickname: string
 }

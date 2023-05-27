@@ -15,29 +15,19 @@ export interface IRatingUser {
 })
 export class RatingService {
   constructor(private http: HttpClient, private _router: Router) { }
-  sort(subjectId: number, groupId: number,fromDate: Date,  toDate: Date): Observable<IRatingUser[]> {
-    // return of([
-    //   {
-    //     place: 1,
-    //     nickname: "Фамилия Имя Отчество",
-    //     scores: 1,
-    //   }
-    // ])
+  sort(subjectId: number, groupId: number,fromDate: string,  toDate: string): Observable<IRatingUser[]> {
     return this.http.get<IRatingUser[]>(`https://www.schoolearn.store/rating/get?groupId=${groupId}&subjectId=${subjectId}&from=${fromDate}&to=${toDate}`);
   }
 
-  getMyRating(subjectId: number, groupId: number,fromDate: Date,  toDate: Date): Observable<IRatingUser> {
-    // return of(
-    //   {
-    //     place: 1,
-    //     nickname: "Фамилия Имя Отчество",
-    //     scores: 1,
-    //   }
-    // )
+  getMyRating(subjectId: number, groupId: number,fromDate: string,  toDate: string): Observable<IRatingUser> {
     return this.http.get<IRatingUser>(`https://www.schoolearn.store/rating/my?groupId=${groupId}&subjectId=${subjectId}&from=${fromDate}&to=${toDate}`);
   }
 
   getMyRatingInLK(groupId: number): Observable<IRatingUser> {
     return this.http.get<IRatingUser>(`https://www.schoolearn.store/rating/my?groupId=${groupId}`);
+  }
+
+  getFullRatingScoresFromStudent(): Observable<IRatingUser> {
+    return this.http.get<IRatingUser>(`https://www.schoolearn.store/rating/my`);
   }
 }

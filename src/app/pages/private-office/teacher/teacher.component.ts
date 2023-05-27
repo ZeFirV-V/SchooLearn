@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {InfoService} from "../../../modules/info-lk/info.service";
 import {IInstitution} from "../../../modules/auth/interfaces/auth/auth-responce-user.interface";
-import {Observable} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {IGroup} from "../../../modules/info-lk/info.interfases";
-import {InfoLkFromTeacherService} from "../../../modules/info-lk/info-lk-from-teacher.service";
+import {applicationStudent, InfoLkFromTeacherService} from "../../../modules/info-lk/info-lk-from-teacher.service";
 import {dateTimestampProvider} from "rxjs/internal/scheduler/dateTimestampProvider";
 import {Router} from "@angular/router";
 
@@ -12,15 +12,22 @@ import {Router} from "@angular/router";
   templateUrl: './teacher.component.html',
   styleUrls: ['./teacher.component.scss']
 })
-export class TeacherComponent {
+export class TeacherComponent implements OnDestroy{
   constructor(private infoLkFromTeacherService: InfoLkFromTeacherService, private router: Router) { }
   nickName?: string;
   organization?: IInstitution;
   groups$?: Observable<IGroup[]>;
   currentGroup?: number;
+  currentSubject?: number;
+  groupsSubscriptions?: Subscription;
+  addedStudents?: applicationStudent[];
+  addedStudentsSubscription?: Subscription;
   id: number = 0;
   key$?: Observable<{code: string}>;
   nameTeacher$?: Observable<string>;
+  isApplication: boolean = false;
+  students$?: Observable<applicationStudent[]>;
+  applicationSubscription?: Subscription;
 
   ngOnInit() {
     let user = this.infoLkFromTeacherService.getInfoUser(true);
@@ -42,6 +49,12 @@ export class TeacherComponent {
     sessionStorage.setItem("id-teacher-group", JSON.stringify(this.id));
     if (this.id) {
       this.key$ = this.infoLkFromTeacherService.getCode(this.id , true);
+      this.addedStudentsSubscription = this.infoLkFromTeacherService.getConnectedStudents(this.id).subscribe(
+        (data) => {
+          console.log(data)
+          this.addedStudents = data;
+        }
+      )
     }
   }
 
@@ -55,10 +68,38 @@ export class TeacherComponent {
   }
 
   getGroupsSubject(id: number) {
+    this.currentSubject = id;
     this.groups$ = this.infoLkFromTeacherService.getGroups(id, true);
+    this.groupsSubscriptions = this.groups$.subscribe(
+      (data) => {
+        const ids: number[] = data.map(obj => obj.id);
+        if(!ids.includes(this.id)){
+          this.id = 0;
+          this.key$ = undefined;
+        }
+      }
+    );
   }
 
   qwe() {
-    this.router.navigate(["tasks/create"]);
+    this.router.navigate(["tasks/create/subjects"]);
+  }
+
+  applications(event: boolean) {
+    this.isApplication = event;
+    this.students$ = this.infoLkFromTeacherService.getApplicationStudents(this.id)
+  }
+
+  onApplication() {
+    this.isApplication = !this.isApplication;
+  }
+
+  add(student: applicationStudent, decision: boolean) {
+    this.applicationSubscription = this.infoLkFromTeacherService.putConnectedStudentsInGroup(this.id, student.id, decision).subscribe();
+  }
+
+  ngOnDestroy() {
+    this.addedStudentsSubscription?.unsubscribe();
+    this.groupsSubscriptions?.unsubscribe();
   }
 }

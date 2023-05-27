@@ -8,17 +8,20 @@
       <div *ngIf="organization" class="lk__navigate-info">
         <p>Организация | <span>{{organization}}</span></p>
       </div>
-      <div class="lk__find-group" *ngIf="groups$ | async as groups">
-        <label class="lk__find-group-title">Группа:</label>
-        <select class="lk__find-group-text" [(ngModel)]="id" name="findGroup" (change)="onFindGroup()">
-          <option disabled selected [ngValue]="0">Выберите группу</option>
-          <option class="lk__find-group-text" *ngFor="let item of groups" [ngValue]="item.id">{{item.name}}</option>
-        </select>
-      </div>
-      <div class="lk__find-group">
-        <button (click)="addInGroup()" #toggleButton class="lk__add-in-group-button">
+      <div style="display: flex; justify-content: space-between">
+        <div class="lk__find-group" *ngIf="groups$ | async as groups">
+          <label class="lk__find-group-title">Группа:</label>
+          <select class="lk__find-group-text" [(ngModel)]="id" name="findGroup" (change)="onFindGroup()">
+            <option disabled selected [ngValue]="0">Выберите группу</option>
+            <option class="lk__find-group-text" *ngFor="let item of groups" [ngValue]="item.id">{{item.name}}</option>
+          </select>
+        </div>
+        <div class="lk__find-group">
+          <button (click)="addInGroup()" #toggleButton class="lk__add-in-group-button">
             Подключиться
-        </button>
+          </button>
+        </div>
+
       </div>
 
       <div class="menu" *ngIf="isOpenAddInGroupBox" #menu>
@@ -41,7 +44,10 @@
         <div style="display: flex; justify-content: space-between; margin-bottom: 40px;">
           <div *ngIf="myRating$ | async as myRating" class="rating__sorted-item" style="margin-bottom: 10px">
             <p style="font-weight: 700; margin-bottom: 20px;">Ваш балл: {{myRating.scores}}</p>
-            <p style="margin-right: 50px;">№ в рейтинге: {{myRating.place}}</p>
+            <div style="display: flex; justify-content: space-between">
+              <p style="margin-right: 50px;">№ в рейтинге: {{myRating.place}}</p>
+              <p *ngIf="myFullScores$ | async as myFullScores">Общий балл: {{myFullScores.scores}}</p>
+            </div>
           </div>
           <div *ngIf="myRating$ | async as myRating" class="rating__sorted-subject" style="margin-bottom: 10px">
             <p style="font-weight: 700; margin-bottom: 20px;">Выполненные задания: {{subjectsCount}}</p>

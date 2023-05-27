@@ -4,16 +4,23 @@ import {Observable} from "rxjs";
 import {IGroup, ISubject} from "../../modules/info-lk/info.interfases";
 import {InfoLkFromTeacherService} from "../../modules/info-lk/info-lk-from-teacher.service";
 import {IRatingUser, RatingService} from "../../modules/rating/rating.service";
+import {AuthService} from "../../modules/auth/services/auth.service";
+import {Role} from "../../modules/auth/enums/role.enum";
+import {InfoService} from "../../modules/info-lk/info.service";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: "rating",
   templateUrl: "rating.page.web.html",
-  styleUrls: ["rating.page.web.scss"]
+  styleUrls: ["rating.page.web.scss"],
+  providers: [DatePipe]
 })
+
 export class RatingPageWeb{
   constructor(private formBuilder: FormBuilder,
               private infoLkFromTeacherService: InfoLkFromTeacherService,
-              private ratingService: RatingService) { }
+              private ratingService: RatingService, private auth: AuthService, private infoService: InfoService,
+              public datepipe: DatePipe) { }
 
   range = new FormGroup({
     start: new FormControl<Date | null>(null),
@@ -25,20 +32,23 @@ export class RatingPageWeb{
   currentSubjectOption: number = 0;
   currentGroupOption: number = 0;
   ratingList$?: Observable<IRatingUser[]>;
-  myRatingUser$?: Observable<IRatingUser>;
 
   ngOnInit() {
     this.subjects$ = this.infoLkFromTeacherService.getSubjects();
   }
 
   onSortSubjectOptionChange() {
-    this.groups$ = this.infoLkFromTeacherService.getGroups(this.currentSubjectOption);
+    if(this.auth.role === Role.Teacher)
+      this.groups$ = this.infoLkFromTeacherService.getGroups(this.currentSubjectOption);
+    if(this.auth.role === Role.Student)
+      this.groups$ = this.infoService.getGroups();
   }
 
   sort() {
     if(!!this.currentSubjectOption && !!this.currentGroupOption && this.range.controls.start.value && this.range.controls.end.value) {
-      this.ratingList$ = this.ratingService.sort(this.currentSubjectOption, this.currentGroupOption, this.range.controls.start.value, this.range.controls.end.value);
-      this.myRatingUser$ = this.ratingService.getMyRating(this.currentSubjectOption, this.currentGroupOption, this.range.controls.start.value, this.range.controls.end.value);
+      let formattedStartDate= this.datepipe.transform(this.range.controls.start.value, 'yyyy/MM/dd');
+      let formattedEndDate =this.datepipe.transform(this.range.controls.end.value, 'yyyy/MM/dd');
+      this.ratingList$ = this.ratingService.sort(this.currentSubjectOption, this.currentGroupOption, formattedStartDate!, formattedEndDate!);
     }
   }
 }

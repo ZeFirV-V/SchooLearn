@@ -2,6 +2,54 @@
   margin-top: 100px;
   margin-bottom: 100px;
   display: flex;
+  &__application-nickname {
+    border: unset;
+    background: unset;
+    font-family: 'Raleway', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+
+    color: #000000;
+  }
+
+  &__button-add {
+    border: unset;
+    background: unset;
+    font-family: 'Raleway', serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+
+    color: #547DF8;
+  }
+
+  &__button-close {
+    font-family: 'Raleway', serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+
+    color: #000000;
+
+  }
+
+  &__application {
+    font-family: 'Raleway', serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    /* identical to box height */
+
+
+    color: #000000;
+
+  }
+
   &__find-group {
     padding-left: 10px;
     align-items: center;
@@ -164,4 +212,33 @@ select {
       color: #fff;
     }
   }
+}
+
+.application-button {
+  background: unset;
+  border: unset;
+  font-family: 'Raleway', serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: justify;
+
+  color: #547DF8 !important;
+}
+
+.back-in-lk {
+  padding: 10px 25px;
+  background: #7DF854;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 25px;
+  border: unset;
+
+  font-family: 'Raleway', serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+
+  color: #000000;
 }

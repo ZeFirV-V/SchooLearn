@@ -18,8 +18,11 @@ export class SideBarComponent implements AfterViewInit{
   newNickName: string = "";
   newNickNameSubscription?: Subscription;
   @Input() nickname: string = "";
+
   @Input() role: string = "";
   @Output() subjectId = new EventEmitter<number>();
+  @Output() isApplicationEventEmitter = new EventEmitter<boolean>();
+  isApplication: boolean = false;
   @ViewChild('toggleButton') toggleButton!: ElementRef;
   @ViewChild('menu') menu?: ElementRef;
   currentPage = 1;
@@ -79,5 +82,6 @@ export class SideBarComponent implements AfterViewInit{
   onPageChange(page: number): void {
     this.currentPage = page;
   }
+
 
 }

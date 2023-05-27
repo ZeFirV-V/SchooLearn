@@ -18,6 +18,7 @@ export class TokenInterceptor implements HttpInterceptor{
         }
       });
     }
+    console.log(req)
     return next.handle(req)
       .pipe(
       tap({

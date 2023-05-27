@@ -28,21 +28,25 @@
         <p *ngIf="role !== 'teacher'">{{role}}</p>
       </div>
     </div>
-    <div *ngIf="subjects$ | async as subjects" class="side-bar__subjects">
-      <p>
-        Предметы
-      </p>
-      <div class="side-bar__subject" *ngFor="let subject of subjects.slice((currentPage - 1) * productsPerPage, currentPage * productsPerPage)">
-        <button [ngClass]="{active: selectedSubjectId === subject.id}" (click)="emitSubject(subject.id)">
-          {{subject.name}}
-        </button>
+    <div *ngIf="subjects$ | async as subjects" >
+
+      <div class="side-bar__subjects">
+        <p>
+          Предметы
+        </p>
+        <div class="side-bar__subject" *ngFor="let subject of subjects.slice((currentPage - 1) * productsPerPage, currentPage * productsPerPage)">
+          <button [ngClass]="{active: selectedSubjectId === subject.id}" (click)="emitSubject(subject.id)">
+            {{subject.name}}
+          </button>
+        </div>
+        <app-pagination
+          [productLength]="subjects.length"
+          [productsPerPage]="productsPerPage"
+          (pageChange)="onPageChange($event)"
+        >
+        </app-pagination>
       </div>
-      <app-pagination
-        [productLength]="subjects.length"
-        [productsPerPage]="productsPerPage"
-        (pageChange)="onPageChange($event)"
-      >
-      </app-pagination>
+
     </div>
 
   </div>

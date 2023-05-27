@@ -23,6 +23,7 @@ export class StudentComponent implements AfterViewInit{
   subjectsCount?: number;
   accessionGroupSubscription?: Subscription;
   myRating$?: Observable<IRatingUser>;
+  myFullScores$?: Observable<IRatingUser>;
   @ViewChild('toggleButton') toggleButton!: ElementRef;
   @ViewChild('menu') menu?: ElementRef;
 
@@ -37,7 +38,7 @@ export class StudentComponent implements AfterViewInit{
       this.id = JSON.parse(id);
       this.myRating$ = this.ratingService.getMyRatingInLK(this.id);
     }
-
+    this.myFullScores$ = this.ratingService.getFullRatingScoresFromStudent();
   }
   ngAfterViewInit() {
     this.renderer.listen('window', 'click', (e: Event) => {
