@@ -1,10 +1,9 @@
 <div *ngIf="task" class="task">
-  <p class="task__name">{{task.name}}</p>
-  <p class="task__date">Дедлайн: {{task.deadline | date}}</p>
-  <div style="display: flex">
-    <div class="side-bar__nickname-edit">
-      <img src="assets/edit.svg" alt="edit image">
-    </div>
+  <p class="task__name" style="width: 300px; margin-right: auto">{{task.name}}</p>
+  <div style="display: flex; justify-content: space-between; width: 400px; align-items: center">
+    <p class="task__date">
+      Дедлайн: {{task.deadline | date}}
+    </p>
     <a class="task__link" routerLink="">Просмотр</a>
   </div>
 </div>

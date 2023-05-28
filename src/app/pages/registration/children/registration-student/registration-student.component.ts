@@ -2,15 +2,16 @@ import { Component } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {RegistrationStudent} from "../../../../modules/auth/interfaces/registration/registration-student.interface";
 import {IRegistrationUser} from "../../../../modules/auth/interfaces/registration/registration-user.interface";
-import {Role} from "../../../../modules/auth/enums/role.enum";
 import {Observable, Subscription} from "rxjs";
 import {AuthService} from "../../../../modules/auth/services/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {
-  AuthorizationUser,
-  IAuthorizationUser
-} from "../../../../modules/auth/interfaces/auth/athorization-user.interface";
-import {moveItemInArray} from "@angular/cdk/drag-drop";
+  confirmPasswordValidator,
+  emailValidator,
+  loginValidator,
+  passwordValidator,
+  usernameValidator
+} from "../components/validators";
 
 @Component({
   selector: 'app-registration-student',
@@ -30,11 +31,11 @@ export class RegistrationStudentComponent {
   }
   public registrationStudentForm: FormGroup = new FormGroup({
     companyName: new FormControl("", Validators.required),
-    studentEmail: new FormControl("", Validators.required),
-    studentName: new FormControl("", Validators.required),
-    studentLogin: new FormControl("", Validators.required),
-    userPassword: new FormControl("", Validators.required),
-    repeatPassword: new FormControl("", Validators.required),
+    studentEmail: new FormControl("", [Validators.required, emailValidator()]),
+    studentName: new FormControl("", [Validators.required, usernameValidator()]),
+    studentLogin: new FormControl("", [Validators.required, loginValidator()]),
+    userPassword: new FormControl("", [Validators.required, passwordValidator()]),
+    repeatPassword: new FormControl("", [Validators.required, passwordValidator(), confirmPasswordValidator("userPassword")]),
   });
   phase = 1;
   submitted: boolean = false;

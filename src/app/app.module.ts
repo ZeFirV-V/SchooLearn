@@ -42,6 +42,7 @@ import { ChangeNicknameComponent } from './components/change-nickname/change-nic
 import {PaginationComponent} from "./components/pagination/pagination.components";
 import {MatIconModule} from "@angular/material/icon";
 import { AdminComponent } from './pages/private-office/admin/admin.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -72,20 +73,21 @@ import { AdminComponent } from './pages/private-office/admin/admin.component';
     AdminComponent,
   ],
 
-  imports: [
-    HttpClientModule,
-    BrowserModule,
-    PagesModuleWeb,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatRadioModule,
-    MatInputModule,
-    MatSelectModule,
-    MatIconModule,
-    // SkeletonModule,
-  ],
+    imports: [
+        HttpClientModule,
+        BrowserModule,
+        PagesModuleWeb,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatRadioModule,
+        MatInputModule,
+        MatSelectModule,
+        MatIconModule,
+        MatProgressSpinnerModule,
+        // SkeletonModule,
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

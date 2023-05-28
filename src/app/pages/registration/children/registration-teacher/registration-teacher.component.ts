@@ -12,6 +12,13 @@ import {
 import { RegistrationTeacher } from "../../../../modules/auth/interfaces/registration/registration-teacher.interface";
 import {Location} from "@angular/common";
 import {RegistrationAdmin} from "../../../../modules/auth/interfaces/registration/registration-admin.interface";
+import {
+  confirmPasswordValidator,
+  emailValidator,
+  loginValidator,
+  passwordValidator,
+  usernameValidator
+} from "../components/validators";
 
 @Component({
   selector: 'app-registration-student',
@@ -33,11 +40,11 @@ export class RegistrationTeacherComponent {
   public registrationTeacherForm: FormGroup = new FormGroup({
     companyName: new FormControl("", Validators.required),
     teacherKey: new FormControl("", Validators.required),
-    teacherName: new FormControl("", Validators.required),
-    teacherLogin: new FormControl("", Validators.required),
-    teacherEmail: new FormControl("", Validators.required),
-    teacherPassword: new FormControl("", Validators.required),
-    repeatTeacherPassword: new FormControl("", Validators.required),
+    teacherName: new FormControl("", [Validators.required, usernameValidator()]),
+    teacherLogin: new FormControl("", [Validators.required, loginValidator()]),
+    teacherEmail: new FormControl("", [Validators.required, emailValidator()]),
+    teacherPassword: new FormControl("", [Validators.required, passwordValidator()]),
+    repeatTeacherPassword: new FormControl("", [Validators.required, passwordValidator(), confirmPasswordValidator("teacherPassword")]),
   });
   phase = 1;
   submitted: boolean = false;

@@ -150,6 +150,7 @@ export class AuthService  {
     const expiredAt = lifeTime + Number(localStorage.getItem('loginTime'));
     if (now >= expiredAt) {
       alert("Вышло время токена, перезайдите")
+      this.logout();
       return false;
     }
     return true;

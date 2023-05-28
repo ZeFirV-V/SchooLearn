@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import {AuthService} from "../../../../modules/auth/services/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {
   IRegistrationOrganization,
   RegistrationOrganization
 } from "../../../../modules/auth/interfaces/registration/registration-organization.interface";
+import {emailValidator, innValidator, urlValidator} from "../components/validators";
 
 @Component({
   selector: 'app-registration-company-page',
@@ -21,10 +22,10 @@ export class RegistCompanyComponent {
   phase: number = 1;
 
   public registrationForm: FormGroup = new FormGroup({
-    companyEmail: new FormControl("", Validators.required),
+    companyEmail: new FormControl("", [Validators.required, emailValidator()]),
     companyName: new FormControl("", Validators.required),
-    companyINN: new FormControl("", Validators.required),
-    companyUrl: new FormControl("", Validators.required),
+    companyINN: new FormControl("", [Validators.required, innValidator()]),
+    companyUrl: new FormControl("", [Validators.required, urlValidator()])
   });
 
   private _asyncSubscribe: Subscription = new Subscription(); //TODO: переделать без объявления

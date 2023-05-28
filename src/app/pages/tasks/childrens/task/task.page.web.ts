@@ -15,7 +15,7 @@ import {NewTaskService} from "../../../../modules/tasks/new-task.service";
 export class TaskPageWeb implements OnInit {
   task$!: Observable<IAppTakFullInfo>;
   answer?: string;
-  result$?: Observable<any>;
+  result?: boolean;
   constructor(private taskService: NewTaskService,
               private route: ActivatedRoute,
               private location: Location) { }
@@ -34,8 +34,20 @@ export class TaskPageWeb implements OnInit {
   }
 
   endTask(task: IAppTakFullInfo) {
-    if(this.answer)
-      this.result$ = this.taskService.checkAnswer(task.id, this.answer)
+    if(this.answer) {
+      this.taskService.checkAnswer(task.id, this.answer).subscribe(
+        (response) => {
+          this.result = true;
+          console.log('Ответ сервера:', response);
+        },
+        (error) => {
+          this.result = false;
+
+          // если решение было неправильное
+          // console.log('Ошибка:', error);
+        }
+      );
+    }
   }
 
   calculateDifficulty(difficulty: string) {
@@ -61,7 +73,7 @@ export class TaskPageWeb implements OnInit {
         if(id !== null) {
           console.log("next");
           this.answer = undefined;
-          this.result$ = undefined;
+          this.result = undefined;
           return this.taskService.getFreeTask(parseInt(id));
         }
         else {
@@ -69,6 +81,10 @@ export class TaskPageWeb implements OnInit {
         }
       })
     );
+  }
+
+  checkResult() {
+    return this.result == null;
   }
 }
 

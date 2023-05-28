@@ -85,13 +85,16 @@ export class TeacherComponent implements OnDestroy{
     this.router.navigate(["tasks/create/subjects"]);
   }
 
-  applications(event: boolean) {
-    this.isApplication = event;
-    this.students$ = this.infoLkFromTeacherService.getApplicationStudents(this.id)
-  }
+  // applications(event: boolean) {
+  //   this.isApplication = event;
+  //
+  // }
 
   onApplication() {
     this.isApplication = !this.isApplication;
+    if(this.isApplication) {
+      this.students$ = this.infoLkFromTeacherService.getApplicationStudents(this.id);
+    }
   }
 
   add(student: applicationStudent, decision: boolean) {

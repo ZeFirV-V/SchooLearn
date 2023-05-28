@@ -6,6 +6,13 @@ import {Observable, Subscription} from "rxjs";
 import {IRegistrationUser} from "../../../../modules/auth/interfaces/registration/registration-user.interface";
 import {RegistrationAdmin} from "../../../../modules/auth/interfaces/registration/registration-admin.interface";
 import {Location} from "@angular/common";
+import {
+  confirmPasswordValidator,
+  emailValidator,
+  loginValidator,
+  passwordValidator,
+  usernameValidator
+} from "../components/validators";
 
 @Component({
   selector: 'app-registration-admin',
@@ -27,11 +34,11 @@ export class RegistrationAdminComponent {
   public registrationTeacherForm: FormGroup = new FormGroup({
     companyName: new FormControl("", Validators.required),
     teacherKey: new FormControl("", Validators.required),
-    teacherName: new FormControl("", Validators.required),
-    teacherLogin: new FormControl("", Validators.required),
-    teacherEmail: new FormControl("", Validators.required),
-    teacherPassword: new FormControl("", Validators.required),
-    repeatTeacherPassword: new FormControl("", Validators.required),
+    teacherName: new FormControl("", [Validators.required, usernameValidator()]),
+    teacherLogin: new FormControl("", [Validators.required, loginValidator()]),
+    teacherEmail: new FormControl("", [Validators.required, emailValidator()]),
+    teacherPassword: new FormControl("", [Validators.required, passwordValidator()]),
+    repeatTeacherPassword: new FormControl("", [Validators.required, passwordValidator(), confirmPasswordValidator("teacherPassword")]),
   });
   phase = 1;
   submitted: boolean = false;

@@ -24,6 +24,9 @@ export class HeaderComponent implements AfterViewInit {
     this.isEntered = this.authService.isAuthenticated();
     if(this.authService.user)
       this.nickname = this.authService.user!.login;
+    else {
+      this.nickname = undefined;
+    }
   }
   ngAfterViewInit() {
     this.renderer.listen('window', 'click', (e: Event) => {

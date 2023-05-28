@@ -106,8 +106,9 @@
             class="registrationForm__error"
             *ngIf="registrationStudentForm.controls['studentName'].invalid
                && registrationStudentForm.controls['studentName'].touched">
+
             <p>
-              Обязательно для заполнения
+              Обязательно для заполнения. минимальная длина 5, а максимальная 40
             </p>
           </div>
         </div>
@@ -125,8 +126,9 @@
             class="registrationForm__error"
             *ngIf="registrationStudentForm.controls['studentLogin'].invalid
                && registrationStudentForm.controls['studentLogin'].touched">
+
             <p>
-              Обязательно для заполнения. Придумайте логин не менее 8 символов, он должен включать строчные и заглавные буквы
+              Обязательно для заполнения. Придумайте логин не менее 10 символов
             </p>
           </div>
         </div>
@@ -162,7 +164,7 @@
             *ngIf="registrationStudentForm.controls['userPassword'].invalid
               && registrationStudentForm.controls['userPassword'].touched">
             <p>
-              Обязательно для заполнения. Ваш пароль легко подобрать.
+              Обязательно для заполнения.
               Придумайте пароль не менее 8 символов.
               Используйте заглавные буквы, цифры и специальные символы
             </p>
