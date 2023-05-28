@@ -52,13 +52,15 @@ export class ViewSolvedTaskPageComponent {
     this.location.back();
   }
   calculateDifficulty(difficulty: string) {
-    let difficultyFun = difficulty.toLowerCase();
-    if(difficultyFun === "легкий")
+    console.log("difficulty")
+
+    console.log(difficulty)
+    if(difficulty === "Легкий")
       return 1;
-    else if(difficultyFun === "средний") {
+    else if(difficulty === "Средний") {
       return 2;
     }
-    else if(difficultyFun === "сложный") {
+    else if(difficulty === "Сложный") {
       return 3;
     }
     return 0
