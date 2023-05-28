@@ -37,14 +37,12 @@ import {
   ViewAssignedTaskPageComponent
 } from "./pages/tasks/childrens/view-assigned-task-page/view-assigned-task-page.component";
 import {SubjectResolver} from "./modules/info-lk/subject.resolver";
-import {ChangeNicknameComponent} from "./components/change-nickname/change-nickname.component";
 import {TasksGard} from "./modules/gards/gard";
 import {AdminComponent} from "./pages/private-office/admin/admin.component";
 
 const tasksRoutes: Routes = [
   { path: '', component: TasksPageWeb, canActivate: [TasksGard], data: { roles: [Role.Student]} },
   { path: ':subjectId', component: TaskPageWeb, resolve: { validSubject: SubjectResolver }, canActivate: [TasksGard], data: { roles: [Role.Student]}  },
-  //http://localhost:4200/view-solved-task/1
   { path: 'view-solved-task/:taskId', component: ViewSolvedTaskPageComponent, canActivate: [TasksGard], data: { roles: [Role.Student, Role.Teacher, Role.AdministratorTeacher]}},
   { path: 'view-assigned-task/:taskId', component: ViewAssignedTaskPageComponent, canActivate: [TasksGard], data: { roles: [Role.Student]}},
   { path: 'create', component: CreateTaskComponent, canActivate: [TasksGard], data: { roles: [Role.Teacher]} },

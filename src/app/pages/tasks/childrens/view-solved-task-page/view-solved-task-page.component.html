@@ -1,9 +1,9 @@
 <div class="container" *ngIf="task$ | async as task">
   <div class="task__section-1">
     <div>
-      <h3 class="task__title">{{task.subject}}</h3>
+      <h3 class="task__title">{{task.subject.name}}</h3>
       <p class="task__name">{{task.name}}</p>
-      <p class="task__difficulty">Уровень: {{task.difficulty}}</p>
+      <p class="task__difficulty">Уровень: {{task.difficulty.name}}</p>
     </div>
     <div class="task__date">
       <p>
@@ -19,8 +19,11 @@
   </div>
   <div class="task__section-3">
     <div class="task__answer">
-      <p>
+      <p *ngIf="!role">
         {{task.receivedAnswer}}
+      </p>
+      <p *ngIf="role">
+        {{task.answer}}
       </p>
     </div>
 <!--    <div class="task__result">-->
@@ -32,14 +35,10 @@
 <!--      </p>-->
 <!--    </div>-->
 
-    <div class="task__result" *ngIf="task.scores">
-      <div class="task__result-green" *ngIf="task.scores !== 0" style="display: flex; gap: 10px">
+    <div class="task__result">
+      <div class="task__result-green" style="display: flex; gap: 10px">
         <p>верно</p>
-        <p>{{task.scores}} / {{calculateDifficulty(task.difficulty.toLowerCase())}}</p>
-      </div>
-      <div class="task__result-red" *ngIf="task.scores === 0" style="display: flex; gap: 10px">
-        <p>неверно</p>
-        <p>{{task.scores}} / {{calculateDifficulty(task.difficulty)}}</p>
+        <p>{{calculateDifficulty(task.difficulty.name.toLowerCase())}} / {{calculateDifficulty(task.difficulty.name.toLowerCase())}}</p>
       </div>
     </div>
   </div>

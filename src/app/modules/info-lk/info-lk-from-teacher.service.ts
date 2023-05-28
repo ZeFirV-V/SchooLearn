@@ -1,6 +1,14 @@
 import { Injectable } from '@angular/core';
 import {Observable, of} from "rxjs";
-import {IAppTask, ICreateTask, IGroup, ISolvedTask, ISolvedTaskFullInfo, ISubject} from "./info.interfases";
+import {
+  IAppTakFullInfo,
+  IAppTask,
+  ICreateTask,
+  IGroup,
+  ISolvedTask,
+  ISolvedTaskFullInfo,
+  ISubject
+} from "./info.interfases";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {IAuthResponseUserInterface} from "../auth/interfaces/auth/auth-responce-user.interface";
@@ -72,7 +80,9 @@ export class InfoLkFromTeacherService {
   getSolvedTasksInfoFromTeacher(id: number, noApi: boolean = false): Observable<IAppTask[]> {
     return this.http.get<IAppTask[]>(`https://www.schoolearn.store/task/assigned?groupId=${id}`);
   }
-
+  getSolvedTasksInfoFromTeacherFull(taskId: number): Observable<ISolvedTaskFullInfo> {
+    return this.http.get<ISolvedTaskFullInfo>(`https://www.schoolearn.store/task/${taskId}`);
+  }
 
   getCodeFromAdmin(): Observable<{code: string}>  {
     return this.http.get<{code: string}>(`https://www.schoolearn.store/administrator/invitation-code`);

@@ -89,11 +89,12 @@
 
   &__back {
     background: #FFFFFF;
-    border: 2px solid #D3AAF8;
+    border: 2px solid #7396FF;
   }
 
   &__next {
-    background: #D3AAF8;
+    background: #7396FF;
+    border: unset;
 
     &__img-box {
       display: flex;
