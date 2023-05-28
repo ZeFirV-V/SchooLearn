@@ -39,9 +39,14 @@ export class TaskPageWeb implements OnInit {
         }
       })
     );
+    this.task$.subscribe(
+      data => console.log(data)
+    )
   }
 
   endTask(task: IAppTakFullInfo) {
+    console.log("false")
+
     if(this.answer) {
       this.taskService.checkAnswer(task.id, this.answer).subscribe(
         (response) => {
@@ -50,6 +55,7 @@ export class TaskPageWeb implements OnInit {
         },
         (error) => {
           this.result = false;
+          console.log("false")
 
           // если решение было неправильное
           // console.log('Ошибка:', error);

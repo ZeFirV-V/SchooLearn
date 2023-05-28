@@ -39,10 +39,6 @@ export class NewTaskService {
   }
 
   checkAnswer(taskId: number, answer: string) {
-    let a = false;
-    if (a) {
-      return of(true);
-    }
     return this.http.post(`https://www.schoolearn.store/task/check`, {
       taskId: taskId,
       answer: answer,

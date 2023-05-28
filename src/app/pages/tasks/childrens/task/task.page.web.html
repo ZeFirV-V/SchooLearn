@@ -7,14 +7,14 @@
     </div>
     <div class="task__effect-section">
       <div class="task__end-button">
-        <button [ngClass]="{active: checkResult() || !answer}" [disabled]="checkResult() || !answer" (click)="endTask(task)">
+        <button [ngClass]="{active: !checkResult() || !answer}" [disabled]="!checkResult() || !answer" (click)="endTask(task)">
           <p>
             Завершить выполнение
           </p>
         </button>
-        <div *ngIf="checkResult()" class="task__button-next-box">
+        <div *ngIf="!checkResult()" class="task__button-next-box">
           <button class="task__button-next" routerLink="/">
-            на Главную
+            Главное
           </button>
           <button class="task__button-next" (click)="nextTask()">
             Следующее
@@ -33,7 +33,7 @@
 
   </div>
   <div class="task__section-3">
-    <input [(ngModel)]="answer" [disabled]="!!result" class="task__input">
+    <input [(ngModel)]="answer" [disabled]="!checkResult()" class="task__input">
     <div class="task__result" *ngIf="!checkResult()">
       <div class="task__result-green" *ngIf="result" style="display: flex; gap: 10px">
         <p>верно</p>
