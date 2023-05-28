@@ -36,9 +36,20 @@
 <!--    </div>-->
 
     <div class="task__result">
-      <div class="task__result-green" style="display: flex; gap: 10px">
+      <div class="task__result-green" style="display: flex; gap: 10px" *ngIf="role">
         <p>верно</p>
         <p>{{calculateDifficulty(task.difficulty.name.toLowerCase())}} / {{calculateDifficulty(task.difficulty.name.toLowerCase())}}</p>
+      </div>
+      <div *ngIf="!role">
+        <div class="task__result-green" style="display: flex; gap: 10px" *ngIf="task.scores > 0">
+          <p>верно</p>
+          <p>task.scores / {{calculateDifficulty(task.difficulty.name.toLowerCase())}}</p>
+        </div>
+
+        <div class="task__result-red" style="display: flex; gap: 10px" *ngIf="task.scores <= 0">
+          <p>неверно</p>
+          <p>0 / {{calculateDifficulty(task.difficulty.name.toLowerCase())}}</p>
+        </div>
       </div>
     </div>
   </div>
