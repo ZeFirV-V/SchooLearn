@@ -43,7 +43,7 @@ export class RatingPageWeb{
     if(this.auth.role === Role.Teacher)
       this.groups$ = this.infoLkFromTeacherService.getGroups(this.currentSubjectOption);
     if(this.auth.role === Role.Student)
-      this.groups$ = this.infoService.getGroups();
+      this.groups$ = this.infoService.getGroups(this.currentSubjectOption);
   }
 
   sort() {

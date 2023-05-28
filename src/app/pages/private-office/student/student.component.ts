@@ -31,7 +31,7 @@ export class StudentComponent implements AfterViewInit {
   isLoading?: boolean;
 
   ngOnInit() {
-    this.groups$ = this.infoService.getGroups(true).pipe(finalize(() => console.log(123)));
+    this.groups$ = this.infoService.getGroups().pipe(finalize(() => console.log(123)));
     let user = this.infoService.getInfoStudent(true);
     this.nickName = user.nickName;
     if (user.institution)

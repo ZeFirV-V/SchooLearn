@@ -5,8 +5,7 @@ import { environment } from "../../../environments/environment";
 import { tap } from "rxjs/operators";
 import { Observable, of} from "rxjs";
 import {IAppTakFullInfo, IAppTask, IGroup, ISolvedTask, ISolvedTaskFullInfo} from "./info.interfases";
-import {IAuthResponseUserInterface} from "../auth/interfaces/auth/auth-responce-user.interface";
-import {Role} from "../auth/enums/role.enum";
+
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +16,9 @@ export class InfoService {
   subject: any = {}
   constructor(private http: HttpClient, private _router: Router) { }
 
-  getGroups(noApi: boolean = false): Observable<IGroup[]> {
-    if(this.noApi) {
-      const groups: IGroup[] = [{id: 1, name: "nameGroup-1"}, {id: 2, name: "nameGroup-2"}, {id: 3, name: "nameGroup-3"}]
-      return of(groups);
+  getGroups(subjectId?: number): Observable<IGroup[]> {
+    if(subjectId) {
+      return this.http.get<IGroup[]>(`https://www.schoolearn.store/student/groups?subjectId=${subjectId}`);
     }
     return this.http.get<IGroup[]>(`https://www.schoolearn.store/student/groups`);
   }
