@@ -16,6 +16,12 @@ export interface IRatingUser {
 export class RatingService {
   constructor(private http: HttpClient, private _router: Router) { }
   sort(subjectId: number, groupId: number,fromDate: string,  toDate: string): Observable<IRatingUser[]> {
+    if((fromDate === null || toDate === null) && (groupId === null || groupId === 0))
+      return this.http.get<IRatingUser[]>(`https://www.schoolearn.store/rating/get?subjectId=${subjectId}`);
+    if((fromDate === null || toDate === null) && groupId !== null && groupId !== 0)
+      return this.http.get<IRatingUser[]>(`https://www.schoolearn.store/rating/get?groupId=${groupId}&subjectId=${subjectId}`);
+    if((groupId === null || groupId === 0) && fromDate !== null && toDate !== null)
+      return this.http.get<IRatingUser[]>(`https://www.schoolearn.store/rating/get?&subjectId=${subjectId}&from=${fromDate}&to=${toDate}`);
     return this.http.get<IRatingUser[]>(`https://www.schoolearn.store/rating/get?groupId=${groupId}&subjectId=${subjectId}&from=${fromDate}&to=${toDate}`);
   }
 

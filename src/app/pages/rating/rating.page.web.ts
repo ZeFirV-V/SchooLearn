@@ -38,6 +38,8 @@ export class RatingPageWeb{
   }
 
   onSortSubjectOptionChange() {
+    this.currentGroupOption=0;
+
     if(this.auth.role === Role.Teacher)
       this.groups$ = this.infoLkFromTeacherService.getGroups(this.currentSubjectOption);
     if(this.auth.role === Role.Student)
@@ -45,10 +47,11 @@ export class RatingPageWeb{
   }
 
   sort() {
-    if(!!this.currentSubjectOption && !!this.currentGroupOption && this.range.controls.start.value && this.range.controls.end.value) {
-      let formattedStartDate= this.datepipe.transform(this.range.controls.start.value, 'yyyy/MM/dd');
-      let formattedEndDate =this.datepipe.transform(this.range.controls.end.value, 'yyyy/MM/dd');
-      this.ratingList$ = this.ratingService.sort(this.currentSubjectOption, this.currentGroupOption, formattedStartDate!, formattedEndDate!);
-    }
+    let formattedStartDate= this.datepipe.transform(this.range.controls.start.value, 'yyyy/MM/dd');
+    let formattedEndDate =this.datepipe.transform(this.range.controls.end.value, 'yyyy/MM/dd');
+    this.ratingList$ = this.ratingService.sort(this.currentSubjectOption, this.currentGroupOption, formattedStartDate!, formattedEndDate!);
+    // if(!!this.currentSubjectOption && !!this.currentGroupOption && this.range.controls.start.value && this.range.controls.end.value) {
+    //
+    // }
   }
 }
