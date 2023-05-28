@@ -29,6 +29,10 @@ export class TeacherComponent implements OnDestroy{
   students$?: Observable<applicationStudent[]>;
   applicationSubscription?: Subscription;
 
+  currentPage: number = 1;
+  productsPerPage = 5;
+
+
   ngOnInit() {
     let user = this.infoLkFromTeacherService.getInfoUser(true);
     this.nickName = user.nickName;
@@ -76,6 +80,8 @@ export class TeacherComponent implements OnDestroy{
           this.id = 0;
           this.key$ = undefined;
           sessionStorage.setItem("id-teacher-group", JSON.stringify(this.id));
+          this.students$ = undefined;
+          this.addedStudents = undefined;
         }
       }
     );
@@ -99,10 +105,15 @@ export class TeacherComponent implements OnDestroy{
 
   add(student: applicationStudent, decision: boolean) {
     this.applicationSubscription = this.infoLkFromTeacherService.putConnectedStudentsInGroup(this.id, student.id, decision).subscribe();
+    this.students$ = this.infoLkFromTeacherService.getApplicationStudents(this.id);
   }
 
   ngOnDestroy() {
     this.addedStudentsSubscription?.unsubscribe();
     this.groupsSubscriptions?.unsubscribe();
+  }
+
+  onPageChange(page: number): void {
+    this.currentPage = page;
   }
 }

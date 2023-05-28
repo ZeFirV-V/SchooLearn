@@ -89,7 +89,6 @@ export class InfoLkFromTeacherService {
   getConnectedStudents(groupId: number): Observable<applicationStudent[]> {
     return this.http.get<applicationStudent[]>(`https://www.schoolearn.store/teacher/group/${groupId}/all`);
   }
-  // https://{url}/teacher/group/{groupid}/application/consider?studentId=2&isApproved=true
   putConnectedStudentsInGroup(groupId: number, studentId: number, isApproved: boolean) {
     return this.http.put(`https://www.schoolearn.store/teacher/group/${groupId}/application/consider?studentId=${studentId}&isApproved=${isApproved}`, {});
   }

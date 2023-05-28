@@ -37,13 +37,20 @@
     </div>
     <div class="lk__tasks" *ngIf="!isApplication">
       <app-view-assigned-tasks-for-teacher [id]="id"/>
-      <div>
-        <p>Ученики</p>
-        <div>
-          <div *ngFor="let user of addedStudents">
-            <p>{{user.nickname}}</p>
-            <p>Ученик</p>
+      <div *ngIf="addedStudents">
+
+        <p class="student-title">Ученики</p>
+        <div class="students" >
+          <div *ngFor="let user of addedStudents.slice((currentPage - 1) * productsPerPage, currentPage * productsPerPage)" class="student">
+            <p class="student-name">{{user.nickname}}</p>
+            <p class="student-role">Ученик</p>
           </div>
+          <app-pagination
+            [productLength]="addedStudents!.length"
+            [productsPerPage]="productsPerPage"
+            (pageChange)="onPageChange($event)"
+          >
+          </app-pagination>
         </div>
       </div>
     </div>
@@ -56,7 +63,7 @@
     </div>
 
     <div *ngIf="isApplication" class="lk__application">
-      <p>
+      <p class="lk__application-title">
         Запросы на вступление в класс:
       </p>
       <div *ngIf="students$ | async as students">

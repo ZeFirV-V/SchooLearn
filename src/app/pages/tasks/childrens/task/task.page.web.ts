@@ -1,11 +1,12 @@
 import { Component, OnInit} from '@angular/core';
 
-import {Observable, of, switchMap} from "rxjs";
+import {EMPTY, Observable, of, switchMap} from "rxjs";
 
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {IAppTakFullInfo} from "../../../../modules/info-lk/info.interfases";
 import {Location} from "@angular/common";
 import {NewTaskService} from "../../../../modules/tasks/new-task.service";
+import {catchError, tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-task.scss',
@@ -18,16 +19,23 @@ export class TaskPageWeb implements OnInit {
   result?: boolean;
   constructor(private taskService: NewTaskService,
               private route: ActivatedRoute,
+              private router: Router,
               private location: Location) { }
 
   ngOnInit() {
     this.task$ = this.route.paramMap.pipe(
       switchMap(params => {
-        let id: string | null =  params.get('subjectId')
-        if(id !== null)
-          return this.taskService.getFreeTask(parseInt(id));
-        else {
-          return of()
+        let id: string | null = params.get('subjectId');
+        if(id !== null) {
+          return this.taskService.getFreeTask(parseInt(id)).pipe(
+            catchError(() => {
+              alert('Нет заданий по этому предмету');
+              this.router.navigate(['/tasks']);
+              return EMPTY;
+            })
+          );
+        } else {
+          return of();
         }
       })
     );
