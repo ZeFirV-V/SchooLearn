@@ -37,11 +37,11 @@
     <div class="task__result" *ngIf="!checkResult()">
       <div class="task__result-green" *ngIf="result" style="display: flex; gap: 10px">
         <p>верно</p>
-        <p>{{task.difficulty.scores}} / {{task.difficulty.scores}}</p>
+        <p>{{calculateDifficulty(task.difficulty.name)}} / {{calculateDifficulty(task.difficulty.name)}}</p>
       </div>
       <div class="task__result-red" *ngIf="!result" style="display: flex; gap: 10px">
         <p>неверно</p>
-        <p>0 / {{task.difficulty.scores}}</p>
+        <p>0 / {{calculateDifficulty(task.difficulty.name)}}</p>
       </div>
     </div>
   </div>

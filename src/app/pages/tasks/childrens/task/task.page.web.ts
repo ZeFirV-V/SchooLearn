@@ -65,12 +65,12 @@ export class TaskPageWeb implements OnInit {
   }
 
   calculateDifficulty(difficulty: string) {
-    if(difficulty === "легкий")
+    if(difficulty.toLowerCase() === "легкий")
       return 1;
-    else if(difficulty === "средний") {
+    else if(difficulty.toLowerCase() === "средний") {
       return 2;
     }
-    else if(difficulty === "сложный") {
+    else if(difficulty.toLowerCase() === "сложный") {
       return 3;
     }
     return 0
