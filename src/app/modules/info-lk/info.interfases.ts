@@ -55,3 +55,31 @@ export interface ICreateTask {
   isPublic: boolean;
   deadline: Date;
 }
+
+export interface IEditTakFullInfo {
+  answer: string;
+  id: number;
+  name: string;
+  description: string;
+  subject: { id: number, name: string };
+  difficulty: {id: number, name: string, scores: number, tasks: []};
+  teacher: {id: number, nickname: null};
+  institution: {id: number, name: string};
+  isPublic: boolean;
+  isExtendedTask: boolean;
+  creationDateTime: Date;
+  deadline: string;
+}
+
+export interface IEditTask {
+  id: number;
+  name: string;
+  description: string;
+  difficulty: string;
+  subject: string;
+  answer: string;
+  isExtended: boolean;
+  isPublic: boolean;
+  deadline: Date;
+  creationDateTime: string;
+}

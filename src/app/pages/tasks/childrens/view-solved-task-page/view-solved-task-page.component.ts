@@ -52,9 +52,6 @@ export class ViewSolvedTaskPageComponent {
     this.location.back();
   }
   calculateDifficulty(difficulty: string) {
-    console.log("difficulty")
-
-    console.log(difficulty)
     if(difficulty === "Легкий")
       return 1;
     else if(difficulty === "Средний") {

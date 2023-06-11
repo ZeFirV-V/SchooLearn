@@ -3,7 +3,7 @@ import {Observable, of} from "rxjs";
 import {
   IAppTakFullInfo,
   IAppTask,
-  ICreateTask,
+  ICreateTask, IEditTask,
   IGroup,
   ISolvedTask,
   ISolvedTaskFullInfo,
@@ -77,6 +77,11 @@ export class InfoLkFromTeacherService {
   addTask(groupId: number, task: ICreateTask) {
     return this.http.post<boolean>(`https://www.schoolearn.store/task/add?groupId=${groupId}`, task)
   }
+
+  editTask(task: IEditTask) {
+    return this.http.post<boolean>(`https://www.schoolearn.store/update`, task)
+  }
+
   getSolvedTasksInfoFromTeacher(id: number, noApi: boolean = false): Observable<IAppTask[]> {
     return this.http.get<IAppTask[]>(`https://www.schoolearn.store/task/assigned?groupId=${id}`);
   }

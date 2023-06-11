@@ -38,6 +38,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatIconModule} from "@angular/material/icon";
 import {QuestionPageWeb} from "./question/question.page.web";
+import {EditTaskComponent} from "./tasks/childrens/edit-task/edit-task.component";
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import {QuestionPageWeb} from "./question/question.page.web";
     InformationRoleButtonsComponent,
     HeadUniquePageComponent,
     RegistrationAdminComponent,
-    QuestionPageWeb
+    QuestionPageWeb,
+    EditTaskComponent
 
   ],
     imports: [

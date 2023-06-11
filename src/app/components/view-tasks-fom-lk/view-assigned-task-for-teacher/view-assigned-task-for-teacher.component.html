@@ -4,6 +4,9 @@
     <p class="task__date">
       Дедлайн: {{task.deadline | date}}
     </p>
-    <a class="task__link" routerLink="/tasks/view-solved-task/{{task.id}}" [queryParams]="{role: 'teacher'}">Просмотр</a>
+    <div>
+      <a routerLink="/tasks/edit-task/{{task.id}}"><img src="assets/edit.svg" alt="кнопка изменения имени"/></a>
+      <a class="task__link" routerLink="/tasks/view-solved-task/{{task.id}}" [queryParams]="{role: 'teacher'}">Просмотр</a>
+    </div>
   </div>
 </div>

@@ -1,0 +1,61 @@
+<div class="container create-task__container">
+  <form [formGroup]="taskForm" (ngSubmit)="submit()" class="form">
+    <div class="form__header">
+      <h2>Редактировать задание</h2>
+      <button type="submit" class="btn btn-primary" [disabled]="taskForm.invalid || loading">Изменить</button>
+    </div>
+    <div style="display: flex; justify-content: space-between">
+      <div class="form-group form-checkbox">
+        <label for="is-extended">С расширенным ответом:</label>
+        <input [formControlName]="'isExtended'" type="checkbox" class="form-control checkbox" id="is-extended">
+      </div>
+      <div class="form-group form-checkbox">
+        <label for="is-public">Задание видно для всей платформы:</label>
+        <input type="checkbox" [formControlName]="'isPublic'" class="form-control" id="is-public">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Заголовок/название: </label>
+      <input type="text" [formControlName]="'name'" class="form-control" id="name">
+    </div>
+    <div class="form-group">
+      <label for="description">Условие задачи: </label>
+      <textarea [formControlName]="'description'" class="form-control" id="description"></textarea>
+    </div>
+    <div style="display: flex; gap: 30px">
+
+      <div class="form-group">
+        <label for="difficulty" >Уровень сложности:</label>
+        <select  [formControlName]="'difficulty'" class="form-control" id="difficulty">
+          <option value="Легкий">легкий</option>
+          <option value="Средний">средний</option>
+          <option value="Сложный">сложный</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="answer">Верный ответ: </label>
+        <input [formControlName]="'answer'" class="form-control" id="answer">
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="deadline">Дедлайн:</label>
+      <input type="date" [formControlName]="'deadline'" class="form-control" id="deadline">
+    </div>
+  </form>
+  <div class="create-subject__buttons-box">
+    <button
+      (click)="backPhase()"
+      class="create-subject__button">
+      <mat-icon>
+        chevron_left
+      </mat-icon>
+      <p class="form-button__text">
+        Назад
+      </p>
+    </button>
+  </div>
+</div>

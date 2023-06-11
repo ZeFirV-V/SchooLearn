@@ -40,6 +40,7 @@ import {SubjectResolver} from "./modules/info-lk/subject.resolver";
 import {TasksGard} from "./modules/gards/gard";
 import {AdminComponent} from "./pages/private-office/admin/admin.component";
 import {QuestionPageWeb} from "./pages/question/question.page.web";
+import {EditTaskComponent} from "./pages/tasks/childrens/edit-task/edit-task.component";
 
 const tasksRoutes: Routes = [
   { path: '', component: TasksPageWeb, canActivate: [TasksGard], data: { roles: [Role.Student]} },
@@ -49,7 +50,9 @@ const tasksRoutes: Routes = [
   { path: 'create', component: CreateTaskComponent, canActivate: [TasksGard], data: { roles: [Role.Teacher]} },
   { path: 'create/subject', component: CreateTaskComponent, canActivate: [TasksGard], data: { roles: [Role.Teacher]} },
   { path: 'create/subject/group/:subjectId', component: CreateGroupComponent, resolve: { validSubject: SubjectResolver }, canActivate: [TasksGard], data: { roles: [Role.Teacher]} },
+  { path: 'edit-task/:taskId', component: EditTaskComponent, canActivate: [TasksGard], data: { roles: [Role.Teacher]}},
 
+  ///tasks/edit-task/{{task.id}
   // children: [
   //     {path: '', component: CreateTaskComponent, pathMatch: "full"},
   //     {path: 'subject', component: CreateSubjectComponent},
@@ -99,6 +102,7 @@ const routes: Routes = [
       {path: 'registration', children: registrationRoutes},
       {path: 'authorization', component: LoginPageWeb},
       {path: 'help', component: QuestionPageWeb},
+      {path: 'edit', component: EditTaskComponent},
     ]
   },
 
