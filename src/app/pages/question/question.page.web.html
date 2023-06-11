@@ -1,0 +1,82 @@
+<div class="container question__container">
+  <div class="question__box">
+    <div class="question__text">
+      <div class="question__text-title">
+        <p>
+          Задайте вопрос
+        </p>
+      </div>
+      <div class="question__text-subtitle">
+        <p>
+          Если у Вас возникли вопросы, Вы можете заполнить форму
+        </p>
+      </div>
+    </div>
+    <div>
+      <form
+        class="registrationForm"
+        [formGroup]="question"
+        (ngSubmit)="onSubmitQuestion()"
+      >
+        <div class="registrationForm__group">
+          <div class="registrationForm__controls-box">
+            <div class="registrationForm__control-box">
+              <input
+                class="registrationForm__control"
+                id="name"
+                type="text"
+                name="studentName"
+                [formControlName]="'name'"
+                placeholder="Nickname:"
+              >
+            </div>
+
+            <div class="registrationForm__control-box">
+              <input
+                class="registrationForm__control"
+                id="email"
+                type="text"
+                name="email"
+                [formControlName]="'email'"
+                placeholder="E-mail:">
+            </div>
+
+            <div class="registrationForm__control-box">
+              <input
+                class="registrationForm__control"
+                id="topic"
+                type="text"
+                name="topic"
+                [formControlName]="'topic'"
+                placeholder="Тема:">
+            </div>
+
+            <div class="registrationForm__control-box">
+              <input
+                class="registrationForm__control"
+                id="question"
+                type="text"
+                name="question"
+                [formControlName]="'question'"
+                placeholder="Ваш вопрос:">
+            </div>
+          </div>
+        </div>
+        <div>
+          <button
+            class="form-button"
+            type="submit"
+            [disabled]="question.invalid || submitted || question.disabled">
+            <div class="form-button__next__img-box">
+              <p class="form-button__text">
+                Отправить
+              </p>
+            </div>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+

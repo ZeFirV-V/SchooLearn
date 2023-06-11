@@ -21,8 +21,7 @@ import {
 export class RegistrationStudentComponent {
   constructor(public _authService: AuthService,
               private _router: Router,
-              private _route: ActivatedRoute,
-              private fb: FormBuilder) {
+              private _route: ActivatedRoute) {
   }
   institution$?: Observable<{id: number, name: string}[]>;
 

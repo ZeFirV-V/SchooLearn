@@ -9,4 +9,5 @@ export const navigation: INavigation[] = [
   { id: 2, title: "Соревнования", path: "/tasks"},
   { id: 3, title: "Рейтинг", path: "/rating"},
   { id: 4, title: "Вопросы", path: "/FAQ"},
+  { id: 5, title: "Помощь", path: "/help"},
 ]

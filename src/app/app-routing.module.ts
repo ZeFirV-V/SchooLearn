@@ -39,6 +39,7 @@ import {
 import {SubjectResolver} from "./modules/info-lk/subject.resolver";
 import {TasksGard} from "./modules/gards/gard";
 import {AdminComponent} from "./pages/private-office/admin/admin.component";
+import {QuestionPageWeb} from "./pages/question/question.page.web";
 
 const tasksRoutes: Routes = [
   { path: '', component: TasksPageWeb, canActivate: [TasksGard], data: { roles: [Role.Student]} },
@@ -97,7 +98,7 @@ const routes: Routes = [
       // {path: 'company', children: registrationCompanyFormRoutes},
       {path: 'registration', children: registrationRoutes},
       {path: 'authorization', component: LoginPageWeb},
-      // {path: 'edit', component: StudentComponent},
+      {path: 'help', component: QuestionPageWeb},
     ]
   },
 

@@ -37,6 +37,7 @@ import {RegistrationAdminComponent} from "./registration/children/registration-a
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatIconModule} from "@angular/material/icon";
+import {QuestionPageWeb} from "./question/question.page.web";
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import {MatIconModule} from "@angular/material/icon";
     SubtextComponent,
     InformationRoleButtonsComponent,
     HeadUniquePageComponent,
-    RegistrationAdminComponent
+    RegistrationAdminComponent,
+    QuestionPageWeb
 
   ],
     imports: [

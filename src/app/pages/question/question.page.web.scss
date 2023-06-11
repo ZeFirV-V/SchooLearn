@@ -1,0 +1,101 @@
+.question {
+  &__box {
+    padding: 110px 200px;
+    display: flex;
+    background: linear-gradient(280.15deg, #547DF8 36.98%, #3F3D56 99.48%);
+    border-radius: 25px 25px 0 0;
+    width: 1470px;
+    height: 660px;
+    justify-content: space-between;
+    margin-left: -85px;
+  }
+
+  &__text {
+
+    width: 300px;
+
+    &-title {
+      p {
+        font-weight: 700;
+        font-size: 52px;
+        margin-bottom: 40px;
+        font-family: 'Raleway', serif;
+        font-style: normal;
+        color: #FFFFFF;
+      }
+    }
+
+    &-subtitle {
+      p {
+        font-weight: 400;
+        font-size: 18px;
+        margin-bottom: 40px;
+        font-family: 'Raleway', serif;
+        font-style: normal;
+        color: #FFFFFF;
+      }
+
+    }
+  }
+
+  &__container {
+    margin-top: 70px;
+  }
+}
+
+.registrationForm {
+  width: 525px;
+  &__group {
+  }
+
+  &__label {
+
+  }
+
+  &__control {
+    border: 1px solid #FFFFFF;
+    border-radius: 25px;
+    background: unset;
+    width: 525px;
+    height: 50px;
+    padding: 10px 25px;
+    font-family: 'Raleway', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+
+    color: #FFFFFF;
+
+    &::placeholder {
+      color: #CCCCCC;
+    }
+  }
+}
+input[type=text]{
+
+  width:100%;
+  margin:8px 0;
+  outline:none;
+  box-sizing:border-box;
+  transition:.3s;
+}
+
+.form-button {
+  margin-top: 25px;
+  width: 525px;
+  height: 50px;
+
+  background: #3F3D56;
+  border-radius: 25px;
+
+  p {
+    font-family: 'Raleway', serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+
+    color: #FFFFFF;
+  }
+}
